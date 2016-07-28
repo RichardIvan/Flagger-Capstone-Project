@@ -63,12 +63,14 @@ gulp.task('webpack-dev-server', () => {
     publicPath: '/',
     // publicPath: `/ + ${webpackDevConfig.output.publicPath}`,
     inline: true,
+    // host: '0.0.0.0',
+    // port: 8080,
     stats: {
       colors: true
     }
-  }).listen(8080, 'localhost', (err) => {
+  }).listen(8080, '0.0.0.0', (err) => {
     if (err) throw new gutil.PluginError('webpack-dev-server', err)
-    gutil.log('[webpack-dev-server]', 'http://localhost:8080/webpack-dev-server/index.html')
+    gutil.log('[webpack-dev-server]', 'http://0.0.0.0:8080/webpack-dev-server/index.html')
   })
 })
 

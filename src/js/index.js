@@ -1,4 +1,4 @@
 /* @flow */
 'use strict'
 
-console.log('hello world!')
+const hey = 'hey'

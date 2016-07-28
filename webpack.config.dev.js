@@ -19,7 +19,7 @@ module.exports = {
   cache: true,
   devtool: 'eval',
   entry: {
-    'dev-server': 'webpack-dev-server/client?http://localhost:8080/',
+    'dev-server': 'webpack-dev-server/client?http://0.0.0.0:8080/',
     'hot-dev-server': 'webpack/hot/only-dev-server',
     // s: './src/js/s.js',
     index: './src/js/index.js'
@@ -109,7 +109,8 @@ module.exports = {
   },
   devServer: {
     hot: true,
-    // port: 8081,
+    host: '0.0.0.0',
+    port: 8080,
     // contentBase: 'src/',
     // historyApiFallback: true,
     quiet: false,
