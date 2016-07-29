@@ -1,8 +1,10 @@
 /* @flow */
 'use strict'
 
-import { describe, it, beforeEach } from 'mocha'
+import { describe, it } from 'mocha'
 import expect from 'expect'
+
+import '../../src/js'
 
 describe('Demo', () => {
   it('should pass', () => {
