@@ -23,8 +23,8 @@ module.exports = {
     // s: './src/js/s.js',
     index: './src/js/index.js',
     'service-worker': './src/js/service-worker.js',
-    'dev-server': 'webpack-dev-server/client?http://0.0.0.0:8080/',
-    'hot-dev-server': 'webpack/hot/only-dev-server',
+    'dev-server': 'webpack-dev-server/client?https://0.0.0.0:8080/',
+    // 'hot-dev-server': 'webpack/hot/only-dev-server',
   // common: [
   //   'lodash'
   //   // 'jquery'
