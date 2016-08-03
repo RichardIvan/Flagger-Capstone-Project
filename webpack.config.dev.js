@@ -1,5 +1,6 @@
 'use strict'
 
+const fs = require('fs')
 const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -120,6 +121,8 @@ module.exports = {
     // historyApiFallback: true,
     quiet: false,
     noInfo: false,
+    key: fs.readFileSync('./server/private/key.pem'),
+    cert: fs.readFileSync('./server/private/cert.pem'),
     proxy: {
       '/data': {
         target: 'http://localhost:1337'

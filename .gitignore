@@ -2,3 +2,4 @@ node_modules
 coverage
 .imdone
 npm-debug.log.*
+server/private

@@ -1,3 +1,6 @@
+'use strict'
+
+const fs = require('fs')
 const gulp = require('gulp')
 // const concat = require('gulp-concat')
 // const uglify = require('gulp-uglify')
@@ -69,6 +72,8 @@ gulp.task('webpack-dev-server', () => {
     // watch: true,
     // host: '0.0.0.0',
     // port: 8080,
+    key: fs.readFileSync('./server/private/newkey.pem'),
+    cert: fs.readFileSync('./server/private/cert.pem'),
     stats: {
       colors: true
     }
