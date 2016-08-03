@@ -4,7 +4,7 @@
   "description": "Progressive Web Apllication for Udacity Capstone Project",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/babel-node node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --require ./tests/setup --recursive ./tests && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js --verbose && rm -rf ./coverage",
+    "test": "node_modules/.bin/babel-node node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --require ./tests/setup --require clarify --recursive ./tests && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js --verbose && rm -rf ./coverage",
     "local-test": "node_modules/.bin/babel-node node_modules/.bin/_mocha --require mocha-clean/absolute_paths --require ./tests/setup --require clarify --recursive ./tests --color",
     "local-test:watch": "npm run local-test -- --watch",
     "cover": "node_modules/.bin/babel-node node_modules/.bin/anbul cover node_modules/.bin/_mocha -- --require ./tests/setup --recursive ./tests",
