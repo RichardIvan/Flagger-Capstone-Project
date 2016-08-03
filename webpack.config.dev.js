@@ -23,7 +23,7 @@ module.exports = {
     // s: './src/js/s.js',
     index: './src/js/index.js',
     'service-worker': './src/js/service-worker.js',
-    'dev-server': 'webpack-dev-server/client?https://0.0.0.0:8080/',
+    'dev-server': 'webpack-dev-server/client?https://0.0.0.0:443/',
     // 'hot-dev-server': 'webpack/hot/only-dev-server',
   // common: [
   //   'lodash'
@@ -71,7 +71,7 @@ module.exports = {
     //     reload: false
     //   }
     // ),
-    new ExtractTextPlugin('./css/main.css', { allChunks: true }),
+    new ExtractTextPlugin({ filename: './css/main.css', allChunks: true }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('development')
@@ -85,7 +85,7 @@ module.exports = {
       //   include: path.join(__dirname, 'src'),
       // },
       test: /\.(css|scss)$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap!postcss-loader!sass'),
+      loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap!postcss-loader!sass' }),
       include: path.join(__dirname, './')
     },
     // {

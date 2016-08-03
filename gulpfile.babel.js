@@ -72,7 +72,7 @@ gulp.task('webpack-dev-server', () => {
     stats: {
       colors: true
     }
-  }).listen(8080, '0.0.0.0', (err) => {
+  }).listen(443, '0.0.0.0', (err) => {
     if (err) throw new gutil.PluginError('webpack-dev-server', err)
     gutil.log('[webpack-dev-server]', 'http://0.0.0.0:8080/webpack-dev-server/index.html')
   })

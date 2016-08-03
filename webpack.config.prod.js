@@ -33,14 +33,14 @@ module.exports = {
         warnings: false
       }
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    // new webpack.optimize.OccurenceOrderPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer'
     }),
-    new ExtractTextPlugin('./css/main.css', { allChunks: true }),
+    new ExtractTextPlugin({ filename: './css/main.css', allChunks: true }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
@@ -54,7 +54,7 @@ module.exports = {
       //   include: path.join(__dirname, 'app'),
       // },
       test: /\.(css|scss)$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap!postcss-loader!sass'),
+      loader: ExtractTextPlugin.extract({fallbackLoader: 'style-loader', loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap!postcss-loader!sass' }),
       include: path.join(__dirname, './')
     },
     // {

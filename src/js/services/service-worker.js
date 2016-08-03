@@ -4,11 +4,11 @@
 //TODO chace common.js
 
 import _ from 'lodash'
-import now from 'performance-now'
+// import now from 'performance-now'
 
-import CacheControl from '../../helpers/CacheControl.js'
+// import CacheControl from '../../helpers/CacheControl.js'
 // import DataControl from '../../helpers/DataControl.js'
-import NetworkControl from '../../helpers/NetworkControl.js'
+// import NetworkControl from '../../helpers/NetworkControl.js'
 
 const staticCacheName = CacheControl.getCacheName()
 // const CacheControl = new CC(staticCacheName)
