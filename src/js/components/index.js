@@ -1,4 +1,4 @@
 /* @flow */
 'use strict'
 
-import './index-styles.scss'
+// import './index-styles.scss'
