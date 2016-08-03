@@ -1,4 +1,1 @@
-/* @flow */
-'use strict'
-
-console.log('hey from worker')
+require('serviceworker!./services/service-worker.js')()

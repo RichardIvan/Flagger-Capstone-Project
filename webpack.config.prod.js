@@ -13,6 +13,7 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     // s: './src/js/s.js',
+    'service-worker': './src/js/service-worker.js',
     index: './src/js/index.js'
   },
   output: {

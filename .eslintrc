@@ -32,7 +32,7 @@
     "node": true,
     "es6": true
   },
-  "plugins": [
-    "babel"
-  ]
+  # "plugins": [
+  #   "babel"
+  # ]
 }
