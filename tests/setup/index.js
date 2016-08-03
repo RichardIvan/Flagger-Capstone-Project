@@ -1,4 +1,3 @@
 require('ignore-styles')
 
-global.window = require('mithril/test-utils/domMock.js')()
-global.window = Object.assign(global.window, require('mithril/test-utils/pushStateMock')())
+global.window = Object.assign(require('mithril/test-utils/domMock.js')(), require('mithril/test-utils/pushStateMock')())
