@@ -4,7 +4,7 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const precss = require('precss')
 const autoprefixer = require('autoprefixer')
 // var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
@@ -19,10 +19,12 @@ module.exports = {
   cache: true,
   devtool: 'eval',
   entry: {
+
+    // s: './src/js/s.js',
+    index: './src/js/index.js',
+    'service-worker': './src/js/service-worker.js',
     'dev-server': 'webpack-dev-server/client?http://0.0.0.0:8080/',
     'hot-dev-server': 'webpack/hot/only-dev-server',
-    // s: './src/js/s.js',
-    index: './src/js/index.js'
   // common: [
   //   'lodash'
   //   // 'jquery'
@@ -46,6 +48,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer'
     }),
     // new BrowserSyncPlugin(
     //   // BrowserSync options
@@ -93,7 +98,7 @@ module.exports = {
     // },
     {
       test: /\.js$/,
-      loaders: ['babel-loader'],
+      loaders: ['buble-loader'],
       exclude: /node_modules/,
       include: path.join(__dirname, './'),
       cacheDirectory: true

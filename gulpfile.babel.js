@@ -1,6 +1,7 @@
 const gulp = require('gulp')
 // const concat = require('gulp-concat')
 // const uglify = require('gulp-uglify')
+const documentation = require('gulp-documentation')
 const sourcemaps = require('gulp-sourcemaps')
 const gutil = require('gulp-util')
 const shell = require('gulp-shell')
@@ -19,16 +20,16 @@ const webpackConfig = require('./webpack.config.prod.js')
 const webpackDevConfig = require('./webpack.config.dev.js')
 
 const path = {
-  HTML: 'app/index.html',
-  ALL: ['app/**/*.js'],
+  HTML: 'src/index.html',
+  ALL: ['src/**/*.js'],
   MINIFIED_OUT: 'build.min.js',
   DEST_SRC: 'dist/src',
-  DEST_BUILD: 'dist/build',
+  DEST_BUILD: 'dist',
   DEST: 'dist',
   TESTS: './tests/**/*.js'
 }
 
-gulp.task('jscpd', () => gulp.src('app/*')
+gulp.task('jscpd', () => gulp.src('src/*')
   .pipe(jscpd({
     languages: ['javascript, css'],
     verbose: true
@@ -95,8 +96,22 @@ gulp.task('cover', () => gulp.src('', { read: false })
   .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
   .pipe(shell(['npm run cover'])))
 
+gulp.task('docs', function () {
+  gulp.src('./src/js/index.js')
+    .pipe(documentation({ format: 'md' }))
+    .pipe(gulp.dest('docs/md-docs'))
+
+  gulp.src('./src/js/index.js')
+    .pipe(documentation({ format: 'html' }))
+    .pipe(gulp.dest('docs/html-docs'))
+
+  gulp.src('./src/js/index.js')
+    .pipe(documentation({ format: 'json' }))
+    .pipe(gulp.dest('docs/json-docs'))
+})
+
 gulp.task('build', () => {
-  runSequence(['clean', 'test', 'jscpd'], 'webpack')
+  runSequence(['clean', 'test', 'jscpd', 'docs'], 'webpack')
 })
 
 gulp.task('socket', () => gulp.src('', { read: false })

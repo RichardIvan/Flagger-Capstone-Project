@@ -1,11 +1,137 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Flagger Capstone Project</title>
+  <title>Guess What? - Capstone Project</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+
+    html {
+      position: relative;
+    }
+
+    body {
+      position: absolute;
+      background: #31546D;
+      margin: 0;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    .toolbar, .button-holder, .button-enge {
+      height: 64px;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .main {
+      display: flex;
+      justify-content: center;
+    }
+
+    .logo {
+      height: 240px;
+      width: 240px;
+      margin-top: 21px;
+      background: #4C6DA1;
+      border-radius: 50%;
+    }
+
+    .buttons {
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .buttons .button-holder:first-child {
+      margin-top: 58px;
+    }
+
+    .button-holder {
+      display: flex;
+      width: 205px;
+      position: relative;
+      margin-top: 32px;
+    }
+
+    .button-holder .button-edge:last-child {
+      right: 0;
+    }
+
+    .button-edge, .inner-button {
+      height: 64px;
+      background: #FC5C4A;
+    }
+
+    .button-edge {
+      width: 64px;
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .inner-button {
+      width: 141px;
+      margin: auto;
+    }
+
+    .icon-holder {
+      height: 30px;
+      flex: 1;
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hamburger-holder, .circle {
+      height: 30px;
+      width: 30px;
+      background: #D8D8D8;
+    }
+
+    .hamburger-holder {
+      margin-left: 20px;
+      border-radius: 2px;
+    }
+
+    .circle {
+      margin-right: 20px;
+      border-radius: 50%;
+      align-self: flex-end;
+    }
+
+  </style>
 </head>
 <body id="app">
+  <div class="toolbar">
+    <div class="icon-holder">
+      <div class="hamburger-holder"></div>
+    </div>
+    <div class="icon-holder">
+      <div class="circle"></div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="logo"></div>
+  </div>
+  <div class="buttons">
+    <div class="button-holder">
+      <div class="button-edge"></div>
+      <div class="inner-button"></div>
+      <div class="button-edge"></div>
+    </div>
+    <div class="button-holder">
+      <div class="button-edge"></div>
+      <div class="inner-button"></div>
+      <div class="button-edge"></div>
+    </div>
+  </div>
 </body>
 </html>

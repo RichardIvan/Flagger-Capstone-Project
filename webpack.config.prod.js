@@ -3,6 +3,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const precss = require('precss')
@@ -12,7 +13,7 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     // s: './src/js/s.js',
-    index: './app/js/index.js'
+    index: './src/js/index.js'
   },
   output: {
     path: path.join(__dirname, './dist'),
@@ -33,7 +34,10 @@ module.exports = {
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new HtmlWebpackPlugin({
-      template: './app/index.html'
+      template: './src/index.html'
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer'
     }),
     new ExtractTextPlugin('./css/main.css', { allChunks: true }),
     new webpack.DefinePlugin({
@@ -62,7 +66,7 @@ module.exports = {
     // },
     {
       test: /\.js$/,
-      loaders: ['babel-loader'],
+      loaders: ['buble-loader'],
       exclude: /node_modules/,
       include: path.join(__dirname, './')
     },
