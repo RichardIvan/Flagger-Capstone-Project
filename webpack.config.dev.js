@@ -23,7 +23,7 @@ module.exports = {
 
     // s: './src/js/s.js',
     index: './src/js/index.js',
-    'service-worker': './src/js/service-worker.js',
+    // 'service-worker': './src/js/service-worker.js',
     'dev-server': 'webpack-dev-server/client?https://0.0.0.0:443/',
     // 'hot-dev-server': 'webpack/hot/only-dev-server',
   // common: [
@@ -99,7 +99,7 @@ module.exports = {
     // },
     {
       test: /\.js$/,
-      loaders: ['buble-loader'],
+      loaders: ['babel-loader'],
       exclude: /node_modules/,
       include: path.join(__dirname, './'),
       cacheDirectory: true
@@ -121,8 +121,8 @@ module.exports = {
     // historyApiFallback: true,
     quiet: false,
     noInfo: false,
-    key: fs.readFileSync('./server/private/key.pem'),
-    cert: fs.readFileSync('./server/private/cert.pem'),
+    // key: fs.readFileSync('./server/private/server.key'),
+    // cert: fs.readFileSync('./server/private/server.cert'),
     proxy: {
       '/data': {
         target: 'http://localhost:1337'

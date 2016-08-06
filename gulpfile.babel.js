@@ -72,7 +72,7 @@ gulp.task('webpack-dev-server', () => {
     // watch: true,
     // host: '0.0.0.0',
     // port: 8080,
-    key: fs.readFileSync('./server/private/newkey.pem'),
+    key: fs.readFileSync('./server/private/key.pem'),
     cert: fs.readFileSync('./server/private/cert.pem'),
     stats: {
       colors: true

@@ -19,30 +19,30 @@ console.log('hey from service worker')
 const staticCacheName = 'guess-what-v1'
 // // const CacheControl = new CC(staticCacheName)
 //
-self.addEventListener('install', (event) => {
-
-  console.log(event)
-  console.log(self)
-
-  event.waitUntil(
-    caches.open(staticCacheName).then((cache) => {
-      return cache.addAll([
-        '/',
-        '/index.html',
-        '/css/main.css',
-        '/js/index.js'
-        // '/?/',
-        // '/?/index.html',
-        // '/?/css/main.css',
-        // '/?/js/index.js',
-        // '/stations/'
-      ])
-      .then(() => {
-        self.skipWaiting()
-      })
-    })
-  )
-})
+// self.addEventListener('install', (event) => {
+//
+//   // console.log(event)
+//   // console.log(self)
+//
+//   event.waitUntil(
+//     caches.open(staticCacheName).then((cache) => {
+//       return cache.addAll([
+//         '/',
+//         '/index.html',
+//         '/css/main.css',
+//         '/js/index.js'
+//         // '/?/',
+//         // '/?/index.html',
+//         // '/?/css/main.css',
+//         // '/?/js/index.js',
+//         // '/stations/'
+//       ])
+//       .then(() => {
+//         self.skipWaiting()
+//       })
+//     })
+//   )
+// })
     //   .then((a) => {
     //     // console.log(window)
     //     const endpoints = ['data/', 'routes/']
@@ -92,61 +92,61 @@ self.addEventListener('install', (event) => {
 //   )
 // })
 //
-// self.addEventListener('fetch', (event) => {
-//
-//   console.log(event)
-//
-//   const url = event.request.url
-//   const dataFromURL = parseURL(url)
-//
-//   const endpoint = dataFromURL.endpoint
-//
-//   // console.log('ENDPOINT IN SW')
-//   // console.log(endpoint)
-//
-//   switch (endpoint) {
-//     case 'data':
-//     case 'routes':
-//       // getFromCache accepts event / event.request and callbackFunction in case there is no data in in the cache
-//       event.respondWith(
-//         CacheControl.getFromCache(event, NetworkControl.fetchFromNetwork.bind(null, event))
-//         )
-//       break
-//     case 'journey':
-//       // let thingy = CacheControl.getFromCache(event, DataControl.getRoute.bind(null, event, pathnameInfo))
-//       // console.log()
-//       console.log(dataFromURL)
-//
-//       event.respondWith(
-//         CacheControl.getFromCache(event, DataControl.getRoute.bind(null, event, dataFromURL))
-//           // .then(resp => {
-//           //   console.log(resp)
-//           //   return resp
-//           //   // let init = { 'status': 200, 'statusText': "OK"}
-//           //   // return new Response(resp, init)
-//           // })
-//       )
-//       // accepts callback that will construct the necessary response for the route
-//       // this function searches data by passed in route Info
-//       // return
-//       break
-//     case 'stations':
-//       event.respondWith(
-//         CacheControl.getFromCache(event, NetworkControl.fetchFromNetwork.bind(null, event))
-//       )
-//       break
-//     case 'realtime':
-//       event.respondWith(
-//         NetworkControl.fetchFromNetwork(event)
-//       )
-//       break
-//     case 'browser-sync':
-//     case 'sockjs-node':
-//       break
-//     default:
-//       event.respondWith(CacheControl.getFromCache(event, NetworkControl.fetchFromNetwork.bind(null, event)))
-//       // // event.respondWith(CacheControl.getFromCache(event, NetworkControl.fetchFromNetwork.bind(null, event)))
-//       // event.respondWith(CacheControl.getFromCache(event, NetworkControl.fetchFromNetwork.bind(null, event, false)))
-//       break
-//   }
-// })
+self.addEventListener('fetch', (event) => {
+
+  // console.log(event)
+  //
+  // const url = event.request.url
+  // const dataFromURL = parseURL(url)
+  //
+  // const endpoint = dataFromURL.endpoint
+  //
+  // // console.log('ENDPOINT IN SW')
+  // // console.log(endpoint)
+  //
+  // switch (endpoint) {
+  //   case 'data':
+  //   case 'routes':
+  //     // getFromCache accepts event / event.request and callbackFunction in case there is no data in in the cache
+  //     event.respondWith(
+  //       CacheControl.getFromCache(event, NetworkControl.fetchFromNetwork.bind(null, event))
+  //       )
+  //     break
+  //   case 'journey':
+  //     // let thingy = CacheControl.getFromCache(event, DataControl.getRoute.bind(null, event, pathnameInfo))
+  //     // console.log()
+  //     console.log(dataFromURL)
+  //
+  //     event.respondWith(
+  //       CacheControl.getFromCache(event, DataControl.getRoute.bind(null, event, dataFromURL))
+  //         // .then(resp => {
+  //         //   console.log(resp)
+  //         //   return resp
+  //         //   // let init = { 'status': 200, 'statusText': "OK"}
+  //         //   // return new Response(resp, init)
+  //         // })
+  //     )
+  //     // accepts callback that will construct the necessary response for the route
+  //     // this function searches data by passed in route Info
+  //     // return
+  //     break
+  //   case 'stations':
+  //     event.respondWith(
+  //       CacheControl.getFromCache(event, NetworkControl.fetchFromNetwork.bind(null, event))
+  //     )
+  //     break
+  //   case 'realtime':
+  //     event.respondWith(
+  //       NetworkControl.fetchFromNetwork(event)
+  //     )
+  //     break
+  //   case 'browser-sync':
+  //   case 'sockjs-node':
+  //     break
+  //   default:
+  //     event.respondWith(CacheControl.getFromCache(event, NetworkControl.fetchFromNetwork.bind(null, event)))
+  //     // // event.respondWith(CacheControl.getFromCache(event, NetworkControl.fetchFromNetwork.bind(null, event)))
+  //     // event.respondWith(CacheControl.getFromCache(event, NetworkControl.fetchFromNetwork.bind(null, event, false)))
+  //     break
+  // }
+})

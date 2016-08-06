@@ -67,7 +67,7 @@ module.exports = {
     // },
     {
       test: /\.js$/,
-      loaders: ['buble-loader'],
+      loaders: ['babel-loader'],
       exclude: /node_modules/,
       include: path.join(__dirname, './')
     },

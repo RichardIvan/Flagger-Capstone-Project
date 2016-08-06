@@ -9,7 +9,7 @@ import {
   setMobileState
 } from '../actions'
 
-export function startResponsiveStateListener (store: Object) {
+export function startResponsiveStateService (store: Object) {
   window.onresize = (e) => {
     const state = isMobile(store.getState())
     const width = document.documentElement.clientWidth

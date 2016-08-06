@@ -46,8 +46,6 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-2": "^6.5.0",
     "babel-runtime": "^6.9.2",
-    "buble": "^0.12.5",
-    "buble-loader": "^0.2.2",
     "clarify": "^2.0.0",
     "coveralls": "^2.11.9",
     "css-loader": "^0.23.1",

@@ -1,8 +1,11 @@
 'use strict'
 
-const SwRegister = require('serviceworker!./services/service-worker.js')
+require('serviceworker!./services/service-worker.js')()
 
-SwRegister()
+// const SwRegister = require('serviceworker!./services/service-worker.js')
+
+// SwRegister()
+//
 //
 // 'use strict'
 //
