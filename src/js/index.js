@@ -1,10 +1,14 @@
 /* @flow */
 'use strict'
 
-/**
- * assings variable hey as a string 'hey'
- */
-import './components'
+/* @flow */
+'use strict'
 
-const hey = 'hey'
-console.log(hey)
+// const store = configureStore()
+// mountRoot(body, { store })
+
+import { mountRoute } from './containers'
+
+const rootElement = document.getEelementByID('app')
+
+mountRoute(rootElement)
