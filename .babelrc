@@ -4,8 +4,7 @@
 		{ "plugins": [
         "transform-runtime",
         "transform-flow-strip-types",
-        "transform-object-rest-spread",
-        "__coverage__"
+        "transform-object-rest-spread"
       ]
     },
 		{
