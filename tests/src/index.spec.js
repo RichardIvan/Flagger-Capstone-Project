@@ -4,7 +4,7 @@
 import { describe, it } from 'mocha'
 import expect from 'expect'
 
-import '../../src/js'
+import '../../src/js/components/Root'
 
 describe('Demo', () => {
   it('should pass', () => {

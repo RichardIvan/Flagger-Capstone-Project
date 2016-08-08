@@ -10,7 +10,10 @@
     },
 		{
 			"passPerPreset": false,
-			"presets": [ "babel-preset-es2015-webpack", "stage-2" ]
+			"presets": [
+        "babel-preset-es2015-native-modules",
+        "stage-2"
+      ]
 		}
 	]
 }
