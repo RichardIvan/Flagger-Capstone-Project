@@ -1,0 +1,13 @@
+:global(.circle), :global(.hamburger-holder) {
+  background: none;
+}
+
+:global(.circle) {
+  width: 40px;
+  height: 40px;
+}
+
+:global(.hamburger-holder) {
+  width: 40px;
+  height: 35px;
+}

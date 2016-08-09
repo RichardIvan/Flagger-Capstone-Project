@@ -1,0 +1,28 @@
+:global(.button-holder) {
+  font-size: 20px;
+  color: #D8D8D8;
+  padding: 0px;
+}
+
+:global(.inner-button) {
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leftImageEdge, .rightImageEdge {
+  position: absolute;
+}
+
+.leftImageEdge {
+  top: -1px;
+  left: 0;
+}
+
+.rightImageEdge {
+  right: -1px;
+}

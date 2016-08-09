@@ -1,5 +1,30 @@
+
 import m from 'mithril'
-import Root from './Root'
+
+import { configureStore } from '../store'
+import { startResponsiveStateService } from '../services/mobile-state'
+
+import { attachStoreToComponent } from '../helpers/application'
+
+// import 'normalize-css'
+import '../../css/global-styles.scss'
+import '../../css/initial-load-styles.scss'
+import '../../fonts/PressStart2P-Regular.ttf'
+
+import Menu from './Menu.js'
+
+/**
+ * Calling this method initializes Redux Store
+ * @param takes in initial state of the store
+ * @return returns a store instance with mithril subscribed to store changes
+ */
+const store = configureStore()
+
+/**
+ * startResponsiveStateService starts a onwindow resize listener that is setting
+ * the current responsive state of the application. Options are mobile/desktop
+ */
+startResponsiveStateService()
 
 export function mountRoot (el, attrs) {
   const mount = (Component) => m.mount(el, Component, { ...attrs })
@@ -15,7 +40,9 @@ export function mountRoot (el, attrs) {
 }
 
 export function mountRoute (el) {
-  const mount = (Component) => m.route(el, '/', { '/': Component })
+  const mount = (Component) => m.route(el, '/menu', {
+    '/:route...': attachStoreToComponent(Component, store)
+  })
 
-  mount(Root)
+  mount(Menu)
 }
