@@ -14,7 +14,12 @@ const menuButtonComponent = {
       m('.button-edge', m(`img.${styles.leftImageEdge}`, {
         src: leftButtonEdgeImage
       })),
-      m('.inner-button', vnode.attrs.text),
+      m('.inner-button', {
+        style: {
+          'border-top': '4px solid black',
+          'border-bottom': '4px solid black'
+        }
+      }, vnode.attrs.buttonText),
       m('.button-edge', m(`img.${styles.rightImageEdge}`, {
         src: rightButtonEdgeImage
       }))

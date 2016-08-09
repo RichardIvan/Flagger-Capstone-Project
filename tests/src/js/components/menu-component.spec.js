@@ -39,7 +39,7 @@ describe('Menu Component', () => {
     // should state signle and multi
   describe('Buttons', () => {
     it('should be 2 buttons', () => {
-      expect(output.has.at.least(2, 'button')).toBe(true)
+      expect(output.should.have.at.least.bind(null, 2, 'button')).toNotThrow
     })
 
     it('should display a button with the single text on it', () => {
@@ -79,6 +79,7 @@ describe('Menu Component', () => {
   describe('Hamburger Icon', () => {
     it('should display hanburger icon', () => {
       expect(output.has('#navigation-button')).toBe(true)
+      expect(output.has('button#navigation-button')).toBe(true)
     })
   })
 
@@ -87,6 +88,7 @@ describe('Menu Component', () => {
   describe('Settings Icon', () => {
     it('should display settings icon', () => {
       expect(output.has('#settings-button')).toBe(true)
+      expect(output.has('button#settings-button')).toBe(true)
     })
   })
 

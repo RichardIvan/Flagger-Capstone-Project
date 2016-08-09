@@ -11,7 +11,7 @@ import '../../css/global-styles.scss'
 import '../../css/initial-load-styles.scss'
 import '../../fonts/PressStart2P-Regular.ttf'
 
-import Menu from './Menu.js'
+import Root from './Root'
 
 /**
  * Calling this method initializes Redux Store
@@ -41,8 +41,10 @@ export function mountRoot (el, attrs) {
 
 export function mountRoute (el) {
   const mount = (Component) => m.route(el, '/menu', {
-    '/:route...': attachStoreToComponent(Component, store)
+    '/:route...': attachStoreToComponent(Component, store),
+    // '/playing/:route': attachStoreToComponent(Component, store),
+    // '/menu/new-game': attachStoreToComponent(Component, store)
   })
 
-  mount(Menu)
+  mount(Root)
 }

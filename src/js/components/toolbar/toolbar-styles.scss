@@ -1,13 +1,46 @@
-:global(.circle), :global(.hamburger-holder) {
+// :global(.circle), :global(.hamburger-holder) {
+//   // background: none;
+// }
+
+:global(button.circle) {
+  // width: 40px;
+  // height: 40px;
+  position: relative;
   background: none;
+  border: none;
+  // width: 40px;
+  // height: 35px;
+
+  :global(img) {
+    position: absolute;
+    background: none;
+    top: -5px;
+    left: -5px;
+    width: 40px;
+    height: 40px;
+  }
 }
 
-:global(.circle) {
-  width: 40px;
-  height: 40px;
+:global(button.hamburger-holder) {
+  // width: 40px;
+  // height: 40px;
+  position: relative;
+  background: none;
+  border: none;
+  // width: 40px;
+  // height: 35px;
+
+  :global(img) {
+    position: absolute;
+    background: none;
+    top: -5px;
+    left: -5px;
+    width: 40px;
+    height: 35px;
+  }
 }
 
-:global(.hamburger-holder) {
-  width: 40px;
-  height: 35px;
-}
+
+// :global(.hamburger-holder) {
+//
+// }

@@ -17,7 +17,7 @@ const SingleMenuButton = {
     return m(menuButtonComponent, {
       text: 'Single',
       buttonAttrs: {
-        onclick: () => m.route.set(`/playing/single-player/${generateShortId()}`)
+        
       }
     })
   }

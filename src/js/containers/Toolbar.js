@@ -14,15 +14,19 @@ import settingsIcon from '../../images/settings-icon.png'
 const toolbarContainer = {
   view() {
     return m(toolbarComponent, {
-      navigationIcon: m('img.hamburger-holder', {
-        src: hamburgerIcon
-      }),
+      navigationIcon: m('button.hamburger-holder',
+        m('img', {
+          src: hamburgerIcon
+        })
+      ),
       navigationAttrs: {
 
       },
-      settingsIcon: m('img.circle', {
-        src: settingsIcon
-      }),
+      settingsIcon: m('button.circle',
+        m('img', {
+          src: settingsIcon,
+        })
+      ),
       settingsAttrs: {
 
       }
