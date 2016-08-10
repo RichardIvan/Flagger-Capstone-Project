@@ -3,4 +3,5 @@
 
 export function getCurrentCoinPosition(store: Object) {
   // console.log(store.getState())
+  return 'demo'
 }

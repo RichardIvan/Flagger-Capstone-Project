@@ -68,28 +68,12 @@ describe('Menu Component', () => {
     })
 
     it('should toggle a front/back class on click', () => {
-      expect(output.has('#coin.front')).toBe(true)
-      output.click()
-      expect(output.has('#coin.back')).toBe(true)
+      expect(output.has('#coin')).toBe(true)
+      console.log(output.find('#coin'))
+      // expect(output.has('.flipped')).toBe(true)
+      output.click('.logo')
+      console.log(output.find('.logo div'))
+      expect(output.has('.flipped')).toBe(true)
     })
   })
-
-  // should display hamburger icon
-    // shoudl have onclick handler
-  describe('Hamburger Icon', () => {
-    it('should display hanburger icon', () => {
-      expect(output.has('#navigation-button')).toBe(true)
-      expect(output.has('button#navigation-button')).toBe(true)
-    })
-  })
-
-  // should display settings icon
-    // should have onclick handler
-  describe('Settings Icon', () => {
-    it('should display settings icon', () => {
-      expect(output.has('#settings-button')).toBe(true)
-      expect(output.has('button#settings-button')).toBe(true)
-    })
-  })
-
 })

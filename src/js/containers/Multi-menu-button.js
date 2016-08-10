@@ -12,7 +12,7 @@ const MultiMenuButton = {
   view() {
     return m(
       menuButtonComponent,
-  )
+    )
   }
 }
 

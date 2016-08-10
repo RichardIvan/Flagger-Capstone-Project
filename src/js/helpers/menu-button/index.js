@@ -25,7 +25,6 @@ export function generateShortId() {
 }
 
 export function menuButtonsByRoute() {
-  const route = m.route.get()
   return map(getAttribuesForMenuButtonsByRoute(), (buttonComponentAttributes: Object) => {
     return m(buttonComponent, buttonComponentAttributes)
   })

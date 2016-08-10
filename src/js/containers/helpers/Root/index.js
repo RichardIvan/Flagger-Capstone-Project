@@ -10,7 +10,7 @@ import { compact, first } from 'lodash'
 
 import {
   MENU_ROUTE,
-  MENU_MULTIPLAYER_ROUTE
+  MENU_MULTIPLAYER_ROUTE,
 } from '../../../actions/constants'
 
 export function getVisibleContainerByRoute() {
