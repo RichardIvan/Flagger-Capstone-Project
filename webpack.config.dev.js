@@ -18,7 +18,7 @@ const autoprefixer = require('autoprefixer')
 
 module.exports = {
   cache: true,
-  devtool: 'eval',
+  devtool: 'eval-source-map',
   entry: {
 
     // s: './src/js/s.js',
@@ -115,6 +115,7 @@ module.exports = {
   },
   devServer: {
     hot: true,
+    // inline: true,
     host: '0.0.0.0',
     port: 8080,
     // contentBase: 'src/',

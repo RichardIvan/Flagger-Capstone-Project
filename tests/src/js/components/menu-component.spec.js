@@ -50,30 +50,12 @@ describe('Menu Component', () => {
       expect(output.contains('Multi')).toBe(true)
     })
 
-    // button should trigger a dispach action of set game mode to single player or something
-    // should have a onclick handler
-    it('should have a onclick handler', () => {
-      output.click()
-      expect(flag).toBe(false)
-    })
-
-    // button should change the route of the app
-
   })
 
   // should display main logo
   describe('Main Logo', () => {
     it('should display main logo', () => {
       expect(output.has('#coin')).toBe(true)
-    })
-
-    it('should toggle a front/back class on click', () => {
-      expect(output.has('#coin')).toBe(true)
-      console.log(output.find('#coin'))
-      // expect(output.has('.flipped')).toBe(true)
-      output.click('.logo')
-      console.log(output.find('.logo div'))
-      expect(output.has('.flipped')).toBe(true)
     })
   })
 })

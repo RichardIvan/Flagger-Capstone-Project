@@ -1,0 +1,29 @@
+.settings {
+  color: #D8D8D8;
+
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  :global(.heading, .controls) {
+    flex: 2;
+  }
+
+  :global(#sounds-label) {
+    font-size: 25px;
+  }
+
+  :global(ul) {
+    list-style: none;
+    padding: 0;
+  }
+
+  :global(li) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

@@ -1,1 +1,9 @@
-export const MOBILE_STATE_CHANGE = 'MOBILE_STATE_CHANGE'
+/* @flow */
+'use strict'
+
+export const MOBILE_STATE_CHANGE: string = 'MOBILE_STATE_CHANGE'
+export const TOGGLE_SOUND_SETTING: string = 'TOGGLE_SOUND_SETTING'
+export const SIGN_IN: string = 'SIGN_IN'
+export const SIGN_OUT: string = 'SIGN_OUT'
+export const TOGGLE_SETTINGS_OPEN_STATE: string = 'TOGGLE_SETTINGS_OPEN_STATE'
+export const OPEN_NAVIGATION: string = 'OPEN_NAVIGATION'

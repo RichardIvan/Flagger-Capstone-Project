@@ -8,7 +8,7 @@ import toolbarContainer from '../../containers/Toolbar'
 const RootComponent = {
   view(vnode: Object) {
     return m('#root', [
-      m(toolbarContainer),
+      m(toolbarContainer, { ...vnode.attrs }),
       m('.container', vnode.attrs.container)
     ])
   }

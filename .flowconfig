@@ -7,6 +7,7 @@ app
 [libs]
 interfaces/global.js
 interfaces/immutable.js
+flow-typed/npm/*.js
 
 [options]
 module.name_mapper='.*\(.css\|.ttf\)' -> 'CSSModule'

@@ -66,9 +66,10 @@ gulp.task('webpack-dev-server', () => {
   new WebpackDevServer(webpack(webpackDevConfig), {
     publicPath: '/',
     // publicPath: `/ + ${webpackDevConfig.output.publicPath}`,
-    inline: true,
+    // inline: true,
     https: true,
-    // hot: true,
+    hot: true,
+    cache: true,
     // watch: true,
     // host: '0.0.0.0',
     // port: 8080,
