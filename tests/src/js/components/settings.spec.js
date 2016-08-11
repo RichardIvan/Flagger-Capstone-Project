@@ -25,8 +25,22 @@ import settingsComponent from '../../../../src/js/components/settings'
 
 describe('Settings Component', () => {
   let out
+  let vnode
 
   beforeEach(() => {
+    vnode = {
+      attrs: {
+        store: {
+          getState() {
+            return {
+              user: Map({
+                isSignedIn: true
+              })
+            }
+          }
+        }
+      }
+    }
     out = mq(settingsComponent, {
       store: {
         getState() {
@@ -36,6 +50,9 @@ describe('Settings Component', () => {
             })
           }
         }
+      },
+      checkmarkAttrs: {
+        onclick: () => toggleSounds(vnode.attrs.store)
       }
     })
   })
@@ -74,22 +91,12 @@ describe('Settings Component', () => {
     })
 
     it('should have click handler for dispatching the sounds state change', () => {
-      const vnode = {
-        attrs: {
-          store: {
-            getState() {
-              return {
-                user: Map({
-                  isSignedIn: true
-                })
-              }
-            }
-          }
-        }
-      }
       const onclick = () => toggleSounds(vnode.attrs.store)
 
-      expect(out.find('input[type=checkbox]')[0].attrs.onclick).toEqual(onclick)
+      console.log(out.find('.image_wrapper')[0].attrs.onclick.toString())
+      console.log(onclick.toString())
+
+      expect(out.find('.image_wrapper')[0].attrs.onclick).toEqual(onclick)
     })
   })
 

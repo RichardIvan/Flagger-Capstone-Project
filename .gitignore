@@ -3,3 +3,4 @@ coverage
 .imdone
 npm-debug.*
 server/private
+flow-typed
