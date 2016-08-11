@@ -8,6 +8,7 @@ import {
 } from '../constants'
 
 export function toggleSounds(store: Object) {
+  console.log(store.getState())
   const currentSoundsState = store.getState().settings.get('sounds')
 
   const action = {

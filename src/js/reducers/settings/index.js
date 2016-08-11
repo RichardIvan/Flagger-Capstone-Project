@@ -13,7 +13,8 @@ export const initialState = new Map({
   sounds: true
 })
 
-const reducer = createReducer((state, action) => {
+const reducer = createReducer((state = initialState, action) => {
+  console.log(state.get('sounds'))
   switch (action.type) {
     case TOGGLE_SOUND_SETTING:
       return state.set('sounds', action.payload)

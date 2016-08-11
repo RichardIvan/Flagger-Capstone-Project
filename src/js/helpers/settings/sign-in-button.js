@@ -29,7 +29,7 @@ export function signOutButton(store: Object) {
 
 export function constructButtonBySignedInStatus(isSignedIn: bool, store: Object) {
   return m(buttonComponent, {
-    buttonText: isSignedIn ? 'Sign Out' : 'Sign In',
+    buttonText: isSignedIn ? 'Logout' : 'Sign In',
     buttonAttrs: {
       class: 'settings',
       id: 'oauth',
