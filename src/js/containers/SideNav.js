@@ -3,24 +3,39 @@
 
 import m from 'mithril'
 
+import sidenavComponent from '../components/side-nav'
+
 import {
   isUserSignedIn as isSignedIn
 } from '../selectors/user'
 
+import {
+  isNavigationComponentOpen as isNavbarOpen
+} from '../selectors/navigation'
+
+import {
+  openNavigation
+} from '../actions/side-nav'
+
+import {
+  signIn,
+  signOut
+} from '../actions/user'
+
 const sidenavContainer = {
-  oninit(vnode) {
+  oninit(vnode: Object) {
     vnode.state.appState = vnode.attrs.store.getState()
   },
-  onbeforeupdate(vnode) {
+  onbeforeupdate(vnode: Object) {
     vnode.state.appState = vnode.attrs.store.getState()
   },
-  view(vnode) {
-    return m(sidenavComponent,
+  view(vnode: Object) {
+    return m(sidenavComponent, {
       sidenavAttrs: {
         class: isNavbarOpen(vnode.state.appState) ? 'open' : ''
       },
       headingAttrs: {
-        onclick: () => closeSideNav()
+        onclick: () => vnode.attrs.store.dispatch(openNavigation())
       },
       achievementsAttrs: {
         onclick: () => showAchievements()
@@ -34,7 +49,7 @@ const sidenavContainer = {
         }
       },
       oauthButtonText: isSignedIn(vnode.state.appState) ? 'Log Out' : 'Sign In'
-    )
+    })
   }
 }
 

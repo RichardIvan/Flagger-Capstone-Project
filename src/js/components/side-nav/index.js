@@ -3,9 +3,11 @@
 
 import m from 'mithril'
 
+import styles from './styles.sass'
+
 const sideNav = {
   view(vnode: Object) {
-    return m('#navbar', vnode.attrs.sidenavAttrs,
+    return m(`#navbar.${styles.navbar}`, vnode.attrs.sidenavAttrs,
       m('ul', [
         m('li', vnode.attrs.headingAttrs, 'Guess What?'),
         m('li', vnode.attrs.achievementsAttrs, 'Achievements'),

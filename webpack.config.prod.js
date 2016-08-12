@@ -53,7 +53,7 @@ module.exports = {
       //   loaders: ['style', 'css'],
       //   include: path.join(__dirname, 'app'),
       // },
-      test: /\.(css|scss)$/,
+      test: /\.(css|scss|sass)$/,
       loader: ExtractTextPlugin.extract({fallbackLoader: 'style-loader', loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap!postcss-loader!sass' }),
       include: path.join(__dirname, './')
     },

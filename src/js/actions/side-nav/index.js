@@ -2,18 +2,18 @@
 'use strict'
 
 import {
-  CLOSE_SIDENAV,
-  OPEN_NAVIGATION
+  OPEN_NAVIGATION,
+  CLOSE_NAVIGATION
 } from '../constants'
-
-export function closeSideNav() {
-  return {
-    type: CLOSE_SIDENAV
-  }
-}
 
 export function openNavigation() {
   return {
     type: OPEN_NAVIGATION
+  }
+}
+
+export function closeNavigation() {
+  return {
+    type: CLOSE_NAVIGATION
   }
 }

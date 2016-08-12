@@ -8,7 +8,7 @@ import buttonComponent from '../../components/menu-button'
 import {
   signIn,
   signOut
-} from '../../actions'
+} from '../../actions/user'
 
 import {
   isUserSignedIn

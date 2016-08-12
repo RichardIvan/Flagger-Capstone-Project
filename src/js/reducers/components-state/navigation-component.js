@@ -8,7 +8,8 @@ import {
 } from 'rereduce'
 
 import {
-  OPEN_NAVIGATION
+  OPEN_NAVIGATION,
+  CLOSE_NAVIGATION
 } from '../../actions'
 
 export const initialState = new Map({
@@ -19,6 +20,8 @@ const navigationState = createReducer((state = initialState, action) => {
   switch (action.type) {
     case OPEN_NAVIGATION:
       return state.set('open', true)
+    case CLOSE_NAVIGATION:
+      return state.set('open', false)
     default:
       return state
   }

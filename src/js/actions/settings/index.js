@@ -2,8 +2,6 @@
 'use strict'
 
 import {
-  SIGN_IN,
-  SIGN_OUT,
   TOGGLE_SOUND_SETTING
 } from '../constants'
 
@@ -17,17 +15,4 @@ export function toggleSounds(store: Object) {
   }
 
   store.dispatch(action)
-}
-
-export function signIn(store: Object) {
-  store.dispatch({
-    type: SIGN_IN
-  })
-
-}
-
-export function signOut(store: Object) {
-  store.dispatch({
-    type: SIGN_OUT
-  })
 }
