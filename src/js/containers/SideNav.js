@@ -14,7 +14,7 @@ import {
 } from '../selectors/navigation'
 
 import {
-  openNavigation
+  closeNavigation
 } from '../actions/side-nav'
 
 import {
@@ -35,7 +35,7 @@ const sidenavContainer = {
         class: isNavbarOpen(vnode.state.appState) ? 'open' : ''
       },
       headingAttrs: {
-        onclick: () => vnode.attrs.store.dispatch(openNavigation())
+        onclick: () => vnode.attrs.store.dispatch(closeNavigation())
       },
       achievementsAttrs: {
         onclick: () => showAchievements()
