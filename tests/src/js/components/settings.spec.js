@@ -4,7 +4,7 @@
 var util = require('util')
 
 import { describe, it, beforeEach } from 'mocha'
-import expect from 'expect'
+import expect, { spyOn } from 'expect'
 
 import {
   first,
@@ -21,13 +21,21 @@ import {
   signOut
 } from '../../../../src/js/actions'
 
+import {
+  authButtonBySignedInStatus
+} from '../../../../src/js/helpers'
+
 import settingsComponent from '../../../../src/js/components/settings'
 
 describe('Settings Component', () => {
   let out
   let vnode
+  let checkmarkAttrs
+  let onclick
 
   beforeEach(() => {
+
+
     vnode = {
       attrs: {
         store: {
@@ -35,11 +43,20 @@ describe('Settings Component', () => {
             return {
               user: Map({
                 isSignedIn: true
+              }),
+              settings: Map({
+                sounds: true
               })
             }
+          },
+          dispatch(action) {
+            console.log(action)
           }
         }
       }
+    }
+    checkmarkAttrs = {
+      onclick: () => toggleSounds(vnode.attrs.store)
     }
     out = mq(settingsComponent, {
       store: {
@@ -51,9 +68,8 @@ describe('Settings Component', () => {
           }
         }
       },
-      checkmarkAttrs: {
-        onclick: () => toggleSounds(vnode.attrs.store)
-      }
+      checkmarkAttrs,
+      oauthButton: authButtonBySignedInStatus(vnode.attrs.store)
     })
   })
 
@@ -91,34 +107,14 @@ describe('Settings Component', () => {
     })
 
     it('should have click handler for dispatching the sounds state change', () => {
-      const onclick = () => toggleSounds(vnode.attrs.store)
-
-      console.log(out.find('.image_wrapper')[0].attrs.onclick.toString())
-      console.log(onclick.toString())
-
-      expect(out.find('.image_wrapper')[0].attrs.onclick).toEqual(onclick)
+      const spy = spyOn(checkmarkAttrs, 'onclick')
+      out.click('.image_wrapper')
+      expect(spy.calls.length).toBe(1)
     })
   })
 
 
   describe('Button', () => {
-    it('should have correct button event handler', () => {
-        const store = {
-          getState() {
-            return {
-              user: Map({
-                isSignedIn: true
-              })
-            }
-          }
-        }
-
-        const isSignedIn = true
-        const onclick = () => isSignedIn ? signOut(store) : signIn(store)
-
-        expect(out.find('button.settings#oauth]')[0].attrs.onclick).toEqual(onclick)
-    })
-
     it('should have button', () => {
       expect(out.has('button.settings#oauth')).toBe(true)
     })
