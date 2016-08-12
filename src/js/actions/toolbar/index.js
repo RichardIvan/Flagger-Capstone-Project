@@ -2,24 +2,12 @@
 'use strict'
 
 import {
-  TOGGLE_SETTINGS_OPEN_STATE,
-  OPEN_NAVIGATION
+  TOGGLE_SETTINGS_OPEN_STATE
 } from '../constants'
 
-import {
-  isSettingsComponentOpen
-} from '../../selectors'
-
-export function toggleSettingsOpenState(store: Object) {
-  const state = store.getState()
-  store.dispatch({
+export function toggleSettingsOpenState(newState: bool) {
+  return {
     type: TOGGLE_SETTINGS_OPEN_STATE,
-    payload: !isSettingsComponentOpen(state)
-  })
-}
-
-export function openNavigation(store: Object) {
-  store.dispatch({
-    type: OPEN_NAVIGATION
-  })
+    payload: newState
+  }
 }

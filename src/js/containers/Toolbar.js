@@ -9,6 +9,10 @@ import hamburgerIcon from '../../images/hamburger-icon.png'
 import settingsIcon from '../../images/settings-icon.png'
 
 import {
+  isSettingsComponentOpen
+} from '../selectors'
+
+import {
   toggleSettingsOpenState,
   openNavigation
 } from '../actions'
@@ -17,19 +21,21 @@ import {
 // TODO add click handler for buttons
 
 const toolbarContainer = {
-  view(vnode) {
+  view(vnode: Object) {
     return m(toolbarComponent, {
       navigationIconAttrs: {
         src: hamburgerIcon
       },
       navigationButtonAttrs: {
-        onclick: () => openNavigation(vnode.attrs.store)
+        onclick: () => vnode.attrs.store.dispatch(openNavigation())
       },
       settingsIconAttrs: {
         src: settingsIcon,
       },
       settingsButtonAttrs: {
-        onclick: () => toggleSettingsOpenState(vnode.attrs.store)
+        onclick: () => {
+          toggleSettingsOpenState(!isSettingsComponentOpen(vnode.attrs.store.getState()))
+        }
       }
     })
   }

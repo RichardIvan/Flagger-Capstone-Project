@@ -21,7 +21,7 @@ import {
   isNavigationComponentOpen as isNavbarOpen
 } from '../../../../src/js/selectors/navigation'
 
-describe.only('Side Component', () => {
+describe('Side Component', () => {
   let out
   let vnode
   let openFlag = false
