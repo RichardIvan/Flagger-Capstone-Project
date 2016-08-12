@@ -4,11 +4,6 @@
 import m from 'mithril'
 
 import coinContainer from '../../containers/Coin'
-// import toolbarContainer from '../../containers/Toolbar'
-// import singleMenuButton from '../../containers/menuButton'
-// import multiMenuButton from '../../containers/Multi-menu-button'
-
-// import buttonsContainer from '../../containers/buttonsContainer'
 
 import {
   menuButtonsByRoute
@@ -21,8 +16,6 @@ const MenuComponent = {
       m('.buttons', [
         // TODO get buttons by route/menustate
         menuButtonsByRoute()
-        // m(MenuButton),
-        // m(multiMenuButton)
       ])
     ])
   }

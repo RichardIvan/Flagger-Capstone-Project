@@ -16,15 +16,7 @@ import {
 
 export function authButtonBySignedInStatus(store: Object) {
   const isSignedIn = isUserSignedIn(store.getState())
-  return isSignedIn ? signOutButton(store) : signInButton(store)
-}
-
-export function signInButton(store: Object) {
-  return constructButtonBySignedInStatus(false, store)
-}
-
-export function signOutButton(store: Object) {
-  return constructButtonBySignedInStatus(true, store)
+  return constructButtonBySignedInStatus(isSignedIn, store)
 }
 
 export function constructButtonBySignedInStatus(isSignedIn: bool, store: Object) {

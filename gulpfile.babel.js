@@ -136,4 +136,5 @@ gulp.task('start', () => {
   runSequence(['socket'])
 })
 
-gulp.task('default', ['socket', 'webpack-dev-server'])
+// gulp.task('default', ['socket', 'webpack-dev-server'])
+gulp.task('default', ['webpack-dev-server'])

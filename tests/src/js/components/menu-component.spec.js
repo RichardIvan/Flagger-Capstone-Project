@@ -39,7 +39,7 @@ describe('Menu Component', () => {
     // should state signle and multi
   describe('Buttons', () => {
     it('should be 2 buttons', () => {
-      expect(output.should.have.at.least.bind(null, 2, 'button')).toNotThrow
+      expect(output.should.have.at.least.bind(null, 2, 'button')).toNotThrow()
     })
 
     it('should display a button with the single text on it', () => {

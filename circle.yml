@@ -1,3 +1,6 @@
 machine:
   node:
     version: 6.2.2
+notify:
+    webhooks:
+        - url: https://richardivan-flagger-capstone-project.getbadges.io/api/app/webhook/b939aaf2-a8b9-45a1-88f0-0bb57f44b2ef

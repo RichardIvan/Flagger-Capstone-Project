@@ -1,6 +1,6 @@
 /* @flow */
 'use strict'
 
-export function isNavigationComponentOpen(store) {
-    return store.getState().componentsState.navigationState.get('open')
+export function isNavigationComponentOpen(state: Object) {
+    return state.componentsState.navigationState.get('open')
 }
