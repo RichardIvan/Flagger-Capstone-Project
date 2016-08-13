@@ -16,6 +16,7 @@ import m from 'mithril'
 import mq from 'mithril-query'
 
 import navbarComponent from '../../../../src/js/components/side-nav'
+import navbarContainer from '../../../../src/js/containers/SideNav'
 
 import {
   isNavigationComponentOpen as isNavbarOpen
@@ -178,6 +179,96 @@ describe('Side Component', () => {
 
       out.click('li:nth-child(4)')
       expect(spy.calls.length).toBe(1)
+    })
+  })
+
+  describe.only('ARIA', () => {
+    // let isNavbarOpen
+    describe('Open Navigation', () => {
+      // let out
+      let vnode = {
+        attrs: {
+          store: {
+            getState: () => {
+              return {
+                componentsState: {
+                  navigationState: Map({
+                    open: true
+                  })
+                }
+              }
+            }
+          }
+        }
+      }
+
+      beforeEach(function () {
+        out = mq(navbarComponent, {
+          ...vnode.attrs,
+          headingAttrs: {
+            tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
+          },
+          achievementsAttrs: {
+            tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
+          },
+          highscoresAttrs: {
+            tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
+          },
+          oauthAttrs: {
+            tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
+          }
+        })
+      })
+
+      it('all 4 items in nav-bar should have tabindex 0', () => {
+        expect(out.find('ul > li:first-child')[0].attrs.tabindex).toBe(0)
+        expect(out.find('ul > li:nth-child(2)')[0].attrs.tabindex).toBe(0)
+        expect(out.find('ul > li:nth-child(3)')[0].attrs.tabindex).toBe(0)
+        expect(out.find('ul > li:nth-child(4)')[0].attrs.tabindex).toBe(0)
+      })
+    })
+
+    describe('Closed Navigation', () => {
+      let vnode = {
+        attrs: {
+          store: {
+            getState: () => {
+              return {
+                componentsState: {
+                  navigationState: Map({
+                    open: false
+                  })
+                }
+              }
+            }
+          }
+        }
+      }
+
+      beforeEach(function () {
+        out = mq(navbarComponent, {
+          ...vnode.attrs,
+          headingAttrs: {
+            tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
+          },
+          achievementsAttrs: {
+            tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
+          },
+          highscoresAttrs: {
+            tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
+          },
+          oauthAttrs: {
+            tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
+          }
+        })
+      })
+
+      it('all 4 items in nav-bar should have tabindex -1', () => {
+        expect(out.find('ul > li:first-child')[0].attrs.tabindex).toBe(-1)
+        expect(out.find('ul > li:nth-child(2)')[0].attrs.tabindex).toBe(-1)
+        expect(out.find('ul > li:nth-child(3)')[0].attrs.tabindex).toBe(-1)
+        expect(out.find('ul > li:nth-child(4)')[0].attrs.tabindex).toBe(-1)
+      })
     })
   })
 })

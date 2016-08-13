@@ -17,6 +17,10 @@ import {
   openNavigation
 } from '../actions'
 
+import {
+  isNavigationComponentOpen as isNavOpen
+} from '../selectors/navigation'
+
 // TODO add attributes
 // TODO add click handler for buttons
 
@@ -27,7 +31,8 @@ const toolbarContainer = {
         src: hamburgerIcon
       },
       navigationButtonAttrs: {
-        onclick: () => vnode.attrs.store.dispatch(openNavigation())
+        onclick: () => vnode.attrs.store.dispatch(openNavigation()),
+        tabIndex: isNavOpen(vnode.attrs.store.getState()) ? -1 : 0
       },
       settingsIconAttrs: {
         src: settingsIcon,
@@ -35,7 +40,8 @@ const toolbarContainer = {
       settingsButtonAttrs: {
         onclick: () => {
           vnode.attrs.store.dispatch(toggleSettingsOpenState(!isSettingsComponentOpen(vnode.attrs.store.getState())))
-        }
+        },
+        tabIndex: isNavOpen(vnode.attrs.store.getState()) ? -1 : 0
       }
     })
   }

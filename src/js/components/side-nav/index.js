@@ -7,7 +7,7 @@ import styles from './styles.sass'
 
 const sideNav = {
   view(vnode: Object) {
-    return m(`#navbar.${styles.navbar}`, vnode.attrs.sidenavAttrs,
+    return m(`#navbar.${styles.navbar}[tabindex=-1]`, vnode.attrs.sidenavAttrs,
       m('ul', [
         m('li', vnode.attrs.headingAttrs, m('span', 'Guess What?')),
         m('li', vnode.attrs.achievementsAttrs, m('span', 'Achievements')),

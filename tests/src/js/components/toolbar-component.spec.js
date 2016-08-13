@@ -4,9 +4,14 @@
 import { describe, it, beforeEach } from 'mocha'
 import expect from 'expect'
 
+import {
+  Map
+} from 'immutable'
+
 import mq from 'mithril-query'
 
 import toolbarComponent from '../../../../src/js/components/toolbar'
+import toolbarContainer from '../../../../src/js/containers/Toolbar'
 
 import {
   toggleSettingsOpenState
@@ -53,5 +58,72 @@ describe('Toolbar Component', () => {
     //
     //   expect(output.find('#settings-button')[0].attrs.onclick).toEqual(onclick)
     // })
+  })
+
+  describe.only('ARIA', () => {
+    describe('SIDENAV OPEN', () => {
+      let store
+      let out
+
+      beforeEach(function () {
+        store = {
+          getState: () => {
+            return {
+              componentsState: {
+                navigationState: Map({
+                  open: true
+                })
+              }
+            }
+          }
+        }
+        out = mq(toolbarContainer, {
+          store
+        })
+      })
+      describe('Settings Icon', () => {
+        it('should have tabindex -1', () => {
+          expect(out.find('button#settings-button')[0].attrs.tabIndex).toBe(-1)
+        })
+      })
+      describe('Navigation Icon', () => {
+        it('should have tabindex -1', () => {
+          expect(out.find('button#navigation-button.hamburger-holder')[0].attrs.tabIndex).toBe(-1)
+        })
+      })
+    })
+
+    describe('SIDENAV CLOSED', () => {
+      let store
+      let out
+
+      beforeEach(function () {
+        store = {
+          getState: () => {
+            return {
+              componentsState: {
+                navigationState: Map({
+                  open: false
+                })
+              }
+            }
+          }
+        }
+        out = mq(toolbarContainer, {
+          store
+        })
+      })
+      describe('Settings Icon', () => {
+        it('should have tabindex 0', () => {
+          expect(out.find('button#settings-button')[0].attrs.tabIndex).toBe(0)
+        })
+      })
+      describe('Navigation Icon', () => {
+        it('should have tabindex 0', () => {
+          expect(out.find('button#navigation-button.hamburger-holder')[0].attrs.tabIndex).toBe(0)
+        })
+      })
+    })
+
   })
 })
