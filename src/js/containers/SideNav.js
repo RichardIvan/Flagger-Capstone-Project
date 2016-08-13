@@ -48,7 +48,7 @@ const sidenavContainer = {
           vnode.attrs.store.dispatch(isSignedIn(vnode.state.appState) ? signOut() : signIn())
         }
       },
-      oauthButtonText: isSignedIn(vnode.state.appState) ? 'Log Out' : 'Sign In'
+      oauthButtonText: m('span', isSignedIn(vnode.state.appState) ? 'Log Out' : 'Sign In')
     })
   }
 }

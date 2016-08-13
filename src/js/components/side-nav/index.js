@@ -9,9 +9,9 @@ const sideNav = {
   view(vnode: Object) {
     return m(`#navbar.${styles.navbar}`, vnode.attrs.sidenavAttrs,
       m('ul', [
-        m('li', vnode.attrs.headingAttrs, 'Guess What?'),
-        m('li', vnode.attrs.achievementsAttrs, 'Achievements'),
-        m('li', vnode.attrs.highscoresAttrs, 'Highscores'),
+        m('li', vnode.attrs.headingAttrs, m('span', 'Guess What?')),
+        m('li', vnode.attrs.achievementsAttrs, m('span', 'Achievements')),
+        m('li', vnode.attrs.highscoresAttrs, m('span', 'Highscores')),
         m('li', vnode.attrs.oauthAttrs, vnode.attrs.oauthButtonText)
       ])
     )

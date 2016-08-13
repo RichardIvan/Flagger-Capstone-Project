@@ -13,7 +13,7 @@ import {
 } from '../../actions'
 
 export const initialState = new Map({
-  open: false
+  open: true
 })
 
 const navigationState = createReducer((state = initialState, action) => {
