@@ -49,7 +49,7 @@
     "clarify": "^2.0.0",
     "coveralls": "^2.11.9",
     "css-loader": "^0.23.1",
-    "eslint": "^3.2.2",
+    "eslint": "^3.3.0",
     "eslint-config-standard": "^5.3.5",
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-import": "^1.13.0",
