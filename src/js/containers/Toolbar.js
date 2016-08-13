@@ -34,7 +34,7 @@ const toolbarContainer = {
       },
       settingsButtonAttrs: {
         onclick: () => {
-          toggleSettingsOpenState(!isSettingsComponentOpen(vnode.attrs.store.getState()))
+          vnode.attrs.store.dispatch(toggleSettingsOpenState(!isSettingsComponentOpen(vnode.attrs.store.getState())))
         }
       }
     })
