@@ -10,7 +10,7 @@ import {
 import {
   OPEN_NAVIGATION,
   CLOSE_NAVIGATION
-} from '../../actions'
+} from '../../actions/constants'
 
 export const initialState = new Map({
   open: false

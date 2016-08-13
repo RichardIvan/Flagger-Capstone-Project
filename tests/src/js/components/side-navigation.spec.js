@@ -56,9 +56,7 @@ describe('Side Component', () => {
         class: isNavbarOpen(vnode.attrs.store.getState()) ? 'open' : ''
       },
       oauthAttrs: {
-        onclick: () => {
-          vnode.attrs.store.dispatch(isSignedIn(vnode.attrs.store.getState()) ? signOut() : signIn())
-        }
+        onclick: () => {}
       },
       oauthButtonText: isSignedIn(vnode.attrs.store.getState()) ? 'Log Out' : 'Sign In'
     })

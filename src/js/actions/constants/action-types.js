@@ -8,3 +8,5 @@ export const SIGN_OUT: string = 'SIGN_OUT'
 export const TOGGLE_SETTINGS_OPEN_STATE: string = 'TOGGLE_SETTINGS_OPEN_STATE'
 export const OPEN_NAVIGATION: string = 'OPEN_NAVIGATION'
 export const CLOSE_NAVIGATION: string = 'CLOSE_NAVIGATION'
+
+export const CLOSE_OVERLAY: string = 'CLOSE_OVERLAY'

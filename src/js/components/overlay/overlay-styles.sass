@@ -1,0 +1,11 @@
+:global(#overlay)
+  position: absolute
+  background: rgba(0,0,0,0.5)
+  height: 100%
+  width: 100%
+  z-index: 2
+  opacity: 0
+  pointer-events: none
+:global(#overlay.open)
+  pointer-events: all
+  opacity: 1
