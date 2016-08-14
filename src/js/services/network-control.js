@@ -16,3 +16,7 @@ const NetworkControl = (function() {
 }())
 
 export default NetworkControl
+
+export function isOnline() {
+  return navigator.onLine
+}

@@ -25,7 +25,12 @@ export function constructButtonBySignedInStatus(isSignedIn: bool, store: Object)
     buttonAttrs: {
       class: 'settings',
       id: 'oauth',
-      onclick: () => isSignedIn ? signOut(store) : signIn(store)
+      onclick: () => vnode.attrs.store.dispatch(isSignedIn ? signOut() : signIn()),
+      onkeyup: (e) => {
+        if (e.keyCode === 13 || e.keyCode === 32) {
+          vnode.attrs.store.dispatch(isSignedIn ? signOut() : signIn())
+        }
+      }
     }
   })
 }
