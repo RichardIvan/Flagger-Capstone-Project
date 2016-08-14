@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- --require ./tests/setup --require clarify --recursive ./tests && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js --verbose && rm -rf ./coverage",
-    "local-test": "node_modules/.bin/babel-node node_modules/.bin/_mocha --require mocha-clean/absolute_paths --require ./tests/setup --require clarify --recursive ./tests --color",
+    "local-test": "node_modules/.bin/babel-node node_modules/.bin/_mocha --require=env-test --require mocha-clean/absolute_paths --require ./tests/setup --require clarify --recursive ./tests --color",
     "local-test:watch": "npm run local-test -- --watch",
     "cover": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- --require ./tests/setup --recursive ./tests",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
@@ -48,7 +48,9 @@
     "babel-runtime": "^6.11.6",
     "clarify": "^2.0.0",
     "coveralls": "^2.11.9",
+    "cross-env": "^2.0.0",
     "css-loader": "^0.23.1",
+    "env-test": "^1.0.0",
     "eslint": "^3.3.0",
     "eslint-config-standard": "^5.3.5",
     "eslint-plugin-babel": "^3.2.0",
