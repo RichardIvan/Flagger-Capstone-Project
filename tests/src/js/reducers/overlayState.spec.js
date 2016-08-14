@@ -18,7 +18,7 @@ import reducer, {
   initialState
 } from '../../../../src/js/reducers/components-state/overlay-component'
 
-describe.only('Overlay State reducer', () => {
+describe('Overlay State reducer', () => {
   describe('Initial State', () => {
     it('should have open = false', () => {
       expect(reducer().get('open')).toBe(false)

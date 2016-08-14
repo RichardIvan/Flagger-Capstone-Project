@@ -60,7 +60,7 @@ describe('Toolbar Component', () => {
     // })
   })
 
-  describe.only('ARIA', () => {
+  describe('ARIA', () => {
     describe('SIDENAV OPEN', () => {
       let store
       let out

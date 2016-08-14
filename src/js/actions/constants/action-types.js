@@ -10,3 +10,6 @@ export const OPEN_NAVIGATION: string = 'OPEN_NAVIGATION'
 export const CLOSE_NAVIGATION: string = 'CLOSE_NAVIGATION'
 
 export const CLOSE_OVERLAY: string = 'CLOSE_OVERLAY'
+
+export const SHOW_ACHIEVEMENTS: string = 'SHOW_ACHIEVEMENTS'
+export const SHOW_HIGHSCORES: string = 'SHOW_HIGHSCORES'

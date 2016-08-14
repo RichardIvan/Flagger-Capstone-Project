@@ -182,7 +182,7 @@ describe('Side Component', () => {
     })
   })
 
-  describe.only('ARIA', () => {
+  describe('ARIA', () => {
     // let isNavbarOpen
     describe('Open Navigation', () => {
       // let out

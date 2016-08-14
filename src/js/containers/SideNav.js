@@ -22,6 +22,11 @@ import {
   signOut
 } from '../actions/user'
 
+import {
+  showAchievements,
+  showHighscores
+} from '../actions/side-nav'
+
 const sidenavContainer = {
   oninit(vnode: Object) {
     vnode.state.appState = vnode.attrs.store.getState()
@@ -57,16 +62,34 @@ const sidenavContainer = {
         tabIndex: vnode.state.tabIndex
       },
       achievementsAttrs: {
-        onclick: () => showAchievements(),
+        onclick: () => vnode.attrs.store.dispatch(showAchievements()),
+        onkeyup: (e) => {
+          const code = e.keyCode
+          if (code === 13 || code === 32) {
+            vnode.attrs.store.dispatch(showAchievements())
+          }
+        },
         tabIndex: vnode.state.tabIndex
       },
       highscoresAttrs: {
-        onclick: () => showHighscores(),
+        onclick: () => vnode.attrs.store.dispatch(showHighscores()),
+        onkeyup: (e) => {
+          const code = e.keyCode
+          if (code === 13 || code === 32) {
+            vnode.attrs.store.dispatch(showHighscores())
+          }
+        },
         tabIndex: vnode.state.tabIndex
       },
       oauthAttrs: {
         onclick: () => {
           vnode.attrs.store.dispatch(isSignedIn(vnode.state.appState) ? signOut() : signIn())
+        },
+        onkeyup: (e) => {
+          const code = e.keyCode
+          if (code === 13 || code === 32) {
+            vnode.attrs.store.dispatch(isSignedIn(vnode.state.appState) ? signOut() : signIn())
+          }
         },
         tabIndex: vnode.state.tabIndex
       },

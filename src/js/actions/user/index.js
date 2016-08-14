@@ -7,19 +7,19 @@ import {
 } from '../constants'
 
 export function signIn() {
-  return function(dispatch, state) {
+  return function(dispatch, state: Object) {
     const action = {
       type: SIGN_IN
     }
-    return true
+    dispatch(action)
   }
 }
 
 export function signOut() {
-  return function(dispatch, state) {
+  return function(dispatch, state: Object) {
     const action = {
       type: SIGN_OUT
     }
-    return false
+    dispatch(action)
   }
 }
