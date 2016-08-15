@@ -1,0 +1,29 @@
+/* @flow */
+'use strict'
+
+import {
+  MENU_ROUTE,
+  MENU_MULTIPLAYER_ROUTE,
+  MULTIPLAYER_HOST_ROUTE,
+  MULTIPLAYER_JOIN_ROUTE,
+  PLAYING_SINGLEPLAYER_ROUTE,
+  PLAYING_MULTIPLAYER_ROUTE
+} from '../../actions/constants/routes'
+
+const routes = {
+  [MENU_ROUTE]: MENU_ROUTE,
+  [MENU_MULTIPLAYER_ROUTE]: MENU_MULTIPLAYER_ROUTE,
+  [MULTIPLAYER_HOST_ROUTE]: MULTIPLAYER_HOST_ROUTE,
+  [MULTIPLAYER_JOIN_ROUTE]: MULTIPLAYER_JOIN_ROUTE,
+  [PLAYING_SINGLEPLAYER_ROUTE]: PLAYING_SINGLEPLAYER_ROUTE
+}
+
+export function extractGenericRoute(route: string) {
+  if (routes[route]) {
+    return route
+  }
+  if (route.includes(PLAYING_MULTIPLAYER_ROUTE)) {
+    return PLAYING_MULTIPLAYER_ROUTE
+  }
+  return MENU_ROUTE
+}
