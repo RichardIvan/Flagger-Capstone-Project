@@ -12,7 +12,7 @@ import {
 } from '../../actions/constants'
 
 export const initialState = new Map({
-  open: true
+  open: false
 })
 
 const settingsState = createReducer((state = initialState, action) => {

@@ -115,23 +115,23 @@ module.exports = {
   },
   devServer: {
     // hot: true,
-    inline: true,
-    host: '0.0.0.0',
-    port: 8080,
+    // inline: true,
+    // host: '0.0.0.0',
+    // port: 8080,
     // contentBase: 'src/',
     // historyApiFallback: true,
-    quiet: false,
-    noInfo: false,
+    // quiet: false,
+    // noInfo: false,
     // key: fs.readFileSync('./server/private/server.key'),
     // cert: fs.readFileSync('./server/private/server.cert'),
-    proxy: {
-      '/data': {
-        target: 'http://localhost:1337'
-      // pathRewrite: {
-      //   '^/api' : ''
-      // }
-      }
-    }
+    // proxy: {
+    //   '/data': {
+    //     target: 'http://localhost:1337'
+    //   // pathRewrite: {
+    //   //   '^/api' : ''
+    //   // }
+    //   }
+    // }
   },
   postcss () {
     return [precss, autoprefixer]

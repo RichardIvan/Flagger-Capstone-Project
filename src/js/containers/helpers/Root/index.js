@@ -18,18 +18,15 @@ import {
   MENU_MULTIPLAYER_ROUTE,
 } from '../../../actions/constants'
 
-export function getVisibleContainer(store: Object) {
-  const state = store.getState()
-
+export function getVisibleContainer(route: string, state: Object) {
   if (isSettingsOpen(state)) {
     return settingsContainer
   }
 
-  return getVisibleContainerByRoute()
+  return getVisibleContainerByRoute(route)
 }
 
-export function getVisibleContainerByRoute() {
-  const route = m.route.get()
+export function getVisibleContainerByRoute(route: string) {
   switch (route) {
     case MENU_ROUTE:
     case MENU_MULTIPLAYER_ROUTE:
