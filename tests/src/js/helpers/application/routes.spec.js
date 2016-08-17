@@ -8,7 +8,7 @@ import {
   extractGenericRoute
 } from '../../../../../src/js/helpers/application/routing'
 
-describe.only('Component Routing Helper', () => {
+describe('Component Routing Helper', () => {
   it('should return "/menu" if this route passed in', () => {
     expect(extractGenericRoute('/menu')).toBe('/menu')
   })

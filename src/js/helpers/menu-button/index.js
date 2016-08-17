@@ -6,6 +6,10 @@ import randomWords from 'random-words'
 
 import { map } from 'lodash'
 
+import {
+  startGame
+} from '../../actions/game'
+
 import buttonComponent from '../../components/menu-button'
 
 import {
@@ -24,30 +28,32 @@ export function generateShortId() {
   return randomWords({ exactly: 3, join: '-' })
 }
 
-export function menuButtonsByRoute() {
-  return map(getAttribuesForMenuButtonsByRoute(), (buttonComponentAttributes: Object) => {
+export function menuButtonsByRoute(store: Object, route: string) {
+  return map(getAttribuesForMenuButtonsByRoute(store, route), (buttonComponentAttributes: Object) => {
     return m(buttonComponent, buttonComponentAttributes)
   })
 }
 
-export function getAttribuesForMenuButtonsByRoute() {
-  const route = m.route.get()
+export function getAttribuesForMenuButtonsByRoute(store: Object, route: string) {
   switch (route) {
     case MENU_ROUTE:
-      return mainMenuButtonAttributes()
+      return mainMenuButtonAttributes(store)
     case MENU_MULTIPLAYER_ROUTE:
       return multiplayerButtonAttributes()
     default:
-      return mainMenuButtonAttributes()
+      return mainMenuButtonAttributes(store)
   }
 }
 
-export function mainMenuButtonAttributes() {
+export function mainMenuButtonAttributes(store: Object) {
   return [
     {
       buttonText: SINGLE_BUTTON_TEXT,
       buttonAttrs: {
-        onclick: () => m.route.set(PLAYING_SINGLEPLAYER_ROUTE)
+        onclick: () => {
+          m.route.set(PLAYING_SINGLEPLAYER_ROUTE)
+          store.dispatch(startGame())
+        }
       }
     },
     {

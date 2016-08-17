@@ -77,7 +77,20 @@ gulp.task('webpack-dev-server', () => {
     key: fs.readFileSync('./server/private/key.pem'),
     cert: fs.readFileSync('./server/private/cert.pem'),
     stats: {
-      colors: true
+      colors: true,
+      hash: false,
+      version: false,
+      timings: false,
+      assets: false,
+      chunks: false,
+      modules: false,
+      reasons: false,
+      children: false,
+      source: false,
+      errors: false,
+      errorDetails: false,
+      warnings: false,
+      publicPath: false
     }
   }).listen(443, '0.0.0.0', (err) => {
     if (err) throw new gutil.PluginError('webpack-dev-server', err)

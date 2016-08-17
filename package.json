@@ -14,7 +14,8 @@
     "lint": "eslint src",
     "start": "node ./server.js -p 1337",
     "server": "babel-node ./server/index.js",
-    "db": "json-server ./server/db.json --static ./dist/build --port 8080 -w -S ./ --routes ./server/src/routes.json"
+    "db": "json-server ./server/db.json --static ./dist/build --port 8080 -w -S ./ --routes ./server/src/routes.json",
+    "analyzer": "node_modules/.bin/webpack --json --config webpack.config.prod.js | cat > analyze.json"
   },
   "repository": {
     "type": "git",
@@ -54,6 +55,7 @@
     "eslint": "^3.3.0",
     "eslint-config-standard": "^5.3.5",
     "eslint-plugin-babel": "^3.2.0",
+    "eslint-plugin-extra-rules": "^0.6.1",
     "eslint-plugin-import": "^1.13.0",
     "eslint-plugin-promise": "^2.0.0",
     "eslint-plugin-standard": "^2.0.0",

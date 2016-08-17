@@ -13,3 +13,10 @@ export const CLOSE_OVERLAY: string = 'CLOSE_OVERLAY'
 
 export const SHOW_ACHIEVEMENTS: string = 'SHOW_ACHIEVEMENTS'
 export const SHOW_HIGHSCORES: string = 'SHOW_HIGHSCORES'
+
+export const FLIP_COIN: string = 'FLIP_COIN'
+export const SET_COIN_POSITION: string = 'SET_COIN_POSITION'
+export const SET_CONTROLS: string = 'SET_CONTROLS'
+
+export const SUBMIT_GUESS: string = 'SUBMIT_GUESS'
+export const START_GAME: string = 'START_GAME'

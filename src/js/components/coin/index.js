@@ -5,17 +5,21 @@ import m from 'mithril'
 
 import styles from './coin-styles.scss'
 
+import ring from '../../../images/ring.png'
+import front from '../../../images/thumb-front.png'
+import back from '../../../images/thumb-back.png'
+
 const coinComponent = {
   view(vnode: Object) {
-    return m('#coin.main.logo', vnode.attrs.logoAttrs, [
+    return m('.coin.main.logo', vnode.attrs.logoAttrs, [
       m(`.${styles.coin}`, vnode.attrs.coinAttrs, [
         m('.front', [
-          vnode.attrs.ring,
-          vnode.attrs.front
+          m('img', { src: ring }),
+          m('img', { src: front })
         ]),
         m('.back', [
-          vnode.attrs.ring,
-          vnode.attrs.back
+          m('img', { src: ring }),
+          m('img', { src: back })
         ])
       ])
     ])

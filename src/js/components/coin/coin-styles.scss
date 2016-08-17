@@ -1,6 +1,6 @@
-:global(#coin) {
+:global(.coin) {
   position: relative;
-  perspective: 800px;
+  perspective: 500px;
   margin: 21px auto 0;
   background: none;
 }
@@ -24,6 +24,11 @@
   :global(.front), :global(.back) {
     background: #4C6DA1;
     border-radius: 50%;
+  }
+
+  :global(.front) {
+    transform: rotateY( 0deg );
+    backface-visibility: hidden !important;
   }
 
   :global(.back) {
