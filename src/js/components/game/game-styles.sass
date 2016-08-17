@@ -1,0 +1,38 @@
+.game
+  height: 100%
+  display: flex
+  flex-direction: column
+  flex: 1
+
+  :global(.coin)
+    align-self: center
+    position: relative
+
+  :global(#controls)
+    display: flex
+    flex: 1
+
+    :global(ul)
+      display: flex
+      flex-direction: row
+      list-style: none
+      padding: 0
+
+      width: 90%
+      margin: 0 auto 93px
+
+      align-self: flex-end
+
+    :global(li)
+      position: relative
+      width: 84px
+      height: 84px
+
+      display: flex
+      justify-content: center
+      flex: 1
+    :global(.coin)
+      position: absolute
+      width: 84px
+      height: 84px
+      margin: 0
