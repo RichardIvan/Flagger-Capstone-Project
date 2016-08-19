@@ -20,3 +20,11 @@ export const SET_CONTROLS: string = 'SET_CONTROLS'
 
 export const SUBMIT_GUESS: string = 'SUBMIT_GUESS'
 export const START_GAME: string = 'START_GAME'
+
+export const NEW_SINGLE_PLAYER_GAME: string = 'NEW_SINGLE_PLAYER_GAME'
+
+export const SHOW_GAME_INFO: string = 'SHOW_GAME_INFO'
+export const HIDE_GAME_INFO: string = 'HIDE_GAME_INFO'
+
+export const NEW_ROUND: string = 'NEW_ROUND'
+export const SET_GAME_LEVEL: string = 'SET_GAME_LEVEL'

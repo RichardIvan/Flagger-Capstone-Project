@@ -6,6 +6,7 @@ import m from 'mithril'
 import gameComponent from '../components/game'
 import coinComponent from '../components/coin'
 import controlsContainer from './Controls'
+import gameInfoboxContainer from '../containers/GameInfobox'
 
 import {
   getCoinRotateY
@@ -14,8 +15,9 @@ import {
 const gameContainer = {
   view(vnode: Object) {
     return m(gameComponent, {
-      ...vnode.attrs,
-      coin: m(coinComponent, {
+      ...vnode.attrs
+    }, [
+      m(coinComponent, {
         ...vnode.attrs,
         coinAttrs: {
           style: {
@@ -23,8 +25,9 @@ const gameContainer = {
           }
         }
       }),
-      controls: m(controlsContainer, { ...vnode.attrs })
-    })
+      m(gameInfoboxContainer, { ...vnode.attrs }),
+      m(controlsContainer, { ...vnode.attrs })
+    ])
   }
 }
 

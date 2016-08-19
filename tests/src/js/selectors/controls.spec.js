@@ -16,9 +16,9 @@ import {
 
 describe('Controls Selector', () => {
   let state = {
-    currentGame: {
+    currentGame: Map({
       controls: List.of({one: 'one'}, {two: 'two'}, {three: 'three'})
-    }
+    })
   }
 
   it('should return entry within current game > controls', () => {

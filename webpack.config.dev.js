@@ -18,7 +18,7 @@ const autoprefixer = require('autoprefixer')
 
 module.exports = {
   cache: true,
-  devtool: 'eval-source-map',
+  devtool: 'cheap-module-eval-source-map',
   entry: {
 
     // s: './src/js/s.js',
@@ -41,7 +41,12 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.json'],
-    modulesDirectories: [
+    // modulesDirectories: [
+    //   './node_modules'
+    // ]
+    descriptionFiles: ["package.json"],
+    modules: [
+      path.resolve('./'),
       './node_modules'
     ]
   },
@@ -102,7 +107,21 @@ module.exports = {
       loaders: ['babel-loader'],
       exclude: /node_modules/,
       include: path.join(__dirname, './'),
-      cacheDirectory: true
+      query: {
+        // cacheDirectory: true,
+      }
+      // query: {
+      //   "presets":[
+      //     // "es2015-native-modules",
+      //     ["es2015", { "modules": false }],
+      //     "stage-2"
+      //  ],
+      //  "plugins": [
+      //      "transform-runtime",
+      //      "transform-flow-strip-types",
+      //      "transform-object-rest-spread"
+      //    ],
+      // }
     },
     {
       test: /\.json$/, loader: 'json-loader',
@@ -113,7 +132,11 @@ module.exports = {
       include: path.join(__dirname, './')
     }]
   },
-  devServer: {
+  // devServer: {
+    // watchOptions: {
+    //   aggregateTimeout: 300,
+    //   poll: 300
+    // }
     // hot: true,
     // inline: true,
     // host: '0.0.0.0',
@@ -132,19 +155,19 @@ module.exports = {
     //   // }
     //   }
     // }
-  },
+  // },
   postcss () {
     return [precss, autoprefixer]
-  }
+  },
 // sassLoader: {
 //   includePaths: [path.resolve(__dirname, 'app')],
 // },
-// devServer: {
-//   contentBase: './dist',
-//   hot: true,
-//   quiet: false,
-//   noInfo: false,
-// },
+  // devServer: {
+    // contentBase: './dist',
+    // hot: true,
+    // quiet: false,
+    // noInfo: false,
+  // },
 // externals: {
 //   jquery: {
 //     root: 'jQuery',

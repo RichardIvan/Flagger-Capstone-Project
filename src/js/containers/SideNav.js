@@ -52,11 +52,15 @@ const sidenavContainer = {
         }
       },
       headingAttrs: {
-        onclick: () => vnode.attrs.store.dispatch(closeNavigation()),
+        onclick: () => {
+          vnode.attrs.store.dispatch(closeNavigation())
+          m.route.set('/menu')
+        },
         onkeyup: (e) => {
           const code = e.keyCode
           if (code === 13 || code === 32) {
             vnode.attrs.store.dispatch(closeNavigation())
+            m.route.set('/menu')
           }
         },
         tabIndex: vnode.state.tabIndex

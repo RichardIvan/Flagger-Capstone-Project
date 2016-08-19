@@ -8,9 +8,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const precss = require('precss')
 const autoprefixer = require('autoprefixer')
+const Visualizer = require('webpack-visualizer-plugin')
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'hidden-source-map',
   entry: {
     // s: './src/js/s.js',
     'service-worker': './src/js/service-worker.js',
@@ -28,12 +29,25 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false
     }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compressor: {
+    //     warnings: false
+    //   }
+    // }),
     // new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+       warnings: false
+      },
+      output: {
+       comments: false
+      },
+      sourceMap: false
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
@@ -45,7 +59,8 @@ module.exports = {
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
-    })
+    }),
+    new Visualizer({filename: '../stats/stats.html'})
   ],
   module: {
     loaders: [{
@@ -69,14 +84,30 @@ module.exports = {
       test: /\.js$/,
       loaders: ['babel-loader'],
       exclude: /node_modules/,
-      include: path.join(__dirname, './')
+      include: path.join(__dirname, './'),
+      // query: {
+      //   "plugins": [
+      //     "transform-runtime",
+      //     "transform-flow-strip-types",
+      //     "transform-object-rest-spread"
+      //   ],
+      //   "presets":[
+      //     "es2015-native-modules",
+      //     // ["es2015", { "modules": false }],
+      //     "stage-2"
+      //   ],
+      // }
     },
     {
       test: /\.json$/, loader: 'json-loader',
       include: path.join(__dirname, './')
     },
     {
-      test: /\.(png|jpg|ttf)$/, loader: 'url-loader?limit=8192'
+      test: /\.(png|jpg|ttf)$/,
+      loader: 'url-loader',
+      query: {
+        limit: 8192
+      }
     }],
     postcss () {
       return [precss, autoprefixer]

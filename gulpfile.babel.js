@@ -72,6 +72,10 @@ gulp.task('webpack-dev-server', () => {
     inline: true,
     cache: true,
     watch: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: true
+    },
     host: '0.0.0.0',
     // port: 8080,
     key: fs.readFileSync('./server/private/key.pem'),
@@ -80,7 +84,7 @@ gulp.task('webpack-dev-server', () => {
       colors: true,
       hash: false,
       version: false,
-      timings: false,
+      timings: true,
       assets: false,
       chunks: false,
       modules: false,

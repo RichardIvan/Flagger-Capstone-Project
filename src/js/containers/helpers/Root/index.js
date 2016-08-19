@@ -7,8 +7,6 @@ import menuContainer from '../../Menu'
 import settingsContainer from '../../Settings'
 import gameContainer from '../../Game'
 
-import { compact, first } from 'lodash'
-
 import {
   isSettingsComponentOpen as isSettingsOpen
 } from '../../../selectors'

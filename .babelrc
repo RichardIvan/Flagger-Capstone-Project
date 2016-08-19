@@ -10,9 +10,10 @@
 		{
 			"passPerPreset": false,
 			"presets": [
-        "babel-preset-es2015-native-modules",
+        ["es2015"],
         "stage-2"
-      ]
+      ],
 		}
-	]
+	],
+  "compact": true
 }

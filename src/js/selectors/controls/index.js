@@ -2,5 +2,5 @@
 'use strict'
 
 export function getCoinButtonsStyles(state: Object) {
-  return state.currentGame.controls.toJS()
+  return state.currentGame.get('controls').toJS()
 }

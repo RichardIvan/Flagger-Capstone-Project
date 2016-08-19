@@ -7,5 +7,5 @@ export function getCurrentCoinPosition(state: Object) {
 }
 
 export function getCoinRotateY(state: Object) {
-  return state.currentGame.coin.get('rotateY')
+  return state.currentGame.getIn(['coin', 'rotateY'])
 }

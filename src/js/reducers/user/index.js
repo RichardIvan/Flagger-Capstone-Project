@@ -17,8 +17,8 @@ export const initialState = new Map({
   isSignedIn: false
 })
 
-const reducer = createReducer((state = initialState, action) => {
-  if (!action) return state
+const reducer = (state: Map<string, bool> = initialState, action: Object) => {
+  if (!action || !action.type) return state
   switch (action.type) {
     case SIGN_IN:
       return state.set('isSignedIn', true)
@@ -27,7 +27,6 @@ const reducer = createReducer((state = initialState, action) => {
     default:
       return state
   }
-  return state
-})
+}
 
 export default reducer

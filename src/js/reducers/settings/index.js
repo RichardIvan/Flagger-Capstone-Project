@@ -1,8 +1,6 @@
 /* @flow */
 'use strict'
 
-import { createReducer } from 'rereduce'
-
 import { Map } from 'immutable'
 
 import {
@@ -13,13 +11,13 @@ export const initialState = new Map({
   sounds: true
 })
 
-const reducer = createReducer((state = initialState, action) => {
+const reducer = (state: Map<string, bool> = initialState, action: Object) => {
   switch (action.type) {
     case TOGGLE_SOUND_SETTING:
       return state.set('sounds', action.payload)
     default:
       return state
   }
-})
+}
 
 export default reducer

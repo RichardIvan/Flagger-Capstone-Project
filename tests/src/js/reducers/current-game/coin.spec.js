@@ -13,23 +13,23 @@ import {
   SET_COIN_POSITION
 } from '../../../../../src/js/actions/constants'
 
-import reducer, { initialState } from '../../../../../src/js/reducers/current-game/coin'
+import reducer, { initialState } from '../../../../../src/js/reducers/current-game'
 
 describe('Coin State Reducer', () => {
   it('should return correct initial state', () => {
-    expect(reducer()).toEqual(fromJS({
+    expect(reducer().get('coin')).toEqual(fromJS({
       rotateY: 0,
       rotateZ: 0
     }))
   })
   it('should return state if no action passed in', () => {
-    expect(reducer(initialState)).toEqual(fromJS({
+    expect(reducer(initialState.get('coin'))).toEqual(fromJS({
       rotateY: 0,
       rotateZ: 0
     }))
   })
   it('should return state if unknown action type passed in', () => {
-    expect(reducer(initialState, { type: 'HEY_HO' })).toEqual(fromJS({
+    expect(reducer(initialState, { type: 'HEY_HO' }).get('coin')).toEqual(fromJS({
       rotateY: 0,
       rotateZ: 0
     }))
@@ -41,7 +41,7 @@ describe('Coin State Reducer', () => {
         rotateY: 90
       })
     }
-    expect(reducer(initialState, action)).toEqual(fromJS({
+    expect(reducer(initialState, action).get('coin')).toEqual(fromJS({
       rotateY: 90,
       rotateZ: 0
     }))
@@ -57,13 +57,13 @@ describe('Coin State Reducer', () => {
     const newState = reducer(initialState, action)
     expect(state).toBe(state)
   })
-
+  //
   describe('#FLIP_COINT action', () => {
     it('should increase rotateY value by 180', () => {
       const action = {
         type: 'FLIP_COIN'
       }
-        expect(reducer(initialState, action)).toEqual(fromJS({
+        expect(reducer(initialState, action).get('coin')).toEqual(fromJS({
           rotateY: 180,
           rotateZ: 0
         }))

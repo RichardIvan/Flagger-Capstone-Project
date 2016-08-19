@@ -4,6 +4,10 @@
 import { describe, it, beforeEach } from 'mocha'
 import expect from 'expect'
 
+import {
+  Map
+} from 'immutable'
+
 import { has } from 'lodash'
 
 import mq from 'mithril-query'
@@ -17,24 +21,25 @@ describe('Menu Component', () => {
   let burgerFlag = false
 
   beforeEach(() => {
-    output = mq(
-      {
-        view() {
-          return m(menuComponent, {
-            componentAttrs: {
-              onclick() {
-                flag = true
-              }
-            }
-          })
+    output = mq(menuComponent, {
+      store: {
+        getState: () => {
+          return {
+            currentGame: Map({
+              coin: Map({
+                rotateY: 0,
+                rotateZ: 0
+              })
+            })
+          }
+        }
+      },
+      componentAttrs: {
+        onclick() {
+          flag = true
         }
       }
-    )
-  })
-
-  it('should be a mithril compoenent', () => {
-    expect(has(mq(menuComponent).rootNode, 'tag')).toBe(true)
-    // expect(mq.bind(null, menuComponent)).toNotThrow()
+    })
   })
     // should state signle and multi
   describe('Buttons', () => {
@@ -55,7 +60,7 @@ describe('Menu Component', () => {
   // should display main logo
   describe('Main Logo', () => {
     it('should display main logo', () => {
-      expect(output.has('#coin')).toBe(true)
+      expect(output.has('.coin.logo')).toBe(true)
     })
   })
 })

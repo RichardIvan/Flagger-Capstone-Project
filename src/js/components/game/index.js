@@ -7,10 +7,7 @@ import styles from './game-styles.sass'
 
 const gameComponent = {
   view(vnode: Object) {
-    return m(`#game.${styles.game}`, [
-      vnode.attrs.coin,
-      vnode.attrs.controls
-    ])
+    return m(`#game.${styles.game}`, vnode.children)
   }
 }
 

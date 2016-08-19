@@ -5,3 +5,4 @@ npm-debug.*
 server/private
 flow-typed
 analyze.json
+stats

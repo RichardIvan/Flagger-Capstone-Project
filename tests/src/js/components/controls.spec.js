@@ -20,7 +20,7 @@ import controlsComponent from '../../../../src/js/components/controls'
 import controlsContainer from '../../../../src/js/containers/Controls'
 import coinContainer from '../../../../src/js/containers/Coin'
 
-describe.only('Game Controls Component', () => {
+describe('Game Controls Component', () => {
   describe('Structure', () => {
     let out
 
@@ -48,7 +48,7 @@ describe.only('Game Controls Component', () => {
       let store = {
         getState: () => {
           return {
-            currentGame: {
+            currentGame: Map({
               controls: List.of(
                 Map(
                   {
@@ -69,7 +69,7 @@ describe.only('Game Controls Component', () => {
                   }
                 )
               )
-            }
+            })
           }
         }
       }
