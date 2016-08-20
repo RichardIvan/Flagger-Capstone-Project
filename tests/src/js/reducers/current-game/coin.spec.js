@@ -10,6 +10,10 @@ import {
 } from 'immutable'
 
 import {
+  animateCoin
+} from '../../../../../src/js/actions/coin'
+
+import {
   SET_COIN_POSITION
 } from '../../../../../src/js/actions/constants'
 
@@ -71,5 +75,23 @@ describe('Coin State Reducer', () => {
     // it('should set the transitionValue to .4s;', () => {
     //
     // })
+  })
+  describe.only('#ANIMATE_COIN action', () => {
+    it('should merge in the correct values', () => {
+      const action = animateCoin({
+        rotateY: 90
+      })
+      expect(reducer(initialState, action).get('coin')).toEqual(fromJS({
+        rotateY: 90,
+        rotateZ: 0
+      }))
+      const nextAction = animateCoin({
+        rotateZ: 90
+      })
+      expect(reducer(initialState, nextAction).get('coin')).toEqual(fromJS({
+        rotateY: 0,
+        rotateZ: 90
+      }))
+    })
   })
 })

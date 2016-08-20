@@ -36,6 +36,8 @@ import {
   watchNewRound
 } from '../../../../src/js/sagas'
 
+import { initialState } from '../../../../src/js/reducers/current-game'
+
 // describe('Sagas', () => {
 //   describe('Root Saga', () => {
 //     const saga = rootSaga()
@@ -72,14 +74,21 @@ import {
 //   })
 // })
 
-// describe('Watch NewRound Saga', () => {
-//   const saga = watchNewRound()
-//   console.log(saga.next())
-//   console.log(saga.next())
-//   // console.log(saga.next().value)
-//   it('should be truthy', () => {
-//     // expect(console.log(saga.next())).toBe(undefined)
-//     // expect(console.log(saga.next())).toBeTruthy()
-//     expect(true).toBe(true)
-//   })
-// })
+describe('Watch NewRound Saga', () => {
+
+  // console.log(saga.next().value)
+  it('should be truthy', () => {
+    const getState = () => {
+      return {
+        currentGame: initialState
+      }
+    }
+    const saga = watchNewRound()
+    console.log(saga.next(getState).value)
+    console.log(saga.next(getState).value)
+    console.log(saga.next(getState).value)
+    // expect(console.log(saga.next())).toBe(undefined)
+    // expect(console.log(saga.next())).toBeTruthy()
+    expect(true).toBe(true)
+  })
+})

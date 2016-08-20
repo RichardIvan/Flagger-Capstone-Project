@@ -13,7 +13,8 @@ import {
   FLIP_COIN,
   SET_CONTROLS,
   NEW_SINGLE_PLAYER_GAME,
-  SET_GAME_LEVEL
+  SET_GAME_LEVEL,
+  ANIMATE_COIN
 } from '../../actions/constants'
 
 export const initialState = Map({
@@ -42,7 +43,7 @@ export const initialState = Map({
   scores: Map({
     players: Map()
   }),
-  level: 1
+  level: 10
 })
 
 const currentGameReducer = (state: Map<string, any> = initialState, action: Object) => {
@@ -66,6 +67,8 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
       return state.setIn(['scores', 'players', action.payload.player_id], 0)
     case SET_GAME_LEVEL:
       return state.set('level', action.payload.level)
+    case ANIMATE_COIN:
+      return state.mergeIn(['coin'], action.payload.values)
     default:
       return state
   }

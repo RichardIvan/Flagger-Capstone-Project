@@ -28,3 +28,5 @@ export const HIDE_GAME_INFO: string = 'HIDE_GAME_INFO'
 
 export const NEW_ROUND: string = 'NEW_ROUND'
 export const SET_GAME_LEVEL: string = 'SET_GAME_LEVEL'
+
+export const ANIMATE_COIN: string = 'ANIMATE_COIN'
