@@ -9,7 +9,8 @@ import controlsContainer from './Controls'
 import gameInfoboxContainer from '../containers/GameInfobox'
 
 import {
-  getCoinRotateY
+  getCoinRotateY,
+  getCoinRotateZ
 } from '../selectors/coin'
 
 const gameContainer = {
@@ -21,7 +22,7 @@ const gameContainer = {
         ...vnode.attrs,
         coinAttrs: {
           style: {
-            transform: `rotateY(${getCoinRotateY(vnode.attrs.store.getState())}deg)`
+            transform: `rotateY(${getCoinRotateY(vnode.attrs.store.getState())}deg) rotateZ(${getCoinRotateZ(vnode.attrs.store.getState())}deg)`
           }
         }
       }),

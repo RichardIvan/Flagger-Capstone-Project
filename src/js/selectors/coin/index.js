@@ -9,3 +9,7 @@ export function getCurrentCoinPosition(state: Object) {
 export function getCoinRotateY(state: Object) {
   return state.currentGame.getIn(['coin', 'rotateY'])
 }
+
+export function getCoinRotateZ(state: Object) {
+  return state.currentGame.getIn(['coin', 'rotateZ'])
+}

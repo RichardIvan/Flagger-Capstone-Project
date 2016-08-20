@@ -27,7 +27,7 @@ const CoinContainer = {
       },
       coinAttrs: {
         style: {
-          transform: `rotateY(${getCoinRotateY(vnode.attrs.store.getState())}deg)`,
+          transform: `rotateY(${getCoinRotateY(vnode.attrs.store.getState())}deg) rotateZ(0deg)`
         }
       }
     })
