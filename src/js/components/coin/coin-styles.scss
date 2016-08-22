@@ -3,6 +3,13 @@
   perspective: 500px;
   margin: 21px auto 0;
   background: none;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+:global(.shadow) {
+  box-shadow: 0 0 40px;
 }
 
 .coin {
@@ -10,8 +17,47 @@
   height: 100%;
   position: absolute;
   transform-style: preserve-3d;
-  transition: transform .4s;
+  transition: transform 1s;
   backface-visibility: hidden !important;
+
+  :global(ul li:first-child) {
+    transform: translateX(-80px) translateY(-80px) !important
+  }
+
+  :global(ul > li:nth-child(2)) {
+    transform: translateX(80px) translateY(-80px);
+  }
+
+  :global(ul > li:nth-child(3)) {
+    transform: translateX(-80px) translateY(80px);
+  }
+
+  :global(ul > li:nth-child(4)) {
+    transform: translateX(80px) translateY(80px);
+  }
+
+  :global(ul > li:nth-child(1)), :global(ul > li:nth-child(2)), :global(ul > li:nth-child(3)), :global(ul > li:nth-child(4)) {
+    border: 5px solid !important;
+    height: 115px !important;
+    width: 115px !important;
+    background: #D24A3B;
+    transition: transform 0.1s ease-in-out;
+  }
+
+  :global(ul > li.visible) {
+    border: 5px solid !important;
+    height: 115px !important;
+    width: 115px !important;
+    background: #D24A3B;
+    transition: transform 0.1s ease-in-out;
+    transform: translateX(0) translateY(0px) !important;
+  }
+
+  :global(ul > li) {
+    border: 2px solid;
+    height: 115px;
+    width: 115px;
+  }
 
   :global(div) {
     margin: 0;
@@ -24,6 +70,8 @@
   :global(.front), :global(.back) {
     background: #4C6DA1;
     border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 40px;
   }
 
   :global(.front) {
@@ -40,8 +88,37 @@
     position: absolute;
     height: 100%;
   }
+  :global(img:first-child) {
+    z-index: 1;
+  }
 }
 
 .coin:global(.flipped) {
   transform: rotateY( 180deg );
+}
+
+:global(.coin-container) {
+  position: relative;
+  align-self: center;
+  position: relative;
+}
+
+:global(.coin-overlay) {
+  display: flex;
+  flex-wrap: wrap;
+
+  top: 5px;
+  left: 5px;
+  margin: 0;
+
+  width: 230px;
+  height: 230px;
+
+  position: absolute;
+  padding: 0;
+  list-style: none;
+
+
+  border-radius: 50%;
+  overflow: hidden;
 }

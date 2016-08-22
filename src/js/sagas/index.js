@@ -7,7 +7,8 @@ import {
   FLIP_COIN,
   NEW_SINGLE_PLAYER_GAME,
   SHOW_GAME_INFO,
-  NEW_ROUND
+  NEW_ROUND,
+  SUBMIT_GUESS
 } from '../actions/constants'
 
 import {
@@ -15,7 +16,8 @@ import {
   fork,
   call,
   put,
-  select
+  select,
+  race
 } from 'redux-saga/effects'
 
 import {
@@ -29,7 +31,9 @@ import {
 } from '../actions/game/game-infobox'
 
 import {
-  animateCoin
+  animateCoin,
+  overlayCoin,
+  removeCoinOverlay
 } from '../actions/coin'
 
 import {
@@ -59,23 +63,45 @@ export function* watchGame(): any {
   }
 }
 
-export function* watchNewRound(): any {
-  // const stuff = yield take(START_GAME)
 
-  // console.log(aaa)
+export function* watchNewRound(): any {
   while(true) {
-    const { payload } = yield take(NEW_ROUND)
+    yield take(NEW_ROUND)
+
+    yield put(overlayCoin())
+    yield call(delay, 1000)
+
+    let start = Date.now()
+
     const nuberOfAnimations: number = yield select(getCurrentLevel)
-    // console.log(payload)
     const animationSequence = generateAnimationSequence(nuberOfAnimations)
     for (let i = 0; i < nuberOfAnimations; i++) {
       yield put(animateCoin(animationSequence[i]))
-      yield call(delay, 400)
+      yield call(delay, 3000)
     }
-    // console.log(nuberOfAnimations)
-    // console.log(getState)
-    // console.log(action)
-    // yield console.log(getState)
+
+    const {submissionAction, timeout} = yield race({
+      submissionAction: take(SUBMIT_GUESS),
+      timeout: call(delay, 3500)
+    })
+
+    yield put(removeCoinOverlay())
+
+    // if (submissionAction) {
+    //   const { answer, end } = submissionAction.payload
+    //   const currentCoinState = yield select(getCurrentCoinState)
+    //   let points = 0
+    //   if (currentCoinState === answer) {
+    //     points = Math.round(start - end) * 10
+    //   }
+    //   yield put(saveRoundResult(points))
+    // } else {
+    //   if (nuberOfAnimations < 10) {
+    //     yield put(newRound())
+    //   } else {
+    //     yield put(showResults())
+    //   }
+    // }
   }
 }
 

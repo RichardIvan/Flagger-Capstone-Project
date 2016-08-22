@@ -76,7 +76,7 @@ describe('Coin State Reducer', () => {
     //
     // })
   })
-  describe.only('#ANIMATE_COIN action', () => {
+  describe('#ANIMATE_COIN action', () => {
     it('should merge in the correct values', () => {
       const action = animateCoin({
         rotateY: 90

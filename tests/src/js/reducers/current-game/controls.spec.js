@@ -36,8 +36,6 @@ describe('Controls Reducer', () => {
     ))
   })
   it('should return initial State on initialization', () => {
-    console.log(reducer())
-    console.log(initialState)
     expect(reducer()).toEqual(initialState)
   })
   it('should return state if no action passed in', () => {

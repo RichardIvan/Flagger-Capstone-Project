@@ -6,7 +6,8 @@ import m from 'mithril'
 import coinComponent from '../components/coin'
 
 import {
-  getCoinRotateY
+  getCoinRotateY,
+  isCoinOverlayVisible
 } from '../selectors/coin'
 
 import {
@@ -22,6 +23,7 @@ import back from '../../images/thumb-back.png'
 const CoinContainer = {
   view(vnode: Object) {
     return m(coinComponent, {
+      ...vnode.attrs,
       logoAttrs: {
         onclick: () => vnode.attrs.store.dispatch(flipCoin())
       },

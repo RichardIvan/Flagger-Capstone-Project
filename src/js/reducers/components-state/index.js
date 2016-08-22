@@ -6,11 +6,13 @@ import { combineReducers } from 'rereduce'
 import settingsState from './settings-component'
 import navigationState from './navigation-component'
 import overlayState from './overlay-component'
+import coinState from './coin-component'
 
 const componentsState = combineReducers({
   settingsState,
   navigationState,
-  overlayState
+  overlayState,
+  coinState
 })
 
 export default componentsState

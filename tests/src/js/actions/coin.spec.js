@@ -14,7 +14,9 @@ import {
 
 import {
   flipCoin,
-  animateCoin
+  animateCoin,
+  overlayCoin,
+  removeCoinOverlay
 } from '../../../../src/js/actions/coin'
 
 describe('Flip Coin Action Creator', () => {
@@ -28,7 +30,7 @@ describe('Flip Coin Action Creator', () => {
   })
 })
 
-describe('#animateCoin()', () => {
+describe('#animateCoin() action creator', () => {
   it('should be FSA compliant', () => {
     expect(isFSA(animateCoin({roteateY: 180}))).toBe(true)
   })
@@ -40,6 +42,28 @@ describe('#animateCoin()', () => {
           rotateY: 180
         }
       }
+    })
+  })
+})
+
+describe('#overlayCoin() action creator', () => {
+  it('should be FSA compliant', () => {
+    expect(isFSA(overlayCoin())).toBe(true)
+  })
+  it('should return corrct action', () => {
+    expect(overlayCoin()).toEqual({
+      type: 'OVERLAY_COIN'
+    })
+  })
+})
+
+describe('#removeCoinOverlay() action creator', () => {
+  it('should be FSA compliant', () => {
+    expect(isFSA(removeCoinOverlay())).toBe(true)
+  })
+  it('should return corrct action', () => {
+    expect(removeCoinOverlay()).toEqual({
+      type: 'REMOVE_COIN_OVERLAY'
     })
   })
 })

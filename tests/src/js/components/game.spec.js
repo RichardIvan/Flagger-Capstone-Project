@@ -17,6 +17,11 @@ describe('Game Component', () => {
   let store = {
     getState() {
       return {
+        componentsState: {
+          coinState: Map({
+            overlayVisible: true
+          })
+        },
         currentGame: Map({
           coin: Map({
             translateY: 0

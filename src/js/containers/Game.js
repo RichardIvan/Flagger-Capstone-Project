@@ -10,8 +10,14 @@ import gameInfoboxContainer from '../containers/GameInfobox'
 
 import {
   getCoinRotateY,
-  getCoinRotateZ
+  getCoinRotateZ,
+  isCoinOverlayVisible
 } from '../selectors/coin'
+
+import {
+  constructCoinOverlay
+} from '../helpers/game'
+
 
 const gameContainer = {
   view(vnode: Object) {
@@ -20,10 +26,13 @@ const gameContainer = {
     }, [
       m(coinComponent, {
         ...vnode.attrs,
+        frontCoinOverlay: constructCoinOverlay(vnode.attrs.store.getState(), 'shadow'),
+        backCoinOverlay: constructCoinOverlay(vnode.attrs.store.getState(), 'shadow'),
         coinAttrs: {
           style: {
             transform: `rotateY(${getCoinRotateY(vnode.attrs.store.getState())}deg) rotateZ(${getCoinRotateZ(vnode.attrs.store.getState())}deg)`
-          }
+          },
+          class: 'game-coin'
         }
       }),
       m(gameInfoboxContainer, { ...vnode.attrs }),

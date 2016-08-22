@@ -15,11 +15,13 @@ const coinComponent = {
       m(`.${styles.coin}`, vnode.attrs.coinAttrs, [
         m('.front', [
           m('img', { src: ring }),
-          m('img', { src: front })
+          m('img', { src: front }),
+          vnode.attrs.frontCoinOverlay
         ]),
         m('.back', [
           m('img', { src: ring }),
-          m('img', { src: back })
+          m('img', { src: back }),
+          vnode.attrs.backCoinOverlay
         ])
       ])
     ])
