@@ -43,7 +43,7 @@ export const initialState = Map({
   scores: Map({
     players: Map()
   }),
-  level: 5
+  level: 1
 })
 
 const currentGameReducer = (state: Map<string, any> = initialState, action: Object) => {

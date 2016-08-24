@@ -9,7 +9,13 @@ import {
 } from '../../../../src/js/reducers/current-game'
 
 import {
-  getCoinRotateY
+  Map,
+  fromJS
+} from 'immutable'
+
+import {
+  getCoinRotateY,
+  getCurrentCoinState
 } from '../../../../src/js/selectors/coin'
 
 describe('Coin Position Selector', () => {
@@ -27,6 +33,22 @@ describe('Coin Position Selector', () => {
           currentGame: state.currentGame.setIn(['coin', 'rotateY'], 90)
       }
       expect(getCoinRotateY(newState)).toBe(90)
+    })
+  })
+  describe.only('#getCurrentCoinState()', () => {
+    it('should return the current coin rotate values', () => {
+      const state = {
+        currentGame: Map({
+          coin: Map({
+            rotateY: 180,
+            rotateZ: 90
+          })
+        })
+      }
+      expect(getCurrentCoinState(state)).toEqual(fromJS({
+        rotateY: 180,
+        rotateZ: 90
+      }))
     })
   })
 })

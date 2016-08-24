@@ -17,3 +17,7 @@ export function getCoinRotateZ(state: Object) {
 export function isCoinOverlayVisible(state: Object) {
   return state.componentsState.coinState.get('overlayVisible')
 }
+
+export function getCurrentCoinState(state: Object) {
+  return state.currentGame.get('coin')
+}

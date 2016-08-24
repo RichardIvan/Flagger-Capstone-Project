@@ -8,6 +8,9 @@ import {
 export function submitGuess(guessAsStyleObject: Object) {
   return {
     type: SUBMIT_GUESS,
-    payload: guessAsStyleObject
+    payload: {
+      answer: guessAsStyleObject,
+      end: new Date()
+    }
   }
 }

@@ -12,7 +12,8 @@ import {
   startGame,
   newRound,
   setGameLevel,
-  resetLevel
+  resetLevel,
+  saveRoundResult
 } from '../../../../src/js/actions'
 
 describe('Game Action Creator', () => {
@@ -54,6 +55,26 @@ describe('#SET_GAME_LEVEL action creator', () => {
       type: 'SET_GAME_LEVEL',
       payload: {
         level: 1
+      }
+    })
+  })
+})
+
+describe.only('saveRoundResult action creator', () => {
+  it('should be FSA compliant', () => {
+    expect(isFSA(saveRoundResult())).toBe(true)
+  })
+  it('should should accept a number or have zero in payload points', () => {
+    expect(saveRoundResult()).toEqual({
+      type: 'SAVE_ROUND_RESULT',
+      payload: {
+        points: 0
+      }
+    })
+    expect(saveRoundResult(10)).toEqual({
+      type: 'SAVE_ROUND_RESULT',
+      payload: {
+        points: 10
       }
     })
   })

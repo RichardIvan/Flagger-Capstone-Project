@@ -4,7 +4,8 @@
 import {
   START_GAME,
   NEW_ROUND,
-  SET_GAME_LEVEL
+  SET_GAME_LEVEL,
+  SAVE_ROUND_RESULT
 } from '../constants'
 
 export function startGame() {
@@ -25,6 +26,15 @@ export function setGameLevel(lvl: number) {
     type: SET_GAME_LEVEL,
     payload: {
       level
+    }
+  }
+}
+
+export function saveRoundResult(points: number) {
+  return {
+    type: SAVE_ROUND_RESULT,
+    payload: {
+      points: points || 0
     }
   }
 }

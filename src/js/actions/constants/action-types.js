@@ -32,3 +32,5 @@ export const SET_GAME_LEVEL: string = 'SET_GAME_LEVEL'
 export const ANIMATE_COIN: string = 'ANIMATE_COIN'
 export const OVERLAY_COIN: string = 'OVERLAY_COIN'
 export const REMOVE_COIN_OVERLAY: string = 'REMOVE_COIN_OVERLAY'
+
+export const SAVE_ROUND_RESULT: string = 'SAVE_ROUND_RESULT'
