@@ -48,6 +48,11 @@ describe('Game Controls Component', () => {
       let store = {
         getState: () => {
           return {
+            componentsState: {
+              controlsState: Map({
+                disabled: true
+              })
+            },
             currentGame: Map({
               controls: List.of(
                 Map(
@@ -100,7 +105,7 @@ describe('Game Controls Component', () => {
           }
         ]
         const LIs = out.find('li')
-        const coinAttributes = LIs.map(child => child.children[0].attrs.coinAttrs.style)
+        const coinAttributes = LIs.map(child => child.children[0].children[0].attrs.coinAttrs.style)
         coinAttributes.map((styleAttribute, index) => {
           const attrs = styleValues[index]
           const currentTransform = `rotateY(${attrs.rotateY}deg) rotateZ(${attrs.rotateZ}deg)`
@@ -109,7 +114,7 @@ describe('Game Controls Component', () => {
         })
       })
     })
-    describe.only('controls overlay', () => {
+    describe('controls overlay', () => {
       let out
       let store
 
@@ -153,7 +158,7 @@ describe('Game Controls Component', () => {
       })
       it('should have .disabled', () => {
         // console.log(out)
-        // expect(out.should.have.at.least.bind(null, 3, '.disabled')).toNotThrow()
+        expect(out.should.have.at.least.bind(null, 3, '.disabled')).toNotThrow()
       })
     })
   })

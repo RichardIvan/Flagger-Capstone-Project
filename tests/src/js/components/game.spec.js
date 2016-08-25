@@ -20,6 +20,9 @@ describe('Game Component', () => {
         componentsState: {
           coinState: Map({
             overlayVisible: true
+          }),
+          controlsState: Map({
+            disabled: true
           })
         },
         currentGame: Map({
