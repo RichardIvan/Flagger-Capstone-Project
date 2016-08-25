@@ -35,7 +35,7 @@ describe('Coin Position Selector', () => {
       expect(getCoinRotateY(newState)).toBe(90)
     })
   })
-  describe.only('#getCurrentCoinState()', () => {
+  describe('#getCurrentCoinState()', () => {
     it('should return the current coin rotate values', () => {
       const state = {
         currentGame: Map({

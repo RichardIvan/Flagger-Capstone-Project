@@ -11,10 +11,12 @@ import {
 } from 'flux-standard-action'
 
 import {
-  submitGuess
+  submitGuess,
+  disableControls,
+  enableControls
 } from '../../../../src/js/actions/controls'
 
-describe.only('Submit Guess Action Creator', () => {
+describe('Submit Guess Action Creator', () => {
   it('should be FSA comliant', () => {
     expect(isFSA(submitGuess({
       rotateY: 0,
@@ -46,6 +48,31 @@ describe.only('Submit Guess Action Creator', () => {
     }).payload.answer).toEqual({
       rotateY: 0,
       rotateZ: 90
+    })
+  })
+})
+
+describe('set controls display state', () => {
+  describe('disableControls() action Creator', () => {
+    it('should be FSA compliant', () => {
+      expect(isFSA(disableControls())).toBe(true)
+    })
+    it('should have correct type', () => {
+      expect(disableControls().type).toBe('SWITCH_CONTROL_STATE')
+    })
+    it('should have disabled status in payload with the value of true', () => {
+      expect(disableControls().payload.disabled).toBe(true)
+    })
+  })
+  describe('enableControls action Creator', () => {
+    it('should be FSA compliant', () => {
+      expect(isFSA(enableControls())).toBe(true)
+    })
+    it('should have correct type', () => {
+      expect(enableControls().type).toBe('SWITCH_CONTROL_STATE')
+    })
+    it('should have disabled status in payload with the value of false', () => {
+      expect(enableControls().payload.disabled).toBe(false)
     })
   })
 })

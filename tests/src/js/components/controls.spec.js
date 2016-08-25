@@ -109,6 +109,52 @@ describe('Game Controls Component', () => {
         })
       })
     })
+    describe.only('controls overlay', () => {
+      let out
+      let store
 
+      beforeEach(function () {
+        store = {
+          getState: () => {
+            return {
+              componentsState: {
+                controlsState: Map({
+                  disabled: true
+                })
+              },
+              currentGame: Map({
+                controls: List.of(
+                  Map(
+                    {
+                      rotateY: 0,
+                      rotateZ: 0
+                    }
+                  ),
+                  Map(
+                    {
+                      rotateY: 90,
+                      rotateZ: 0
+                    }
+                  ),
+                  Map(
+                    {
+                      rotateY: 180,
+                      rotateZ: 0
+                    }
+                  )
+                )
+              })
+            }
+          }
+        }
+        out = mq(controlsContainer, {
+          store
+        })
+      })
+      it('should have .disabled', () => {
+        // console.log(out)
+        // expect(out.should.have.at.least.bind(null, 3, '.disabled')).toNotThrow()
+      })
+    })
   })
 })

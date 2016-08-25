@@ -2,7 +2,8 @@
 'use strict'
 
 import {
-  SUBMIT_GUESS
+  SUBMIT_GUESS,
+  SWITCH_CONTROL_STATE
 } from '../constants'
 
 export function submitGuess(guessAsStyleObject: Object) {
@@ -14,3 +15,18 @@ export function submitGuess(guessAsStyleObject: Object) {
     }
   }
 }
+
+function setControlState(status: boolean) {
+  return () => {
+    return {
+      type: SWITCH_CONTROL_STATE,
+      payload: {
+        disabled: status
+      }
+    }
+  }
+}
+
+export const disableControls = setControlState(true)
+
+export const enableControls = setControlState(false)

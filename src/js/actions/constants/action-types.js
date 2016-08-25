@@ -34,3 +34,4 @@ export const OVERLAY_COIN: string = 'OVERLAY_COIN'
 export const REMOVE_COIN_OVERLAY: string = 'REMOVE_COIN_OVERLAY'
 
 export const SAVE_ROUND_RESULT: string = 'SAVE_ROUND_RESULT'
+export const SWITCH_CONTROL_STATE: string = 'SWITCH_CONTROL_STATE'

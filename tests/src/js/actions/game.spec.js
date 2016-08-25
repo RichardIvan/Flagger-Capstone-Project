@@ -60,7 +60,7 @@ describe('#SET_GAME_LEVEL action creator', () => {
   })
 })
 
-describe.only('saveRoundResult action creator', () => {
+describe('saveRoundResult action creator', () => {
   it('should be FSA compliant', () => {
     expect(isFSA(saveRoundResult())).toBe(true)
   })
@@ -68,13 +68,13 @@ describe.only('saveRoundResult action creator', () => {
     expect(saveRoundResult()).toEqual({
       type: 'SAVE_ROUND_RESULT',
       payload: {
-        points: 0
+        points: `+ 0`
       }
     })
     expect(saveRoundResult(10)).toEqual({
       type: 'SAVE_ROUND_RESULT',
       payload: {
-        points: 10
+        points: `+ 10`
       }
     })
   })

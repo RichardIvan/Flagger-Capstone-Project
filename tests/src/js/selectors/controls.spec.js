@@ -11,7 +11,8 @@ import {
 } from 'immutable'
 
 import {
-  getCoinButtonsStyles
+  getCoinButtonsStyles,
+  isControlsDisabled
 } from '../../../../src/js/selectors/controls'
 
 describe('Controls Selector', () => {
@@ -23,5 +24,26 @@ describe('Controls Selector', () => {
 
   it('should return entry within current game > controls', () => {
     expect(getCoinButtonsStyles(state)).toEqual([{one: 'one'}, {two: 'two'}, {three: 'three'}])
+  })
+})
+
+describe('isControlsDisabled() Selector', () => {
+  it('should return correct state', () => {
+    const state = {
+      componentsState: {
+        controlsState: Map({
+          disabled: false
+        })
+      }
+    }
+    expect(isControlsDisabled(state)).toBe(false)
+    const newState = {
+      componentsState: {
+        controlsState: Map({
+          disabled: true
+        })
+      }
+    }
+    expect(isControlsDisabled(newState)).toBe(true)
   })
 })

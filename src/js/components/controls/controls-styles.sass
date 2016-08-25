@@ -1,5 +1,20 @@
 :global(#controls)
+  :global(button)
+    padding: 0
+    position: absolute
+    width: 84px
+    height: 100%
   :global(.front), :global(.back)
     box-shadow: 0 0 40px
   :global(.coin)
     padding: 0
+    height: 100%
+    width: 100%
+    position: absolute
+    top: 0
+  :global(img)
+    left: 0
+  :global(.disabled)
+    background: rgba(0,0,0,0.5)
+    :global(.enabled)
+      background: none

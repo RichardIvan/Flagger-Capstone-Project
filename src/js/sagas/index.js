@@ -1,6 +1,8 @@
 /* @flow */
 'use strict'
 
+import m from 'mithril'
+
 import {
   START_GAME,
   OPEN_NAVIGATION,
@@ -44,6 +46,11 @@ import {
 } from '../actions/game'
 
 import {
+  enableControls,
+  disableControls
+} from '../actions/controls'
+
+import {
   getCurrentLevel,
   getCurrentCoinState
 } from '../selectors'
@@ -70,8 +77,13 @@ export function* watchGame(): any {
   }
 }
 
+export function showResults() {
+  m.path.set('/results')
+}
+
 export function* runNewRound(): any {
   yield put(overlayCoin())
+  yield put(disableControls())
   yield call(delay, 1000)
 
   const nuberOfAnimations: number = yield select(getCurrentLevel)
@@ -83,7 +95,8 @@ export function* runNewRound(): any {
 
   // disable controls before this point
   yield put(showGameInfo('GO!'))
-  yield call(delay, 500)
+  yield put(enableControls())
+  // yield call(delay, 500)
 
   let start = new Date()
 
@@ -95,52 +108,36 @@ export function* runNewRound(): any {
   yield put(removeCoinOverlay())
   yield call(delay, 1000)
 
-  console.log(submissionAction)
-
+  let points = 0
   if (submissionAction) {
     const { payload } = submissionAction
     const { answer, end } = payload
+
     const differenceInMs = diffInMs(end, start)
     const differenceInSeconds = diffInSeconds(end, start)
+
     let currentCoinState = yield select(getCurrentCoinState)
     currentCoinState = currentCoinState.toJS()
-    console.log(currentCoinState)
-    console.log(answer)
-    console.log(isEqual(currentCoinState, answer))
 
-    let points = 0
     if (isEqual(currentCoinState, answer)) {
       points = (3 - differenceInSeconds) * 10
-      console.log(points)
     }
-    yield put(saveRoundResult(points))
-    yield call(delay, 4000)
-    yield put(hideGameInfo())
   }
 
-  if (nuberOfAnimations < 10) {
-    // Promise.resolve()
-    yield put(saveRoundResult(0))
-    yield call(delay, 4000)
-    yield put(hideGameInfo())
-    yield put(newRound())
-    console.log('why yes')
+  //bug here, it is trying to add a string to the results
+  yield put(saveRoundResult(points))
+  yield call(delay, 4000)
+  yield put(hideGameInfo())
+
+  if (nuberOfAnimations > 10 && points === 0) {
+    yield call(showResults)
   } else {
-    yield put(showResults())
+    yield put(newRound())
   }
 }
 
 export function* watchNewRound(): any {
   yield takeEvery(NEW_ROUND, runNewRound)
-  // while(true) {
-  //   console.log('here')
-  //   // yield takeEvery(NEW_ROUND)
-  //   yield take(NEW_ROUND)
-  //   console.log('or here')
-  //
-  //
-  //   }
-  // }
 }
 
 export function* rootSaga(): Generator<any, void, void> {
@@ -148,7 +145,4 @@ export function* rootSaga(): Generator<any, void, void> {
     fork(watchGame),
     fork(watchNewRound)
   ]
-  // yield* takeEvery('START_GAME', watchNewRound)
-
-  // yield takeEvery(START_GAME, watchNewRound)
 }
