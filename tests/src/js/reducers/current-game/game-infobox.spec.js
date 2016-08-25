@@ -4,6 +4,8 @@
 import { describe, it, beforeEach } from 'mocha'
 import expect from 'expect'
 
+import { isFSA } from 'flux-standard-action'
+
 import {
   Map,
   fromJS
@@ -14,7 +16,7 @@ import {
   HIDE_GAME_INFO
 } from '../../../../../src/js/actions/constants'
 
-import reducer, { initialState } from '../../../../../src/js/reducers/current-game'
+import reducer, { initialState, constructDisplayInfoObject } from '../../../../../src/js/reducers/current-game'
 
 describe('Game Infobox Reducer', () => {
   describe('Initial State', () => {
@@ -102,6 +104,26 @@ describe('Game Infobox Reducer', () => {
         visible: false,
         text: '3'
       }))
+    })
+  })
+})
+
+describe('HELPERS', () => {
+  describe('constructDisplayInfoObject()', () => {
+    it('should return a Map', () => {
+      expect(constructDisplayInfoObject('1')).toBeA(Map)
+    })
+    it('should have a visible entry', () => {
+      expect(constructDisplayInfoObject('1').has('visible')).toBe(true)
+    })
+    it('should have a text entry', () => {
+      expect(constructDisplayInfoObject('1').has('text')).toBe(true)
+    })
+    it('visible should be a bool', () => {
+      expect(constructDisplayInfoObject('1').get('visible')).toBeA('boolean')
+    })
+    it('text should be a string', () => {
+      expect(constructDisplayInfoObject('1').get('text')).toBeA('string')
     })
   })
 })

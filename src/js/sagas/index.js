@@ -81,15 +81,21 @@ export function* runNewRound(): any {
     yield call(delay, 3000)
   }
 
+  // disable controls before this point
+  yield put(showGameInfo('GO!'))
+  yield call(delay, 500)
+
   let start = new Date()
 
   const {submissionAction, timeout} = yield race({
-    submissionAction: take(SUBMIT_GUESS),
-    timeout: call(delay, 3500)
+    timeout: call(delay, 3500),
+    submissionAction: take(SUBMIT_GUESS)
   })
 
   yield put(removeCoinOverlay())
+  yield call(delay, 1000)
 
+  console.log(submissionAction)
 
   if (submissionAction) {
     const { payload } = submissionAction
@@ -108,18 +114,19 @@ export function* runNewRound(): any {
       console.log(points)
     }
     yield put(saveRoundResult(points))
+    yield call(delay, 4000)
+    yield put(hideGameInfo())
+  }
+
+  if (nuberOfAnimations < 10) {
+    // Promise.resolve()
+    yield put(saveRoundResult(0))
+    yield call(delay, 4000)
+    yield put(hideGameInfo())
+    yield put(newRound())
+    console.log('why yes')
   } else {
-    // put timeout here
-    console.log('why not')
-    if (nuberOfAnimations < 10) {
-      // Promise.resolve()
-      yield put(saveRoundResult(0))
-      yield call(delay, 2000)
-      yield put(newRound())
-      console.log('why yes')
-    } else {
-      yield put(showResults())
-    }
+    yield put(showResults())
   }
 }
 

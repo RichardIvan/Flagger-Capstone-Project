@@ -41,7 +41,7 @@
     height: 115px !important;
     width: 115px !important;
     background: #D24A3B;
-    transition: transform 0.1s ease-in-out;
+    transition: transform 0.1s cubic-bezier(0.4, 0.0, 0.2, 1);
   }
 
   :global(ul > li.visible) {
@@ -49,7 +49,7 @@
     height: 115px !important;
     width: 115px !important;
     background: #D24A3B;
-    transition: transform 0.1s ease-in-out;
+    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
     transform: translateX(0) translateY(0px) !important;
   }
 
