@@ -34,7 +34,7 @@ export function saveRoundResult(points: number) {
   return {
     type: SAVE_ROUND_RESULT,
     payload: {
-      points: `+ ${points || 0}`
+      points: points || 0
     }
   }
 }

@@ -58,7 +58,7 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
   if (!action || !action.type) return state
   switch (action.type) {
     case SAVE_ROUND_RESULT:
-      return state.set('gameInfobox', constructDisplayInfoObject(`${action.payload.points}`))
+      return state.set('gameInfobox', constructDisplayInfoObject(`+ ${action.payload.points}`))
                   .set('level', state.get('level') + 1)
     case SHOW_GAME_INFO:
       return state.set('gameInfobox', constructDisplayInfoObject(action.payload.text))
