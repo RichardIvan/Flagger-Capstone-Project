@@ -5,7 +5,8 @@ import {
   START_GAME,
   NEW_ROUND,
   SET_GAME_LEVEL,
-  SAVE_ROUND_RESULT
+  SAVE_ROUND_RESULT,
+  SAVE_ANIMATION_SEQUENCE
 } from '../constants'
 
 export function startGame() {
@@ -36,5 +37,12 @@ export function saveRoundResult(points: number) {
     payload: {
       points: points || 0
     }
+  }
+}
+
+export function saveAnimationSequence(payload: Array<Object>) {
+  return {
+    type: SAVE_ANIMATION_SEQUENCE,
+    payload
   }
 }

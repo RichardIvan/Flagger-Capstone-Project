@@ -62,6 +62,8 @@ import {
 import diffInMs from 'date-fns/difference_in_milliseconds'
 import diffInSeconds from 'date-fns/difference_in_seconds'
 
+
+
 export function* watchGame(): any {
   while(true) {
     yield take(START_GAME)
@@ -86,17 +88,28 @@ export function* delaydedHidingInfo(): any {
   yield put(hideGameInfo())
 }
 
-export function* runNewRound(): any {
+export function* createAnimationSequence() {
+  const nuberOfAnimations: number = yield select(getCurrentLevel)
+  const animationSequence = generateAnimationSequence(nuberOfAnimations)
+  yield put(saveAnimationSequence(animationSequence))
+}
+
+export function* playAnimation() {
   yield put(overlayCoin())
   yield put(disableControls())
   yield call(delay, 1000)
 
-  const nuberOfAnimations: number = yield select(getCurrentLevel)
-  const animationSequence = generateAnimationSequence(nuberOfAnimations)
+  const animationSequence = yield select(getAnimationSequence)
   for (let i = 0; i < nuberOfAnimations; i++) {
     yield put(animateCoin(animationSequence[i]))
     yield call(delay, 3000)
   }
+}
+
+export function* runNewRound(): any {
+  yield put(overlayCoin())
+  yield put(disableControls())
+  yield call(delay, 1000)
 
   // disable controls before this point
   yield put(showGameInfo('GO!'))

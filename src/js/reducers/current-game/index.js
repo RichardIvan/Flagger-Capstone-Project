@@ -3,7 +3,8 @@
 
 import {
   Map,
-  List
+  List,
+  fromJS
 } from 'immutable'
 
 import uuid from 'uuid'
@@ -18,7 +19,8 @@ import {
   SET_GAME_LEVEL,
   ANIMATE_COIN,
   SAVE_ROUND_RESULT,
-  START_GAME
+  START_GAME,
+  SAVE_ANIMATION_SEQUENCE
 } from '../../actions/constants'
 
 export const initialState = Map({
@@ -47,7 +49,8 @@ export const initialState = Map({
   scores: Map({
     players: List.of(0)
   }),
-  level: 1
+  level: 1,
+  animationSequence: List.of()
 })
 
 export function constructDisplayInfoObject(text: string) {
@@ -85,6 +88,8 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
       let resetState = initialState.setIn(l, resetPlayers)
 
       return resetState
+    case SAVE_ANIMATION_SEQUENCE:
+      return state.set('animationSequence', fromJS(action.payload))
     default:
       return state
   }

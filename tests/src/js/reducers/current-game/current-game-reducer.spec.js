@@ -4,11 +4,16 @@
 import { describe, it, beforeEach } from 'mocha'
 import expect from 'expect'
 
-import reducer from '../../../../../src/js/reducers/current-game'
+import reducer, { initialState } from '../../../../../src/js/reducers/current-game'
 
 import {
-  startGame
+  startGame,
+  saveAnimationSequence
 } from '../../../../../src/js/actions/game'
+
+import {
+  generateAnimationSequence
+} from '../../../../../src/js/helpers/game'
 
 import {
   Map,
@@ -50,7 +55,8 @@ describe('Current Game Reducer', () => {
           xyz: 33
         })
       }),
-      level: 22
+      level: 22,
+      animationSequence: List.of()
     })
     newState = reducer(state, action)
   })
@@ -84,6 +90,26 @@ describe('Current Game Reducer', () => {
         rotateY: 0,
         rotateZ: 180
       }))
+    })
+  })
+  describe('INITIAL STATE', () => {
+    it('should have animation sequence entry', () => {
+      expect(initialState.has('animationSequence')).toBe(true)
+    })
+    it('should animation sequence entry should be an empty List', () => {
+      expect(initialState.get('animationSequence')).toBeA(List)
+    })
+  })
+  describe('animationSequence Entry', () => {
+    let action
+    let level = 3
+    let animationSequence
+    beforeEach(function () {
+      animationSequence = generateAnimationSequence(level)
+      action = saveAnimationSequence(animationSequence)
+    })
+    it('should #SAVE_ANIMATION_SEQUENCE should create List of the same lenght', () => {
+      expect(reducer(initialState, action).get('animationSequence').count()).toBe(level)
     })
   })
 })

@@ -13,8 +13,13 @@ import {
   newRound,
   setGameLevel,
   resetLevel,
-  saveRoundResult
+  saveRoundResult,
+  saveAnimationSequence
 } from '../../../../src/js/actions'
+
+import {
+  generateAnimationSequence
+} from '../../../../src/js/helpers/game'
 
 describe('Game Action Creator', () => {
   it('should create FSA compliant action', () => {
@@ -77,5 +82,25 @@ describe('saveRoundResult action creator', () => {
         points: 10
       }
     })
+  })
+})
+
+describe('saveAnimationSequence()', () => {
+  let level = 3
+  let animationSequence
+  beforeEach(function () {
+    animationSequence = generateAnimationSequence(level)
+  })
+  it('should be FSA compliant', () => {
+    expect(isFSA(saveAnimationSequence(animationSequence))).toBe(true)
+  })
+  it('should payload should be an array', () => {
+    expect(saveAnimationSequence(animationSequence).payload).toBeA(Array)
+  })
+  it('should have correct number of items in payload', () => {
+    expect(saveAnimationSequence(animationSequence).payload.length).toBe(3)
+  })
+  it('should have the correct action type', () => {
+    expect(saveAnimationSequence(animationSequence).type).toBe('SAVE_ANIMATION_SEQUENCE')
   })
 })
