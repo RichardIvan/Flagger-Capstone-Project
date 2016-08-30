@@ -6,6 +6,10 @@ import m from 'mithril'
 import sidenavComponent from '../components/side-nav'
 
 import {
+  MENU_ROUTE
+} from '../actions/constants'
+
+import {
   isUserSignedIn as isSignedIn
 } from '../selectors/user'
 
@@ -26,6 +30,10 @@ import {
   showAchievements,
   showHighscores
 } from '../actions/side-nav'
+
+import {
+  changeRoute
+} from '../actions'
 
 const sidenavContainer = {
   oninit(vnode: Object) {
@@ -53,14 +61,14 @@ const sidenavContainer = {
       },
       headingAttrs: {
         onclick: () => {
-          vnode.attrs.dispatch(closeNavigation())
-          m.route.set('/menu')
+          vnode.attrs.dispatch(changeRoute(MENU_ROUTE))
+          // vnode.attrs.dispatch(closeNavigation())
+          // m.route.set('/menu')
         },
         onkeyup: (e) => {
           const code = e.keyCode
           if (code === 13 || code === 32) {
-            vnode.attrs.dispatch(closeNavigation())
-            m.route.set('/menu')
+            vnode.attrs.dispatch(changeRoute(MENU_ROUTE))
           }
         },
         tabIndex: vnode.state.tabIndex

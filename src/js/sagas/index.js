@@ -11,7 +11,9 @@ import {
   SHOW_GAME_INFO,
   NEW_ROUND,
   SUBMIT_GUESS,
-  PAUSE_CURRENT_ROUND
+  PAUSE_CURRENT_ROUND,
+  CHANGE_ROUTE,
+  RESULTS_ROUTE
 } from '../actions/constants'
 
 import isEqual from 'lodash/isEqual'
@@ -48,6 +50,10 @@ import {
   saveRoundResult,
   saveAnimationSequence
 } from '../actions/game'
+
+import {
+  changeRoute as showResults
+} from '../actions/application'
 
 import {
   enableControls,
@@ -92,15 +98,13 @@ export function* watchGame(): any {
       yield fork(cancelCurrentGame, runningGame)
     } finally {
       if ( yield cancelled() ) {
-        put(showResults())
+        put(showResults(RESULTS_ROUTE))
       }
     }
   }
 }
 
-export function showResults() {
-  m.route.set('/results')
-}
+
 
 export function* delaydedHidingInfo(): any {
   yield call(delay, 500)
@@ -175,7 +179,7 @@ export function* playNewRound(): any {
   yield put(hideGameInfo())
 
   if (level > 1 && points === 0) {
-    yield call(showResults)
+    yield put(showResults(RESULTS_ROUTE))
   } else {
     yield put(newRound())
   }
@@ -185,9 +189,18 @@ export function* watchNewRound(): any {
   yield takeEvery(NEW_ROUND, runNewRound)
 }
 
+export function* watchRouteChange(): any {
+  while(true) {
+    const { payload } = yield take(CHANGE_ROUTE)
+    const { route } = payload
+    m.route.set(route)
+  }
+}
+
 export function* rootSaga(): Generator<any, void, void> {
   yield [
     fork(watchGame),
-    fork(watchNewRound)
+    fork(watchNewRound),
+    fork(watchRouteChange)
   ]
 }

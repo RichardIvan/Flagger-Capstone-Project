@@ -11,7 +11,9 @@ import {
   OPEN_NAVIGATION,
   CLOSE_NAVIGATION,
   SIGN_IN,
-  SIGN_OUT
+  SIGN_OUT,
+  CHANGE_ROUTE,
+  MENU_ROUTE
 } from '../../actions/constants'
 
 export const initialState = new Map({
@@ -27,6 +29,11 @@ const navigationState = createReducer((state = initialState, action) => {
     case SIGN_IN:
     case SIGN_OUT:
       return state.set('open', false)
+    case CHANGE_ROUTE:
+      if (!action.payload || !action.payload.route) return state
+      const route = action.payload.route
+      if (route === MENU_ROUTE) return state.set('open', false)
+      return state
     default:
       return state
   }

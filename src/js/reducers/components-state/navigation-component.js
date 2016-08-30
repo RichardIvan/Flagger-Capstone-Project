@@ -9,14 +9,16 @@ import {
   SIGN_IN,
   SIGN_OUT,
   SHOW_ACHIEVEMNTS,
-  SHOW_HIGHSCORES
+  SHOW_HIGHSCORES,
+  CHANGE_ROUTE,
+  MENU_ROUTE
 } from '../../actions/constants'
 
-export const initialState = new Map({
+export const initialState = Map({
   open: false
 })
 
-const navigationState = (state = initialState, action) => {
+const navigationState = (state: Map<string, bool> = initialState, action: Object) => {
   if (!action) return state
   switch (action.type) {
     case OPEN_NAVIGATION:
@@ -27,6 +29,11 @@ const navigationState = (state = initialState, action) => {
     case SHOW_ACHIEVEMNTS:
     case SHOW_HIGHSCORES:
       return state.set('open', false)
+    case CHANGE_ROUTE:
+      if (!action.payload || !action.payload.route) return state
+      const route = action.payload.route
+      if (route === MENU_ROUTE) return state.set('open', false)
+      return state
     default:
       return state
   }

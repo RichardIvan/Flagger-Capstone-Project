@@ -17,7 +17,7 @@ const toolbarComponent = {
       m('div.icon-holder',
         m('button#navigation-button.hamburger-holder',
           vnode.attrs.navigationButtonAttrs,
-          m('img', vnode.attrs.navigationIconAttrs)
+          m('img', vnode.attrs.leftIcon)
         )
       ),
       m('div.icon-holder',

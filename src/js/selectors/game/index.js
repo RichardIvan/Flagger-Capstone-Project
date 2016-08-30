@@ -12,3 +12,7 @@ export function getInfoboxText(state: Object) {
 export function getCurrentLevel(state: Object) {
   return state.currentGame.get('level')
 }
+
+export function isGameInProgress(state: Object) {
+    return state.currentGame.get('gameStatus') !== 'ended'
+}

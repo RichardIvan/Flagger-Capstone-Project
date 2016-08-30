@@ -7,6 +7,7 @@ import toolbarComponent from '../components/toolbar'
 
 import hamburgerIcon from '../../images/hamburger-icon.png'
 import settingsIcon from '../../images/settings-icon.png'
+import exitIcon from '../../images/settings-icon.png'
 
 import {
   isSettingsComponentOpen
@@ -21,14 +22,18 @@ import {
   isNavigationComponentOpen as isNavOpen
 } from '../selectors/navigation'
 
+import {
+  isGameInProgress
+} from '../selectors/game'
+
 // TODO add attributes
 // TODO add click handler for buttons
 
 const toolbarContainer = {
   view(vnode: Object) {
     return m(toolbarComponent, {
-      navigationIconAttrs: {
-        src: hamburgerIcon
+      leftIcon: {
+        src: isGameInProgress(vnode.attrs.state) ? exitIcon : hamburgerIcon
       },
       navigationButtonAttrs: {
         onclick: () => vnode.attrs.dispatch(openNavigation()),

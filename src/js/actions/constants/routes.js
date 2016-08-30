@@ -1,4 +1,5 @@
 export const MENU_ROUTE = '/menu'
+export const RESULTS_ROUTE = '/results'
 export const MENU_MULTIPLAYER_ROUTE = '/menu/multiplayer'
 export const MULTIPLAYER_HOST_ROUTE = '/menu/multiplayer/host'
 export const MULTIPLAYER_JOIN_ROUTE = '/menu/multiplayer/join'

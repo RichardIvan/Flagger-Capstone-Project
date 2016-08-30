@@ -6,7 +6,9 @@ import {
   NEW_ROUND,
   SET_GAME_LEVEL,
   SAVE_ROUND_RESULT,
-  SAVE_ANIMATION_SEQUENCE
+  SAVE_ANIMATION_SEQUENCE,
+  CHANGE_ROUTE,
+  RESULTS_ROUTE
 } from '../constants'
 
 export function startGame() {
@@ -44,5 +46,14 @@ export function saveAnimationSequence(payload: Array<Object>) {
   return {
     type: SAVE_ANIMATION_SEQUENCE,
     payload
+  }
+}
+
+export function showResults() {
+  return {
+    type: CHANGE_ROUTE,
+    payload: {
+      route: RESULTS_ROUTE
+    }
   }
 }

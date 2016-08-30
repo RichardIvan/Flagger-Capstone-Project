@@ -20,7 +20,11 @@ import {
   ANIMATE_COIN,
   SAVE_ROUND_RESULT,
   START_GAME,
-  SAVE_ANIMATION_SEQUENCE
+  SAVE_ANIMATION_SEQUENCE,
+  SHOW_GAME_RESULTS,
+  CHANGE_ROUTE,
+  MENU_ROUTE,
+  RESULTS_ROUTE
 } from '../../actions/constants'
 
 export const initialState = Map({
@@ -50,7 +54,8 @@ export const initialState = Map({
     players: List.of(0)
   }),
   level: 1,
-  animationSequence: List.of()
+  animationSequence: List.of(),
+  gameStatus: 'ended'
 })
 
 export function constructDisplayInfoObject(text: string) {
@@ -86,10 +91,21 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
       const l = ['scores', 'players']
       const resetPlayers = state.getIn(l).map(player => 0)
       let resetState = initialState.setIn(l, resetPlayers)
+                                    .set('gameStatus', 'playing')
 
       return resetState
     case SAVE_ANIMATION_SEQUENCE:
       return state.set('animationSequence', fromJS(action.payload))
+    case CHANGE_ROUTE:
+      if (!action.payload || !action.payload.route) return state
+      const route = action.payload.route
+      switch (route) {
+        case MENU_ROUTE:
+        case RESULTS_ROUTE:
+          return state.set('gameStatus', 'ended')
+        default:
+          return state
+      }
     default:
       return state
   }
