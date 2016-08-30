@@ -38,38 +38,30 @@ describe('Settings Component', () => {
 
     vnode = {
       attrs: {
-        store: {
-          getState() {
-            return {
-              user: Map({
-                isSignedIn: true
-              }),
-              settings: Map({
-                sounds: true
-              })
-            }
-          },
-          dispatch(action) {
-            console.log(action)
-          }
+        state: {
+          user: Map({
+            isSignedIn: true
+          }),
+          settings: Map({
+            sounds: true
+          })
+        },
+        dispatch(action) {
+          console.log(action)
         }
       }
     }
     checkmarkAttrs = {
-      onclick: () => toggleSounds(vnode.attrs.store)
+      onclick: () => vnode.attrs.dispatch(toggleSounds(!false))
     }
     out = mq(settingsComponent, {
-      store: {
-        getState() {
-          return {
-            user: Map({
-              isSignedIn: true
-            })
-          }
-        }
+      state: {
+        user: Map({
+          isSignedIn: true
+        })
       },
       checkmarkAttrs,
-      oauthButton: authButtonBySignedInStatus(vnode.attrs.store)
+      oauthButton: authButtonBySignedInStatus(vnode.attrs.state)
     })
   })
 

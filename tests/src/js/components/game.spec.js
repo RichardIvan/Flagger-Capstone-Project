@@ -14,42 +14,38 @@ import {
 
 describe('Game Component', () => {
   let out
-  let store = {
-    getState() {
-      return {
-        componentsState: {
-          coinState: Map({
-            overlayVisible: true
-          }),
-          controlsState: Map({
-            disabled: true
-          })
-        },
-        currentGame: Map({
-          coin: Map({
-            translateY: 0
-          }),
-          controls: List.of(
-            Map({
-              rotateY: 0,
-              rotateZ: 0
-            }),
-            Map({
-              rotateY: 0,
-              rotateZ: 90
-            }),
-            Map({
-              rotateY: 180,
-              rotateZ: 180
-            })
-          ),
+  let state = {
+    componentsState: {
+      coinState: Map({
+        overlayVisible: true
+      }),
+      controlsState: Map({
+        disabled: true
+      })
+    },
+    currentGame: Map({
+      coin: Map({
+        translateY: 0
+      }),
+      controls: List.of(
+        Map({
+          rotateY: 0,
+          rotateZ: 0
+        }),
+        Map({
+          rotateY: 0,
+          rotateZ: 90
+        }),
+        Map({
+          rotateY: 180,
+          rotateZ: 180
         })
-      }
-    }
+      ),
+    })
   }
 
   beforeEach(function () {
-    out = mq(gameContainer, { store })
+    out = mq(gameContainer, { state })
   })
   // it('should have and Coin showing', () => {
   //   expect(out.should.have.bind(null, '#coin')).toNotThrow()

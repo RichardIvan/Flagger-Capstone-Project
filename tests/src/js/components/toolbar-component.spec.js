@@ -62,23 +62,19 @@ describe('Toolbar Component', () => {
 
   describe('ARIA', () => {
     describe('SIDENAV OPEN', () => {
-      let store
+      let state
       let out
 
       beforeEach(function () {
-        store = {
-          getState: () => {
-            return {
-              componentsState: {
-                navigationState: Map({
-                  open: true
-                })
-              }
-            }
+        state = {
+          componentsState: {
+            navigationState: Map({
+              open: true
+            })
           }
         }
         out = mq(toolbarContainer, {
-          store
+          state
         })
       })
       describe('Settings Icon', () => {
@@ -94,23 +90,19 @@ describe('Toolbar Component', () => {
     })
 
     describe('SIDENAV CLOSED', () => {
-      let store
+      let state
       let out
 
       beforeEach(function () {
-        store = {
-          getState: () => {
-            return {
-              componentsState: {
-                navigationState: Map({
-                  open: false
-                })
-              }
-            }
+        state = {
+          componentsState: {
+            navigationState: Map({
+              open: false
+            })
           }
         }
         out = mq(toolbarContainer, {
-          store
+          state
         })
       })
       describe('Settings Icon', () => {

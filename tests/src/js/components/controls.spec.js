@@ -45,43 +45,39 @@ describe('Game Controls Component', () => {
 
     describe('Using ControlsContainer', () => {
       let out
-      let store = {
-        getState: () => {
-          return {
-            componentsState: {
-              controlsState: Map({
-                disabled: true
-              })
-            },
-            currentGame: Map({
-              controls: List.of(
-                Map(
-                  {
-                    rotateY: 0,
-                    rotateZ: 0
-                  }
-                ),
-                Map(
-                  {
-                    rotateY: 90,
-                    rotateZ: 0
-                  }
-                ),
-                Map(
-                  {
-                    rotateY: 180,
-                    rotateZ: 0
-                  }
-                )
-              )
-            })
-          }
-        }
+      let state = {
+        componentsState: {
+          controlsState: Map({
+            disabled: true
+          })
+        },
+        currentGame: Map({
+          controls: List.of(
+            Map(
+              {
+                rotateY: 0,
+                rotateZ: 0
+              }
+            ),
+            Map(
+              {
+                rotateY: 90,
+                rotateZ: 0
+              }
+            ),
+            Map(
+              {
+                rotateY: 180,
+                rotateZ: 0
+              }
+            )
+          )
+        })
       }
 
       beforeEach(function () {
         out = mq(controlsContainer, {
-          store
+          state
         })
       })
       it('all 3 li should contain .coin', () => {
@@ -116,44 +112,40 @@ describe('Game Controls Component', () => {
     })
     describe('controls overlay', () => {
       let out
-      let store
+      let state
 
       beforeEach(function () {
-        store = {
-          getState: () => {
-            return {
-              componentsState: {
-                controlsState: Map({
-                  disabled: true
-                })
-              },
-              currentGame: Map({
-                controls: List.of(
-                  Map(
-                    {
-                      rotateY: 0,
-                      rotateZ: 0
-                    }
-                  ),
-                  Map(
-                    {
-                      rotateY: 90,
-                      rotateZ: 0
-                    }
-                  ),
-                  Map(
-                    {
-                      rotateY: 180,
-                      rotateZ: 0
-                    }
-                  )
-                )
-              })
-            }
-          }
+        state = {
+          componentsState: {
+            controlsState: Map({
+              disabled: true
+            })
+          },
+          currentGame: Map({
+            controls: List.of(
+              Map(
+                {
+                  rotateY: 0,
+                  rotateZ: 0
+                }
+              ),
+              Map(
+                {
+                  rotateY: 90,
+                  rotateZ: 0
+                }
+              ),
+              Map(
+                {
+                  rotateY: 180,
+                  rotateZ: 0
+                }
+              )
+            )
+          })
         }
         out = mq(controlsContainer, {
-          store
+          state
         })
       })
       it('should have .disabled', () => {

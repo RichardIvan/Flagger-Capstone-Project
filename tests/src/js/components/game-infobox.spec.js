@@ -55,16 +55,9 @@ describe('Game Infobox Component', () => {
         })
       })
     }
-    let attrs = {
-      store: {
-        getState: () => {
-          return state
-        }
-      }
-    }
 
     beforeEach(function () {
-      out = mq(gameInfoboxContainer, { store: attrs.store })
+      out = mq(gameInfoboxContainer, { state })
     })
     it('should have class showing according to the store', () => {
       expect(out.has('.showing')).toBe(true)
@@ -77,12 +70,8 @@ describe('Game Infobox Component', () => {
           })
         })
       }
-      const store = {
-        getState: () => {
-          return newState
-        }
-      }
-      const newOut = mq(gameInfoboxContainer, { store })
+
+      const newOut = mq(gameInfoboxContainer, { state: newState })
       expect(newOut.has('.showing')).toBe(false)
     })
     it('should have text according to the store', () => {
@@ -96,12 +85,8 @@ describe('Game Infobox Component', () => {
           })
         })
       }
-      const store = {
-        getState: () => {
-          return newState
-        }
-      }
-      const newOut = mq(gameInfoboxContainer, { store })
+
+      const newOut = mq(gameInfoboxContainer, { state: newState })
       expect(newOut.contains('yahoo!')).toBe(true)
     })
   })

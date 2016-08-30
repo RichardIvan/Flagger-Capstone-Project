@@ -22,17 +22,13 @@ describe('Menu Component', () => {
 
   beforeEach(() => {
     output = mq(menuComponent, {
-      store: {
-        getState: () => {
-          return {
-            currentGame: Map({
-              coin: Map({
-                rotateY: 0,
-                rotateZ: 0
-              })
-            })
-          }
-        }
+      state: {
+        currentGame: Map({
+          coin: Map({
+            rotateY: 0,
+            rotateZ: 0
+          })
+        })
       },
       componentAttrs: {
         onclick() {
