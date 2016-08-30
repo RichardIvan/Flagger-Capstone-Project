@@ -16,11 +16,6 @@ import {
 import reducer, { initialState } from '../../../../../src/js/reducers/current-game'
 
 describe('Level Reducer', () => {
-  it('should have initial state with empty players Map', () => {
-    expect(reducer().get('scores')).toEqual(fromJS({
-      players: {}
-    }))
-  })
   it('should return initial state when no state passed in', () => {
     expect(reducer()).toEqual(initialState)
   })

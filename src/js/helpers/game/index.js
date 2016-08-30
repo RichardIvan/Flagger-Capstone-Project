@@ -31,44 +31,18 @@ export function generateAnimationSequence(numberOfAnimations: number) {
       if(shouldBeAddition) {
         animationValue *= -1
       }
-      // if (i !== 0) {
-      //   const previousAnimationType = result[i - 1]
-      //   const previousKey = Object.keys(previousAnimationType)[0]
-      //   if (previousKey === 'rotateY') {
-      //     animationValue = previousAnimationType[previousKey] *= -1
-      //   }
-      // }
+
     } else {
       animationValue = rotateZoption
       const shouldBeAddition = random(1)
       if (shouldBeAddition) {
         animationValue *= -1
       }
-      // if (i !== 0) {
-      //   const previousAnimationType = result[i -1]
-      //   const previousKey = Object.keys(previousAnimationType)[0]
-      //   if (previousKey === 'rotateZ') {
-      //     if (previousAnimationType[previousKey] === animationValue) {
-      //       animationValue *= -1
-      //     }
-      //   }
-      // }
     }
 
     let nextAnimationValue
-
-    console.log(animationType)
-    console.log('---')
-    console.log(lastValues[animationType])
-    console.log(animationValue)
     nextAnimationValue = lastValues[animationType] + (animationValue)
-    console.log(nextAnimationValue)
-    console.log('---')
     lastValues[animationType] = nextAnimationValue
-
-    // console.log(nextAnimationValue)
-
-    // console.log(lastValues[animationType])
 
     result.push({
       [animationType]: nextAnimationValue

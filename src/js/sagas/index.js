@@ -78,7 +78,12 @@ export function* watchGame(): any {
 }
 
 export function showResults() {
-  m.path.set('/results')
+  m.route.set('/results')
+}
+
+export function* delaydedHidingInfo(): any {
+  yield call(delay, 500)
+  yield put(hideGameInfo())
 }
 
 export function* runNewRound(): any {
@@ -97,6 +102,7 @@ export function* runNewRound(): any {
   yield put(showGameInfo('GO!'))
   yield put(enableControls())
   // yield call(delay, 500)
+  yield fork(delaydedHidingInfo)
 
   let start = new Date()
 
@@ -129,7 +135,7 @@ export function* runNewRound(): any {
   yield call(delay, 4000)
   yield put(hideGameInfo())
 
-  if (nuberOfAnimations > 10 && points === 0) {
+  if (nuberOfAnimations > 1 && points === 0) {
     yield call(showResults)
   } else {
     yield put(newRound())

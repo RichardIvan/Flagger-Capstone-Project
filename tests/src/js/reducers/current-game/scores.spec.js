@@ -16,10 +16,10 @@ import {
 import reducer, { initialState } from '../../../../../src/js/reducers/current-game'
 
 describe('Scores Reducer', () => {
-  it('should have initial state with empty players Map', () => {
-    expect(reducer().get('scores')).toEqual(fromJS({
-      players: {}
-    }))
+  it('should have initial state with at least one player in the List', () => {
+    it('should have initial state with at least one player in the list', () => {
+      expect(reducer().getIn(['scores', 'players']).count()).toBe(1)
+    })
   })
   it('should return initial state when no state passed in', () => {
     expect(reducer()).toEqual(initialState)
@@ -45,7 +45,7 @@ describe('Scores Reducer', () => {
       hey: 'ho'
     }))
   })
-  it('should create player entry on NEW_SINGLE_PLAYER_GAME action received', () => {
+  it('should have at least one player entry on NEW_SINGLE_PLAYER_GAME action received', () => {
     const action = {
       type: NEW_SINGLE_PLAYER_GAME,
       payload: {
@@ -53,10 +53,6 @@ describe('Scores Reducer', () => {
       }
     }
     const newState = reducer(initialState, action)
-    expect(newState.get('scores')).toEqual(fromJS({
-      players: {
-        'uniqueid': 0
-      }
-    }))
+    expect(newState.getIn(['scores', 'players']).count()).toBeGreaterThan(0)
   })
 })

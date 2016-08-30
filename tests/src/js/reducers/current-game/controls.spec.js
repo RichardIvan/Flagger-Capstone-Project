@@ -29,7 +29,7 @@ describe('Controls Reducer', () => {
           rotateZ: 90
         },
         {
-          rotateY: 180,
+          rotateY: 0,
           rotateZ: 180
         }
       ]
@@ -51,7 +51,7 @@ describe('Controls Reducer', () => {
         rotateZ: 90
       },
       {
-        rotateY: 180,
+        rotateY: 0,
         rotateZ: 180
       }
     ]))

@@ -6,6 +6,8 @@ import {
   List
 } from 'immutable'
 
+import uuid from 'uuid'
+
 import {
   SHOW_GAME_INFO,
   HIDE_GAME_INFO,
@@ -15,7 +17,8 @@ import {
   NEW_SINGLE_PLAYER_GAME,
   SET_GAME_LEVEL,
   ANIMATE_COIN,
-  SAVE_ROUND_RESULT
+  SAVE_ROUND_RESULT,
+  START_GAME
 } from '../../actions/constants'
 
 export const initialState = Map({
@@ -29,7 +32,7 @@ export const initialState = Map({
       rotateZ: 90
     }),
     Map({
-      rotateY: 180,
+      rotateY: 0,
       rotateZ: 180
     })
   ),
@@ -42,7 +45,7 @@ export const initialState = Map({
     text: ''
   }),
   scores: Map({
-    players: Map()
+    players: List.of(0)
   }),
   level: 1
 })
@@ -76,6 +79,12 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
       return state.set('level', action.payload.level)
     case ANIMATE_COIN:
       return state.mergeIn(['coin'], action.payload.values)
+    case START_GAME:
+      const l = ['scores', 'players']
+      const resetPlayers = state.getIn(l).map(player => 0)
+      let resetState = initialState.setIn(l, resetPlayers)
+
+      return resetState
     default:
       return state
   }
