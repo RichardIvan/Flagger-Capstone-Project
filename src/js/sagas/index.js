@@ -10,7 +10,8 @@ import {
   NEW_SINGLE_PLAYER_GAME,
   SHOW_GAME_INFO,
   NEW_ROUND,
-  SUBMIT_GUESS
+  SUBMIT_GUESS,
+  PAUSE_CURRENT_ROUND
 } from '../actions/constants'
 
 import isEqual from 'lodash/isEqual'
@@ -21,7 +22,9 @@ import {
   call,
   put,
   select,
-  race
+  race,
+  cancel,
+  cancelled
 } from 'redux-saga/effects'
 
 import {
@@ -42,7 +45,8 @@ import {
 
 import {
   newRound,
-  saveRoundResult
+  saveRoundResult,
+  saveAnimationSequence
 } from '../actions/game'
 
 import {
@@ -62,20 +66,35 @@ import {
 import diffInMs from 'date-fns/difference_in_milliseconds'
 import diffInSeconds from 'date-fns/difference_in_seconds'
 
+export function* startNewGame() {
+  const coundownDigits = ['3', '2', '1', 'Go!']
+  const len = coundownDigits.length
+  for (let i = 0; i < len; i++) {
+    yield put(showGameInfo(coundownDigits[i]))
+    yield call(delay, 500)
+    yield put(hideGameInfo())
+    yield call(delay, 500)
+  }
+  yield put(newRound())
+}
 
+export function* cancelCurrentGame(currentGame: Object) {
+  while( yield take('CANCEL_GAME' )) {
+    yield cancel(currentGame)
+  }
+}
 
 export function* watchGame(): any {
   while(true) {
-    yield take(START_GAME)
-    const coundownDigits = ['3', '2', '1', 'Go!']
-    const len = coundownDigits.length
-    for (let i = 0; i < len; i++) {
-      yield put(showGameInfo(coundownDigits[i]))
-      yield call(delay, 500)
-      yield put(hideGameInfo())
-      yield call(delay, 500)
+    try {
+      yield take(START_GAME)
+      const runningGame = yield fork(startNewGame)
+      yield fork(cancelCurrentGame, runningGame)
+    } finally {
+      if ( yield cancelled() ) {
+        put(showResults())
+      }
     }
-    yield put(newRound())
   }
 }
 
@@ -88,29 +107,36 @@ export function* delaydedHidingInfo(): any {
   yield put(hideGameInfo())
 }
 
-export function* createAnimationSequence() {
-  const nuberOfAnimations: number = yield select(getCurrentLevel)
-  const animationSequence = generateAnimationSequence(nuberOfAnimations)
-  yield put(saveAnimationSequence(animationSequence))
-}
-
 export function* playAnimation() {
   yield put(overlayCoin())
   yield put(disableControls())
   yield call(delay, 1000)
 
-  const animationSequence = yield select(getAnimationSequence)
-  for (let i = 0; i < nuberOfAnimations; i++) {
+  const level = yield select(getCurrentLevel)
+  const animationSequence = generateAnimationSequence(level)
+  yield put(saveAnimationSequence(animationSequence))
+
+  for (let i = 0; i < level; i++) {
     yield put(animateCoin(animationSequence[i]))
     yield call(delay, 3000)
   }
 }
 
-export function* runNewRound(): any {
-  yield put(overlayCoin())
-  yield put(disableControls())
-  yield call(delay, 1000)
+export function* pauseCurrentRound(currentRound: Object) {
+  while( yield take(PAUSE_CURRENT_ROUND) ) {
+    yield cancel(currentRound)
+  }
+}
 
+export function* runNewRound() {
+  const currentRound = yield fork(playNewRound)
+  yield fork(pauseCurrentRound, currentRound)
+}
+
+export function* playNewRound(): any {
+  const level = yield select(getCurrentLevel)
+
+  yield call(playAnimation)
   // disable controls before this point
   yield put(showGameInfo('GO!'))
   yield put(enableControls())
@@ -125,7 +151,7 @@ export function* runNewRound(): any {
   })
 
   yield put(removeCoinOverlay())
-  yield call(delay, 1000)
+  yield call(delay, 200)
 
   let points = 0
   if (submissionAction) {
@@ -148,7 +174,7 @@ export function* runNewRound(): any {
   yield call(delay, 4000)
   yield put(hideGameInfo())
 
-  if (nuberOfAnimations > 1 && points === 0) {
+  if (level > 1 && points === 0) {
     yield call(showResults)
   } else {
     yield put(newRound())
