@@ -8,7 +8,8 @@ import {
   SAVE_ROUND_RESULT,
   SAVE_ANIMATION_SEQUENCE,
   CHANGE_ROUTE,
-  RESULTS_ROUTE
+  RESULTS_ROUTE,
+  SHOW_EXIT_GAME_PROMPT
 } from '../constants'
 
 export function startGame() {
@@ -55,5 +56,11 @@ export function showResults() {
     payload: {
       route: RESULTS_ROUTE
     }
+  }
+}
+
+export function showExitGamePrompt() {
+  return {
+    type: SHOW_EXIT_GAME_PROMPT
   }
 }

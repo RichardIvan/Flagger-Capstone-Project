@@ -7,7 +7,7 @@ import toolbarComponent from '../components/toolbar'
 
 import hamburgerIcon from '../../images/hamburger-icon.png'
 import settingsIcon from '../../images/settings-icon.png'
-import exitIcon from '../../images/settings-icon.png'
+import exitIcon from '../../images/close-icon.png'
 
 import {
   isSettingsComponentOpen
@@ -15,7 +15,8 @@ import {
 
 import {
   toggleSettingsOpenState,
-  openNavigation
+  openNavigation,
+  showExitGamePrompt
 } from '../actions'
 
 import {
@@ -23,7 +24,7 @@ import {
 } from '../selectors/navigation'
 
 import {
-  isGameInProgress
+  isGameInProgress,
 } from '../selectors/game'
 
 // TODO add attributes
@@ -33,10 +34,11 @@ const toolbarContainer = {
   view(vnode: Object) {
     return m(toolbarComponent, {
       leftIcon: {
+        class: isGameInProgress(vnode.attrs.state) ? 'close-icon' : '',
         src: isGameInProgress(vnode.attrs.state) ? exitIcon : hamburgerIcon
       },
       navigationButtonAttrs: {
-        onclick: () => vnode.attrs.dispatch(openNavigation()),
+        onclick: () => vnode.attrs.dispatch(isGameInProgress(vnode.attrs.state) ? showExitGamePrompt() : openNavigation()),
         tabIndex: isNavOpen(vnode.attrs.state) ? -1 : 0
       },
       settingsIconAttrs: {

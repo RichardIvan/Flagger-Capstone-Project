@@ -41,3 +41,5 @@ export const PAUSE_CURRENT_ROUND: string = 'PAUSE_CURRENT_ROUND'
 
 export const SHOW_GAME_RESULTS: string = 'SHOW_GAME_RESULTS'
 export const CHANGE_ROUTE: string = 'CHANGE_ROUTE'
+
+export const SHOW_EXIT_GAME_PROMPT: string = 'SHOW_EXIT_GAME_PROMPT'

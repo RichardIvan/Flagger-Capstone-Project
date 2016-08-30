@@ -14,7 +14,8 @@ import {
   setGameLevel,
   resetLevel,
   saveRoundResult,
-  saveAnimationSequence
+  saveAnimationSequence,
+  showExitGamePrompt
 } from '../../../../src/js/actions'
 
 import {
@@ -102,5 +103,14 @@ describe('saveAnimationSequence()', () => {
   })
   it('should have the correct action type', () => {
     expect(saveAnimationSequence(animationSequence).type).toBe('SAVE_ANIMATION_SEQUENCE')
+  })
+})
+
+describe('#showExitGamePrompt() action creator', () => {
+  it('should be FSA compliant', () => {
+    expect(isFSA(showExitGamePrompt())).toBe(true)
+  })
+  it('should have the correct action type', () => {
+    expect(showExitGamePrompt().type).toBe('SHOW_EXIT_GAME_PROMPT')
   })
 })

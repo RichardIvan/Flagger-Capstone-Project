@@ -15,7 +15,7 @@ import {
 
 import reducer, { initialState } from '../../../../../src/js/reducers/components-state/navigation-component'
 
-describe.only('NAVIGATION COMPOENNT STATE REDUCER', () => {
+describe('NAVIGATION COMPOENNT STATE REDUCER', () => {
   let action
   let state
   beforeEach(function () {

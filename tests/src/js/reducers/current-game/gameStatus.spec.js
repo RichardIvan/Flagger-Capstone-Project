@@ -17,7 +17,7 @@ import {
 
 import reducer, { initialState } from '../../../../../src/js/reducers/current-game'
 
-describe.only('Game Status Entry in Current Game', () => {
+describe('Game Status Entry in Current Game', () => {
   let state
   beforeEach(function () {
     state = Map({

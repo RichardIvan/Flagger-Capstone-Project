@@ -71,7 +71,10 @@ describe('Toolbar Component', () => {
             navigationState: Map({
               open: true
             })
-          }
+          },
+          currentGame: Map({
+            gameStatus: 'playing'
+          })
         }
         out = mq(toolbarContainer, {
           state
@@ -99,7 +102,10 @@ describe('Toolbar Component', () => {
             navigationState: Map({
               open: false
             })
-          }
+          },
+          currentGame: Map({
+            gameStatus: 'playing'
+          })
         }
         out = mq(toolbarContainer, {
           state

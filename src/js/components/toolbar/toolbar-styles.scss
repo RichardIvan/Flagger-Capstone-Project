@@ -29,6 +29,9 @@
   border: none;
   // width: 40px;
   // height: 35px;
+  :global(.close-icon) {
+    transform: rotateZ(-35deg);
+  }
 
   :global(img) {
     position: absolute;
