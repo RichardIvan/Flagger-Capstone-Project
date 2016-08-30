@@ -26,11 +26,11 @@ const gameContainer = {
     }, [
       m(coinComponent, {
         ...vnode.attrs,
-        frontCoinOverlay: constructCoinOverlay(vnode.attrs.store.getState(), 'shadow'),
-        backCoinOverlay: constructCoinOverlay(vnode.attrs.store.getState(), 'shadow'),
+        frontCoinOverlay: constructCoinOverlay(vnode.attrs.state, 'shadow'),
+        backCoinOverlay: constructCoinOverlay(vnode.attrs.state, 'shadow'),
         coinAttrs: {
           style: {
-            transform: `rotateY(${getCoinRotateY(vnode.attrs.store.getState())}deg) rotateZ(${getCoinRotateZ(vnode.attrs.store.getState())}deg)`
+            transform: `rotateY(${getCoinRotateY(vnode.attrs.state)}deg) rotateZ(${getCoinRotateZ(vnode.attrs.state)}deg)`
           },
           class: 'game-coin'
         }

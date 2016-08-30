@@ -17,8 +17,8 @@ const overlayContainer = {
   view(vnode) {
     return m(overlayComponent, {
       overlayAttrs: {
-        class: isOpen(vnode.attrs.store.getState()) ? 'open' : '',
-        onclick: () => vnode.attrs.store.dispatch(closeNavigation())
+        class: isOpen(vnode.attrs.state) ? 'open' : '',
+        onclick: () => vnode.attrs.dispatch(closeNavigation())
       }
     })
   }

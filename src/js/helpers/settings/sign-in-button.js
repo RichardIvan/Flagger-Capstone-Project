@@ -14,21 +14,21 @@ import {
   isUserSignedIn
 } from '../../selectors/user'
 
-export function authButtonBySignedInStatus(store: Object) {
-  const isSignedIn = isUserSignedIn(store.getState())
-  return constructButtonBySignedInStatus(isSignedIn, store)
+export function authButtonBySignedInStatus(state: Object, dispatch) {
+  const isSignedIn = isUserSignedIn(state)
+  return constructButtonBySignedInStatus(isSignedIn, dispatch)
 }
 
-export function constructButtonBySignedInStatus(isSignedIn: bool, store: Object) {
+export function constructButtonBySignedInStatus(isSignedIn: bool, dispatch: Object) {
   return m(buttonComponent, {
     buttonText: isSignedIn ? 'Logout' : 'Sign In',
     buttonAttrs: {
       class: 'settings',
       id: 'oauth',
-      onclick: () => store.dispatch(isSignedIn ? signOut() : signIn()),
+      onclick: () => dispatch(isSignedIn ? signOut() : signIn()),
       onkeyup: (e) => {
         if (e.keyCode === 13 || e.keyCode === 32) {
-          store.dispatch(isSignedIn ? signOut() : signIn())
+          dispatch(isSignedIn ? signOut() : signIn())
         }
       }
     }

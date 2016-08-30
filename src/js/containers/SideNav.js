@@ -29,12 +29,12 @@ import {
 
 const sidenavContainer = {
   oninit(vnode: Object) {
-    vnode.state.appState = vnode.attrs.store.getState()
-    vnode.state.tabIndex = isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
+    vnode.state.appState = vnode.attrs.state
+    vnode.state.tabIndex = isNavbarOpen(vnode.attrs.state) ? 0 : -1
   },
   onbeforeupdate(vnode: Object) {
-    vnode.state.appState = vnode.attrs.store.getState()
-    vnode.state.tabIndex = isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
+    vnode.state.appState = vnode.attrs.state
+    vnode.state.tabIndex = isNavbarOpen(vnode.attrs.state) ? 0 : -1
   },
   view(vnode: Object) {
     return m(sidenavComponent, {
@@ -53,46 +53,46 @@ const sidenavContainer = {
       },
       headingAttrs: {
         onclick: () => {
-          vnode.attrs.store.dispatch(closeNavigation())
+          vnode.attrs.dispatch(closeNavigation())
           m.route.set('/menu')
         },
         onkeyup: (e) => {
           const code = e.keyCode
           if (code === 13 || code === 32) {
-            vnode.attrs.store.dispatch(closeNavigation())
+            vnode.attrs.dispatch(closeNavigation())
             m.route.set('/menu')
           }
         },
         tabIndex: vnode.state.tabIndex
       },
       achievementsAttrs: {
-        onclick: () => vnode.attrs.store.dispatch(showAchievements()),
+        onclick: () => vnode.attrs.dispatch(showAchievements()),
         onkeyup: (e) => {
           const code = e.keyCode
           if (code === 13 || code === 32) {
-            vnode.attrs.store.dispatch(showAchievements())
+            vnode.attrs.dispatch(showAchievements())
           }
         },
         tabIndex: vnode.state.tabIndex
       },
       highscoresAttrs: {
-        onclick: () => vnode.attrs.store.dispatch(showHighscores()),
+        onclick: () => vnode.attrs.dispatch(showHighscores()),
         onkeyup: (e) => {
           const code = e.keyCode
           if (code === 13 || code === 32) {
-            vnode.attrs.store.dispatch(showHighscores())
+            vnode.attrs.dispatch(showHighscores())
           }
         },
         tabIndex: vnode.state.tabIndex
       },
       oauthAttrs: {
         onclick: () => {
-          vnode.attrs.store.dispatch(isSignedIn(vnode.state.appState) ? signOut() : signIn())
+          vnode.attrs.dispatch(isSignedIn(vnode.state.appState) ? signOut() : signIn())
         },
         onkeyup: (e) => {
           const code = e.keyCode
           if (code === 13 || code === 32) {
-            vnode.attrs.store.dispatch(isSignedIn(vnode.state.appState) ? signOut() : signIn())
+            vnode.attrs.dispatch(isSignedIn(vnode.state.appState) ? signOut() : signIn())
           }
         },
         tabIndex: vnode.state.tabIndex

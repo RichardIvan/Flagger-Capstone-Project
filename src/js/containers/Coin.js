@@ -25,11 +25,11 @@ const CoinContainer = {
     return m(coinComponent, {
       ...vnode.attrs,
       logoAttrs: {
-        onclick: () => vnode.attrs.store.dispatch(flipCoin())
+        onclick: () => vnode.attrs.dispatch(flipCoin())
       },
       coinAttrs: {
         style: {
-          transform: `rotateY(${getCoinRotateY(vnode.attrs.store.getState())}deg) rotateZ(0deg)`
+          transform: `rotateY(${getCoinRotateY(vnode.attrs.state)}deg) rotateZ(0deg)`
         }
       }
     })

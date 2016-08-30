@@ -28,31 +28,31 @@ export function generateShortId() {
   return randomWords({ exactly: 3, join: '-' })
 }
 
-export function menuButtonsByRoute(store: Object, route: string) {
-  return map(getAttribuesForMenuButtonsByRoute(store, route), (buttonComponentAttributes: Object) => {
+export function menuButtonsByRoute(dispatch, route: string) {
+  return map(getAttribuesForMenuButtonsByRoute(dispatch, route), (buttonComponentAttributes: Object) => {
     return m(buttonComponent, buttonComponentAttributes)
   })
 }
 
-export function getAttribuesForMenuButtonsByRoute(store: Object, route: string) {
+export function getAttribuesForMenuButtonsByRoute(dispatch: Object, route: string) {
   switch (route) {
     case MENU_ROUTE:
-      return mainMenuButtonAttributes(store)
+      return mainMenuButtonAttributes(dispatch)
     case MENU_MULTIPLAYER_ROUTE:
       return multiplayerButtonAttributes()
     default:
-      return mainMenuButtonAttributes(store)
+      return mainMenuButtonAttributes(dispatch)
   }
 }
 
-export function mainMenuButtonAttributes(store: Object) {
+export function mainMenuButtonAttributes(dispatch: Object) {
   return [
     {
       buttonText: SINGLE_BUTTON_TEXT,
       buttonAttrs: {
         onclick: () => {
           m.route.set(PLAYING_SINGLEPLAYER_ROUTE)
-          store.dispatch(startGame())
+          dispatch(startGame())
         }
       }
     },

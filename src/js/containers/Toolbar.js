@@ -31,17 +31,17 @@ const toolbarContainer = {
         src: hamburgerIcon
       },
       navigationButtonAttrs: {
-        onclick: () => vnode.attrs.store.dispatch(openNavigation()),
-        tabIndex: isNavOpen(vnode.attrs.store.getState()) ? -1 : 0
+        onclick: () => vnode.attrs.dispatch(openNavigation()),
+        tabIndex: isNavOpen(vnode.attrs.state) ? -1 : 0
       },
       settingsIconAttrs: {
         src: settingsIcon,
       },
       settingsButtonAttrs: {
         onclick: () => {
-          vnode.attrs.store.dispatch(toggleSettingsOpenState(!isSettingsComponentOpen(vnode.attrs.store.getState())))
+          vnode.attrs.dispatch(toggleSettingsOpenState(!isSettingsComponentOpen(vnode.attrs.state)))
         },
-        tabIndex: isNavOpen(vnode.attrs.store.getState()) ? -1 : 0
+        tabIndex: isNavOpen(vnode.attrs.state) ? -1 : 0
       }
     })
   }

@@ -13,7 +13,7 @@ const rootContainer = {
   view (vnode: Object) {
     return m(rootComponent, {
       ...vnode.attrs,
-      container: m(getVisibleContainer(m.route.get(), vnode.attrs.store.getState()), { ...vnode.attrs })
+      container: m(getVisibleContainer(m.route.get(), vnode.attrs.state), { ...vnode.attrs })
     })
   }
 }

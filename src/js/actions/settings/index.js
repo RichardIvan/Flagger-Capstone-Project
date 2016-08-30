@@ -5,14 +5,9 @@ import {
   TOGGLE_SOUND_SETTING
 } from '../constants'
 
-export function toggleSounds(store: Object) {
-  console.log(store.getState())
-  const currentSoundsState = store.getState().settings.get('sounds')
-
-  const action = {
+export function toggleSounds(currentSoundStatus) {
+  return {
     type: TOGGLE_SOUND_SETTING,
-    payload: !currentSoundsState
+    payload: !currentSoundStatus
   }
-
-  store.dispatch(action)
 }

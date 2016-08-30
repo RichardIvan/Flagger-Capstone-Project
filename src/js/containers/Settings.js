@@ -27,17 +27,17 @@ const settingsContainer = {
           class: styles.settings
       },
       checkboxAttrs: {
-        checked: isSoundOn(vnode.attrs.store.getState())
+        checked: isSoundOn(vnode.attrs.state)
       },
       checkmarkAttrs: {
-        onclick: () => toggleSounds(vnode.attrs.store),
+        onclick: () => vnode.attrs.dispatch(toggleSounds(isSoundOn(vnode.attrs.state))),
         onkeyup: (e) => {
           if (e.keyCode === 13 || e.keyCode === 32) {
-            toggleSounds(vnode.attrs.store)
+            vnode.attrs.dispatch(toggleSounds(isSoundOn(vnode.attrs.state)))
           }
         }
       },
-      oauthButton: authButtonBySignedInStatus(vnode.attrs.store)
+      oauthButton: authButtonBySignedInStatus(vnode.attrs.state, vnode.attrs.dispatch)
     })
   }
 }

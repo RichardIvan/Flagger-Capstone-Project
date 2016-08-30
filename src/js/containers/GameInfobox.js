@@ -15,9 +15,9 @@ const gameInfoboxContainer = {
     return m(gameInfoboxComponent, {
       ...vnode.attrs,
       pAttrs: {
-        class: isInfoboxVisible(vnode.attrs.store.getState()) ? 'showing' : ''
+        class: isInfoboxVisible(vnode.attrs.state) ? 'showing' : ''
       },
-      pText: getInfoboxText(vnode.attrs.store.getState())
+      pText: getInfoboxText(vnode.attrs.state)
     })
   }
 }
