@@ -11,9 +11,12 @@ import {
   SHOW_GAME_INFO,
   NEW_ROUND,
   SUBMIT_GUESS,
-  PAUSE_CURRENT_ROUND,
+  SHOW_EXIT_GAME_PROMPT,
   CHANGE_ROUTE,
-  RESULTS_ROUTE
+  RESULTS_ROUTE,
+  RESUME_GAME,
+  CANCEL_GAME,
+  MENU_ROUTE
 } from '../actions/constants'
 
 import isEqual from 'lodash/isEqual'
@@ -52,12 +55,13 @@ import {
 } from '../actions/game'
 
 import {
-  changeRoute as showResults
+  changeRoute
 } from '../actions/application'
 
 import {
   enableControls,
-  disableControls
+  disableControls,
+  randomizeControls
 } from '../actions/controls'
 
 import {
@@ -72,7 +76,7 @@ import {
 import diffInMs from 'date-fns/difference_in_milliseconds'
 import diffInSeconds from 'date-fns/difference_in_seconds'
 
-export function* startNewGame() {
+export function* startNewGame(): any {
   const coundownDigits = ['3', '2', '1', 'Go!']
   const len = coundownDigits.length
   for (let i = 0; i < len; i++) {
@@ -84,9 +88,10 @@ export function* startNewGame() {
   yield put(newRound())
 }
 
-export function* cancelCurrentGame(currentGame: Object) {
-  while( yield take('CANCEL_GAME' )) {
+export function* cancelCurrentGame(currentGame: Object): any {
+  while( yield take(CANCEL_GAME) ) {
     yield cancel(currentGame)
+    yield put(changeRoute(MENU_ROUTE))
   }
 }
 
@@ -98,20 +103,18 @@ export function* watchGame(): any {
       yield fork(cancelCurrentGame, runningGame)
     } finally {
       if ( yield cancelled() ) {
-        put(showResults(RESULTS_ROUTE))
+        put(changeRoute(RESULTS_ROUTE))
       }
     }
   }
 }
-
-
 
 export function* delaydedHidingInfo(): any {
   yield call(delay, 500)
   yield put(hideGameInfo())
 }
 
-export function* playAnimation() {
+export function* playAnimation(): any {
   yield put(overlayCoin())
   yield put(disableControls())
   yield call(delay, 1000)
@@ -122,25 +125,34 @@ export function* playAnimation() {
 
   for (let i = 0; i < level; i++) {
     yield put(animateCoin(animationSequence[i]))
-    yield call(delay, 3000)
+    yield call(delay, 2000)
   }
 }
 
-export function* pauseCurrentRound(currentRound: Object) {
-  while( yield take(PAUSE_CURRENT_ROUND) ) {
+export function* pauseCurrentRound(currentRound: Object): any {
+  while( yield take(SHOW_EXIT_GAME_PROMPT) ) {
     yield cancel(currentRound)
   }
 }
 
-export function* runNewRound() {
+export function* runNewRound(): any {
   const currentRound = yield fork(playNewRound)
   yield fork(pauseCurrentRound, currentRound)
+}
+
+export function* runResumeGame(): any {
+  yield put(removeCoinOverlay())
+  yield call(delay, 1500)
+  yield put(showGameInfo('GO!'))
+  yield fork(delaydedHidingInfo)
+  yield put(newRound())
 }
 
 export function* playNewRound(): any {
   const level = yield select(getCurrentLevel)
 
   yield call(playAnimation)
+  yield put(randomizeControls(yield select(getCurrentCoinState)))
   // disable controls before this point
   yield put(showGameInfo('GO!'))
   yield put(enableControls())
@@ -179,14 +191,17 @@ export function* playNewRound(): any {
   yield put(hideGameInfo())
 
   if (level > 1 && points === 0) {
-    yield put(showResults(RESULTS_ROUTE))
+    yield put(changeRoute(RESULTS_ROUTE))
   } else {
     yield put(newRound())
   }
 }
 
 export function* watchNewRound(): any {
-  yield takeEvery(NEW_ROUND, runNewRound)
+  yield [
+    takeEvery(NEW_ROUND, runNewRound),
+    takeEvery(RESUME_GAME, runResumeGame)
+  ]
 }
 
 export function* watchRouteChange(): any {

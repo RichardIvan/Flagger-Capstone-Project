@@ -14,6 +14,10 @@ import {
 } from '../../../../../src/js/actions/controls'
 
 import {
+  resumeGame
+} from '../../../../../src/js/actions/game'
+
+import {
   SWITCH_CONTROL_STATE
 } from '../../../../../src/js/actions/constants'
 
@@ -61,6 +65,12 @@ describe('controls component State Reducer', () => {
       })).toEqual(Map({
         disabled: true
       }))
+    })
+    it('#RESUME_GAME should set disabled to false', () => {
+      const state = Map({
+        disabled: true
+      })
+      expect(reducer(state, resumeGame()).get('disabled')).toBe(false)
     })
   })
 })

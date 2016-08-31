@@ -49,12 +49,7 @@ describe('Current Game Reducer', () => {
         visible: false,
         text: ''
       }),
-      scores: Map({
-        players: Map({
-          abc: 22,
-          xyz: 33
-        })
-      }),
+      scores: List.of(0, 1),
       level: 22,
       animationSequence: List.of()
     })
@@ -68,14 +63,14 @@ describe('Current Game Reducer', () => {
       }))
     })
     it('should reset current playsers scores to 0', () => {
-      const players = newState.getIn(['scores', 'players'])
-      players.map(player => expect(player).toBe(0))
+      const players = newState.get('scores')
+      players.map(score => expect(score).toBe(0))
     })
     it('should reset the level back to 1', () => {
       expect(newState.get('level')).toBe(1)
     })
-    it('should not removied currently added player in multiplayer', () => {
-      expect(newState.getIn(['scores', 'players']).count()).toBe(2)
+    it('should not remove currently added player in multiplayer', () => {
+      expect(newState.get('scores').count()).toBe(2)
     })
     it('should reset the controls', () => {
       expect(newState.get('controls').get(0)).toEqual(Map({

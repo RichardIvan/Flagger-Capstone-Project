@@ -1,6 +1,14 @@
 // :global(.circle), :global(.hamburger-holder) {
 //   // background: none;
 // }
+:global(#toolbar .scores) {
+  color: #D8D8D8;
+  font-size: 12px;
+  display: flex;
+  padding: 0;
+  list-style: none;
+  align-items: center;
+}
 
 :global(button.circle) {
   // width: 40px;

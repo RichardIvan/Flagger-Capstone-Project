@@ -9,7 +9,9 @@ import {
   SAVE_ANIMATION_SEQUENCE,
   CHANGE_ROUTE,
   RESULTS_ROUTE,
-  SHOW_EXIT_GAME_PROMPT
+  SHOW_EXIT_GAME_PROMPT,
+  RESUME_GAME,
+  CANCEL_GAME
 } from '../constants'
 
 export function startGame() {
@@ -62,5 +64,17 @@ export function showResults() {
 export function showExitGamePrompt() {
   return {
     type: SHOW_EXIT_GAME_PROMPT
+  }
+}
+
+export function resumeGame() {
+  return {
+    type: RESUME_GAME
+  }
+}
+
+export function cancelGame() {
+  return {
+    type: CANCEL_GAME
   }
 }

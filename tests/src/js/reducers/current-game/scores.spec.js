@@ -6,11 +6,13 @@ import expect from 'expect'
 
 import {
   fromJS,
-  Map
+  Map,
+  List
 } from 'immutable'
 
 import {
-  NEW_SINGLE_PLAYER_GAME
+  NEW_SINGLE_PLAYER_GAME,
+  SAVE_ROUND_RESULT
 } from '../../../../../src/js/actions/constants'
 
 import reducer, { initialState } from '../../../../../src/js/reducers/current-game'
@@ -53,6 +55,25 @@ describe('Scores Reducer', () => {
       }
     }
     const newState = reducer(initialState, action)
-    expect(newState.getIn(['scores', 'players']).count()).toBeGreaterThan(0)
+    expect(newState.get('scores').count()).toBeGreaterThan(0)
+  })
+  describe('#SAVE_ROUND_RESULT action type', () => {
+    it('should add correct number of poitns to player 1', () => {
+      const state = Map({
+        scores: List.of(0, 10),
+        gameInfobox: Map({
+          visible: false,
+          text: ''
+        }),
+        level: 1
+      })
+      const action = {
+        type: SAVE_ROUND_RESULT,
+        payload: {
+          points: 30
+        }
+      }
+      expect(reducer(state, action).getIn(['scores', '0'])).toBe(30)
+    })
   })
 })

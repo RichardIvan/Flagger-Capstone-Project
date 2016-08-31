@@ -84,9 +84,9 @@ describe('Watch NewRound Saga', () => {
       }
     }
     const saga = watchNewRound()
-    console.log(saga.next(getState).value)
-    console.log(saga.next(getState).value)
-    console.log(saga.next(getState).value)
+    // console.log(saga.next(getState).value)
+    // console.log(saga.next(getState).value)
+    // console.log(saga.next(getState).value)
     // expect(console.log(saga.next())).toBe(undefined)
     // expect(console.log(saga.next())).toBeTruthy()
     expect(true).toBe(true)

@@ -5,13 +5,19 @@ import { describe, it, beforeEach } from 'mocha'
 import expect from 'expect'
 
 import {
-  fromJS
+  fromJS,
+  Map
 } from 'immutable'
 
 import {
   OPEN_NAVIGATION,
   CLOSE_NAVIGATION
 } from '../../../../src/js/actions/constants'
+
+import {
+  showExitGamePrompt,
+  resumeGame
+} from '../../../../src/js/actions/game'
 
 
 import reducer, {
@@ -70,6 +76,17 @@ describe('Overlay State reducer', () => {
       expect(newState).toEqual(fromJS({
         open: false
       }))
+    })
+    it('#SHOW_EXIT_GAME_PROMPT should set the open property to true', () => {
+      let newState = reducer(initialState, showExitGamePrompt())
+      expect(newState.get('open')).toBe(true)
+    })
+    it('#RESUME_GAME should set the open state to false', () => {
+      const state = Map({
+        open: true
+      })
+      let newState = reducer(state, resumeGame())
+      expect(newState.get('open')).toBe(false)
     })
   })
 })

@@ -43,3 +43,5 @@ export const SHOW_GAME_RESULTS: string = 'SHOW_GAME_RESULTS'
 export const CHANGE_ROUTE: string = 'CHANGE_ROUTE'
 
 export const SHOW_EXIT_GAME_PROMPT: string = 'SHOW_EXIT_GAME_PROMPT'
+export const RESUME_GAME: string = 'RESUME_GAME'
+export const CANCEL_GAME: string = 'CANCEL_GAME'

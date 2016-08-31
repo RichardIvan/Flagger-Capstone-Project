@@ -5,7 +5,8 @@ import { describe, it, beforeEach } from 'mocha'
 import expect from 'expect'
 
 import {
-  Map
+  Map,
+  List
 } from 'immutable'
 
 import mq from 'mithril-query'
@@ -73,7 +74,8 @@ describe('Toolbar Component', () => {
             })
           },
           currentGame: Map({
-            gameStatus: 'playing'
+            gameStatus: 'playing',
+            scores: List.of(0)
           })
         }
         out = mq(toolbarContainer, {
@@ -104,7 +106,8 @@ describe('Toolbar Component', () => {
             })
           },
           currentGame: Map({
-            gameStatus: 'playing'
+            gameStatus: 'playing',
+            scores: List.of(0)
           })
         }
         out = mq(toolbarContainer, {

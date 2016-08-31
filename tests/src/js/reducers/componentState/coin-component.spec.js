@@ -10,7 +10,8 @@ import {
 
 import {
   overlayCoin,
-  removeCoinOverlay
+  removeCoinOverlay,
+  resumeGame
 } from '../../../../../src/js/actions'
 
 import reducer, { initialState } from '../../../../../src/js/reducers/components-state/coin-component'
@@ -40,6 +41,14 @@ describe('Coin Component State', () => {
         expect(reducer(state, removeCoinOverlay())).toEqual(Map({
           overlayVisible: false
         }))
+      })
+    })
+    describe('#RESUME_GAME', () => {
+      it('should set the overlay state to false', () => {
+        const state = Map({
+          overlayVisible: true
+        })
+        expect(reducer(state, resumeGame()).get('overlayVisible')).toBe(false)
       })
     })
   })

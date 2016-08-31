@@ -20,6 +20,7 @@ const toolbarComponent = {
           m('img', vnode.attrs.leftIcon)
         )
       ),
+      vnode.attrs.scores,
       m('div.icon-holder',
         m('button#settings-button.circle',
           vnode.attrs.settingsButtonAttrs,

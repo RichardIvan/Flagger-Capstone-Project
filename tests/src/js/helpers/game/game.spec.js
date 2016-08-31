@@ -33,7 +33,6 @@ describe('generateAnimationSequence function', () => {
       expect(keys.length).toBe(1)
       expect(possibleKeys.indexOf(key)).toNotBe(-1)
     })
-    console.log(generateAnimationSequence(6))
   })
 })
 

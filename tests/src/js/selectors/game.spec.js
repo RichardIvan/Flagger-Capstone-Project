@@ -5,14 +5,17 @@ import { describe, it, beforeEach } from 'mocha'
 import expect from 'expect'
 
 import {
-  Map
+  Map,
+  List
 } from 'immutable'
 
 import {
   isInfoboxVisible,
   getInfoboxText,
   getCurrentLevel,
-  isGameInProgress
+  isGameInProgress,
+  isExitPromptVisible,
+  getPlayersScores
 } from '../../../../src/js/selectors'
 
 describe('Game Selectors', () => {
@@ -25,7 +28,8 @@ describe('Game Selectors', () => {
           visible: false,
           text: ''
         }),
-        level: 1
+        level: 1,
+        gameStatus: 'paused'
       })
     }
   })
@@ -48,6 +52,23 @@ describe('Game Selectors', () => {
   describe('#getInfoboxText', () => {
     it('should return the correct state', () => {
       expect(getInfoboxText(state)).toBe('')
+    })
+  })
+  describe('#isExitPromptVisible()', () => {
+    it('should return correct State', () => {
+      expect(isExitPromptVisible(state)).toBe(true)
+      const newState = {
+        currentGame: Map({
+          gameStatus: 'ended'
+        })
+      }
+      expect(isExitPromptVisible(newState)).toBe(false)
+      const yetNewState = {
+        currentGame: Map({
+          gameStatus: 'playing'
+        })
+      }
+      expect(isExitPromptVisible(yetNewState)).toBe(false)
     })
   })
 })
@@ -79,6 +100,23 @@ describe('Toolbar Selectors', () => {
         })
       }
       expect(isGameInProgress(nextState)).toBe(true)
+    })
+  })
+  describe('#getPlayersScores()', () => {
+    let state
+    beforeEach(function () {
+      state = {
+        currentGame: Map({
+          scores: List.of(0, 1000)
+        })
+      }
+    })
+    it('should return a List', () => {
+      expect(getPlayersScores(state)).toBeA(Array)
+    })
+    it('should return correct scores', () => {
+      expect(getPlayersScores(state)[0]).toBe(0)
+      expect(getPlayersScores(state)[1]).toBe(1000)
     })
   })
 })

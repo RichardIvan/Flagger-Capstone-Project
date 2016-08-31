@@ -7,7 +7,7 @@ import './overlay-styles.sass'
 
 const overlayComponent = {
   view(vnode: Object) {
-    return m('#overlay', vnode.attrs.overlayAttrs)
+    return m('#overlay', vnode.attrs.overlayAttrs, vnode.children)
   }
 }
 

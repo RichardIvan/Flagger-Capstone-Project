@@ -50,9 +50,7 @@ export const initialState = Map({
     visible: false,
     text: ''
   }),
-  scores: Map({
-    players: List.of(0)
-  }),
+  scores: List.of(0),
   level: 1,
   animationSequence: List.of(),
   gameStatus: 'ended'
@@ -71,6 +69,7 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
     case SAVE_ROUND_RESULT:
       return state.set('gameInfobox', constructDisplayInfoObject(`+ ${action.payload.points}`))
                   .set('level', state.get('level') + 1)
+                  .setIn(['scores', '0'], state.getIn(['scores', '0']) + action.payload.points)
     case SHOW_GAME_INFO:
       return state.set('gameInfobox', constructDisplayInfoObject(action.payload.text))
     case HIDE_GAME_INFO:
@@ -88,9 +87,8 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
     case ANIMATE_COIN:
       return state.mergeIn(['coin'], action.payload.values)
     case START_GAME:
-      const l = ['scores', 'players']
-      const resetPlayers = state.getIn(l).map(player => 0)
-      let resetState = initialState.setIn(l, resetPlayers)
+      const resetPlayers = state.get('scores').map(player => 0)
+      let resetState = initialState.set('scores', resetPlayers)
                                     .set('gameStatus', 'playing')
 
       return resetState

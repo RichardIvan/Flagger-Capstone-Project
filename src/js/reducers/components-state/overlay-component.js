@@ -13,18 +13,22 @@ import {
   SIGN_IN,
   SIGN_OUT,
   CHANGE_ROUTE,
-  MENU_ROUTE
+  MENU_ROUTE,
+  SHOW_EXIT_GAME_PROMPT,
+  RESUME_GAME
 } from '../../actions/constants'
 
-export const initialState = new Map({
+export const initialState = Map({
   open: false
 })
 
 const navigationState = createReducer((state = initialState, action) => {
   if (!action) return state
   switch (action.type) {
+    case SHOW_EXIT_GAME_PROMPT:
     case OPEN_NAVIGATION:
       return state.set('open', true)
+    case RESUME_GAME:
     case CLOSE_NAVIGATION:
     case SIGN_IN:
     case SIGN_OUT:

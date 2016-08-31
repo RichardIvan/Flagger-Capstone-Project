@@ -11,7 +11,8 @@ import {
   SHOW_ACHIEVEMNTS,
   SHOW_HIGHSCORES,
   OVERLAY_COIN,
-  REMOVE_COIN_OVERLAY
+  REMOVE_COIN_OVERLAY,
+  RESUME_GAME
 } from '../../actions/constants'
 
 export const initialState = new Map({
@@ -23,6 +24,7 @@ const coinState = (state: Map<string, bool> = initialState, action: Object) => {
   switch (action.type) {
     case OVERLAY_COIN:
       return state.set('overlayVisible', true)
+    case RESUME_GAME:
     case REMOVE_COIN_OVERLAY:
       return state.set('overlayVisible', false)
     default:

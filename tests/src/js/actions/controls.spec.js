@@ -7,13 +7,18 @@ import expect from 'expect'
 import has from 'lodash/has'
 
 import {
+  Map
+} from 'immutable'
+
+import {
   isFSA
 } from 'flux-standard-action'
 
 import {
   submitGuess,
   disableControls,
-  enableControls
+  enableControls,
+  randomizeControls
 } from '../../../../src/js/actions/controls'
 
 describe('Submit Guess Action Creator', () => {
@@ -73,6 +78,15 @@ describe('set controls display state', () => {
     })
     it('should have disabled status in payload with the value of false', () => {
       expect(enableControls().payload.disabled).toBe(false)
+    })
+  })
+  describe('#randomizeControls()', () => {
+    it('should be FSA compliant', () => {
+      const coinState = Map({
+        'rotateY': 180,
+        'rotateZ': 90
+      })
+      expect(isFSA(randomizeControls(coinState))).toBe(true)
     })
   })
 })

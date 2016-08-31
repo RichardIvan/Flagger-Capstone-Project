@@ -6,7 +6,8 @@ import {
 } from 'immutable'
 
 import {
-  SWITCH_CONTROL_STATE
+  SWITCH_CONTROL_STATE,
+  RESUME_GAME
 } from '../../actions/constants'
 
 export const initialState = Map({
@@ -16,6 +17,8 @@ export const initialState = Map({
 const reducer = (state: Map<string, boolean> = initialState, action: Object) => {
   if (!action || !action.type) return state
   switch (action.type) {
+    case RESUME_GAME:
+      return state.set('disabled', false)
     case SWITCH_CONTROL_STATE:
       const newStatus = action.payload.disabled
       if (typeof newStatus === 'boolean')
