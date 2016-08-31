@@ -9,7 +9,7 @@ import mq from 'mithril-query'
 
 import resultsComponent from '../../../../src/js/components/results'
 
-describe.only('Results Component', () => {
+describe('Results Component', () => {
   let out
   let spy
   let spy2
