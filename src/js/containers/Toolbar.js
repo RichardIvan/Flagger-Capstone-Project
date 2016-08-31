@@ -52,7 +52,7 @@ const toolbarContainer = {
         tabIndex: isNavOpen(vnode.attrs.state) ? -1 : 0
       },
       scores: isGameInProgress(vnode.attrs.state) ? m('ul.scores', [
-        getPlayersScores(vnode.attrs.state).map((score, index) => m('li', `P${index + 1} - ${score} pt`))
+        getPlayersScores(vnode.attrs.state).map((score, index) => m('li', `P${index + 1} - ${score}pt`))
       ]) : null
     })
   }

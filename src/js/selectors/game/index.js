@@ -17,10 +17,6 @@ export function isGameInProgress(state: Object) {
     return state.currentGame.get('gameStatus') !== 'ended'
 }
 
-export function isExitPromptVisible(state: Object) {
-  return state.currentGame.get('gameStatus') === 'paused'
-}
-
 export function getPlayersScores(state: Object) {
   return state.currentGame.get('scores').toJS()
 }

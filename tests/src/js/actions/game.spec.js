@@ -9,6 +9,11 @@ import {
 } from 'flux-standard-action'
 
 import {
+  PLAYING_SINGLEPLAYER_ROUTE,
+  MENU_ROUTE
+} from '../../../../src/js/actions/constants'
+
+import {
   startGame,
   newRound,
   setGameLevel,
@@ -17,7 +22,9 @@ import {
   saveAnimationSequence,
   showExitGamePrompt,
   resumeGame,
-  cancelGame
+  cancelGame,
+  replayGame,
+  exitGame
 } from '../../../../src/js/actions'
 
 import {
@@ -132,5 +139,29 @@ describe('#cancelGame() action creator', () => {
   })
   it('should return correct action', () => {
     expect(cancelGame().type).toBe('CANCEL_GAME')
+  })
+})
+
+describe('#replayGame() action creator', () => {
+  it('should be FSA compliant', () => {
+    expect(isFSA(replayGame())).toBe(true)
+  })
+  it('should return correct action', () => {
+    expect(replayGame().type).toBe('REPLAY_GAME')
+  })
+  it('should should have correct route parameter', () => {
+    expect(replayGame().payload.route).toBe(PLAYING_SINGLEPLAYER_ROUTE)
+  })
+})
+
+describe('#exitGame() action creator', () => {
+  it('should be FSA compliant', () => {
+    expect(isFSA(exitGame())).toBe(true)
+  })
+  it('should return correct action', () => {
+    expect(exitGame().type).toBe('EXIT_GAME')
+  })
+  it('should should have correct route parameter', () => {
+    expect(exitGame().payload.route).toBe(MENU_ROUTE)
   })
 })

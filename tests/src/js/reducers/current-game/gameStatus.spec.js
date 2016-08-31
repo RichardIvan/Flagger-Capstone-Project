@@ -12,7 +12,9 @@ import {
   START_GAME,
   CHANGE_ROUTE,
   MENU_ROUTE,
-  RESULTS_ROUTE
+  RESULTS_ROUTE,
+  SHOW_EXIT_GAME_PROMPT,
+  RESUME_GAME
 } from '../../../../../src/js/actions/constants'
 
 import reducer, { initialState } from '../../../../../src/js/reducers/current-game'
@@ -47,5 +49,17 @@ describe('Game Status Entry in Current Game', () => {
       }
     }
     expect(reducer(state, nextAction).get('gameStatus')).toBe('ended')
+  })
+  it('#SHOW_EXIT_GAME_PROMPT should set the gameStatus to "paused"', () => {
+    const state = Map({
+      gameStatus: 'ended'
+    })
+    expect(reducer(state, {type: SHOW_EXIT_GAME_PROMPT }).get('gameStatus')).toBe('paused')
+  })
+  it('#RESUME_GAME should set the gameStatus to "paused"', () => {
+    const state = Map({
+      gameStatus: 'paused'
+    })
+    expect(reducer(state, {type: RESUME_GAME }).get('gameStatus')).toBe('playing')
   })
 })

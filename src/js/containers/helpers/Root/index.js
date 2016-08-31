@@ -6,6 +6,7 @@ import m from 'mithril'
 import menuContainer from '../../Menu'
 import settingsContainer from '../../Settings'
 import gameContainer from '../../Game'
+import resultsContainer from '../../Results'
 
 import {
   isSettingsComponentOpen as isSettingsOpen
@@ -17,7 +18,8 @@ import {
   MULTIPLAYER_HOST_ROUTE,
   MULTIPLAYER_JOIN_ROUTE,
   PLAYING_SINGLEPLAYER_ROUTE,
-  PLAYING_MULTIPLAYER_ROUTE
+  PLAYING_MULTIPLAYER_ROUTE,
+  RESULTS_ROUTE
 } from '../../../actions/constants'
 
 import {
@@ -40,6 +42,8 @@ export function getVisibleContainerByRoute(route: string) {
     case PLAYING_SINGLEPLAYER_ROUTE:
     case PLAYING_MULTIPLAYER_ROUTE:
       return gameContainer
+    case RESULTS_ROUTE:
+      return resultsContainer
     default:
       return menuContainer
   }

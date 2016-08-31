@@ -5,6 +5,7 @@ import { configureStore } from '../store'
 import { startResponsiveStateService } from '../services/mobile-state'
 
 import { attachStoreToComponent } from '../helpers/application'
+import { setupKeyBoardControls } from '../services/keyboard-controls'
 
 // import 'normalize-css'
 import '../../css/global-styles.scss'
@@ -25,6 +26,7 @@ const store = configureStore()
  * the current responsive state of the application. Options are mobile/desktop
  */
 startResponsiveStateService()
+setupKeyBoardControls(store)
 
 export function mountRoot (el, attrs) {
   const mount = (Component) => m.mount(el, Component, { ...attrs })

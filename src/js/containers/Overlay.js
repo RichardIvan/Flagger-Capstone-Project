@@ -7,12 +7,12 @@ import overlayComponent from '../components/overlay'
 import exitGamePromptContainer from './ExitGamePrompt'
 
 import {
-  isOverlayOpen as isOpen
+  isOverlayOpen as isOpen,
+  isExitPromptVisible
 } from '../selectors/overlay'
 
 import {
-  isGameInProgress,
-  isExitPromptVisible
+  isGameInProgress
 } from '../selectors/game'
 
 import {
@@ -24,19 +24,16 @@ import {
 } from '../actions/game'
 
 const overlayContainer = {
-  view(vnode) {
+  view(vnode: Object) {
     return m(overlayComponent, {
       overlayAttrs: {
         class: isOpen(vnode.attrs.state) ? 'open' : '',
         onclick: () => vnode.attrs.dispatch(isGameInProgress(vnode.attrs.state) ? resumeGame() : closeNavigation())
       }
     },[
-      m(exitGamePromptContainer, {
+      isExitPromptVisible(vnode.attrs.state) ? m(exitGamePromptContainer, {
         ...vnode.attrs
-      })
-      // isExitPromptVisible(vnode.attrs.state) ? m(exitGamePromptContainer, {
-      //   ...vnode.attrs
-      // }) : null
+      }) : null
     ])
   }
 }

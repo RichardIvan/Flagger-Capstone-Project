@@ -16,7 +16,9 @@ import {
   RESULTS_ROUTE,
   RESUME_GAME,
   CANCEL_GAME,
-  MENU_ROUTE
+  MENU_ROUTE,
+  EXIT_GAME,
+  REPLAY_GAME
 } from '../actions/constants'
 
 import isEqual from 'lodash/isEqual'
@@ -98,7 +100,7 @@ export function* cancelCurrentGame(currentGame: Object): any {
 export function* watchGame(): any {
   while(true) {
     try {
-      yield take(START_GAME)
+      yield take([START_GAME, REPLAY_GAME])
       const runningGame = yield fork(startNewGame)
       yield fork(cancelCurrentGame, runningGame)
     } finally {
@@ -187,7 +189,7 @@ export function* playNewRound(): any {
 
   //bug here, it is trying to add a string to the results
   yield put(saveRoundResult(points))
-  yield call(delay, 4000)
+  yield call(delay, 2000)
   yield put(hideGameInfo())
 
   if (level > 1 && points === 0) {
@@ -206,7 +208,7 @@ export function* watchNewRound(): any {
 
 export function* watchRouteChange(): any {
   while(true) {
-    const { payload } = yield take(CHANGE_ROUTE)
+    const { payload } = yield take([CHANGE_ROUTE, EXIT_GAME, REPLAY_GAME])
     const { route } = payload
     m.route.set(route)
   }

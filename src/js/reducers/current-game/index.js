@@ -24,7 +24,9 @@ import {
   SHOW_GAME_RESULTS,
   CHANGE_ROUTE,
   MENU_ROUTE,
-  RESULTS_ROUTE
+  RESULTS_ROUTE,
+  SHOW_EXIT_GAME_PROMPT,
+  RESUME_GAME
 } from '../../actions/constants'
 
 export const initialState = Map({
@@ -104,6 +106,10 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
         default:
           return state
       }
+    case SHOW_EXIT_GAME_PROMPT:
+      return state.set('gameStatus', 'paused')
+    case RESUME_GAME:
+      return state.set('gameStatus', 'playing')
     default:
       return state
   }

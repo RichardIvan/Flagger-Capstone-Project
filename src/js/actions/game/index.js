@@ -11,7 +11,11 @@ import {
   RESULTS_ROUTE,
   SHOW_EXIT_GAME_PROMPT,
   RESUME_GAME,
-  CANCEL_GAME
+  CANCEL_GAME,
+  REPLAY_GAME,
+  EXIT_GAME,
+  PLAYING_SINGLEPLAYER_ROUTE,
+  MENU_ROUTE
 } from '../constants'
 
 export function startGame() {
@@ -76,5 +80,23 @@ export function resumeGame() {
 export function cancelGame() {
   return {
     type: CANCEL_GAME
+  }
+}
+
+export function replayGame() {
+  return {
+    type: REPLAY_GAME,
+    payload: {
+      route: PLAYING_SINGLEPLAYER_ROUTE
+    }
+  }
+}
+
+export function exitGame() {
+  return {
+    type: EXIT_GAME,
+    payload: {
+      route: MENU_ROUTE
+    }
   }
 }
