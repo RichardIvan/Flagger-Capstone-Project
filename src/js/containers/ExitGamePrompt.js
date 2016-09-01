@@ -14,10 +14,19 @@ import {
   MENU_ROUTE
 } from '../actions/constants'
 
+import {
+  isExitPromptVisible
+} from '../selectors/overlay'
+
 const exitGamePromptContainer = {
   view(vnode: Object) {
     return m(exitGamePromptComponent, {
       ...vnode.attrs,
+      exitPromptAttrs: {
+        style: {
+          visibility: isExitPromptVisible(vnode.attrs.state) ? 'visible' : 'hidden'
+        }
+      },
       yesButtonAttrs: {
         onclick: (e) => {
           e.stopPropagation()
