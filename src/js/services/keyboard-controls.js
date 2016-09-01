@@ -7,7 +7,8 @@ import {
 } from '../selectors'
 
 import {
-  closeNavigation
+  closeNavigation,
+  submitGuess
 } from '../actions'
 
 const clickButton = (index) => {
@@ -28,18 +29,21 @@ export function setupKeyBoardControls(store: Object) {
       }
       case 49: {
         if (isGameInProgress(state)) {
-          clickButton(0)
+          // clickButton(0)
+          store.dispatch(submitGuess(0))
         }
         break
       }
       case 50:
         if (isGameInProgress(state)) {
-          clickButton(1)
+          // clickButton(1)
+          store.dispatch(submitGuess(1))
         }
         break
       case 51:
         if (isGameInProgress(state)) {
-          clickButton(2)
+          // clickButton(2)
+          store.dispatch(submitGuess(2))
         }
       default:
         return

@@ -68,7 +68,8 @@ import {
 
 import {
   getCurrentLevel,
-  getCurrentCoinState
+  getCurrentCoinState,
+  getSelectedCoinState
 } from '../selectors'
 
 import {
@@ -182,13 +183,16 @@ export function* playNewRound(): any {
     const { payload } = submissionAction
     const { answer, end } = payload
 
+    console.log(answer)
+
     const differenceInMs = diffInMs(end, start)
     const differenceInSeconds = diffInSeconds(end, start)
 
     let currentCoinState = yield select(getCurrentCoinState)
+    let selectedAnswerCoinState = yield select(getSelectedCoinState, answer)
     currentCoinState = currentCoinState.toJS()
 
-    if (isEqual(currentCoinState, answer)) {
+    if (isEqual(currentCoinState, selectedAnswerCoinState)) {
       points = (3 - differenceInSeconds) * 10
     }
   }

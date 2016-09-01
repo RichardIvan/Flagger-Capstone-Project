@@ -12,9 +12,7 @@ import exitIcon from '../../images/close-icon.png'
 import {
   isSettingsComponentOpen,
   getPlayersScores,
-  isNavigationComponentOpen as isNavOpen,
-  isGameInProgress,
-  isExitPromptVisible
+  isGameInProgress
 } from '../selectors'
 
 import {
@@ -23,11 +21,13 @@ import {
   showExitGamePrompt
 } from '../actions'
 
+import {
+  isToolbarButtonFocusable
+} from '../helpers/toolbar'
+
 // TODO add attributes
 // TODO add click handler for buttons
-export function isToolbarButtonFocusable(state) {
-  return isNavOpen(state) || isExitPromptVisible(state)
-}
+
 
 const toolbarContainer = {
   view(vnode: Object) {

@@ -26,13 +26,13 @@ const controlsContainer = {
   view(vnode: Object) {
     return m(controlsComponent, {
       ...vnode.attrs,
-      buttons: getCoinButtonsStyles(vnode.attrs.state).map(buttonTransformStyleValues => {
+      buttons: getCoinButtonsStyles(vnode.attrs.state).map((buttonTransformStyleValues, index) => {
         return m('button', {
-          onclick: () => vnode.attrs.dispatch(submitGuess(buttonTransformStyleValues)),
+          onclick: () => vnode.attrs.dispatch(submitGuess(index)),
           onkeyup: (e) => {
             const code = e.keyCode
             if (code === 13 || code === 32) {
-              vnode.attrs.dispatch(submitGuess(buttonTransformStyleValues))
+              vnode.attrs.dispatch(submitGuess(index))
             }
           },
           tabIndex: isExitPromptVisible(vnode.attrs.state) ? -1 : 0
