@@ -17,7 +17,7 @@
   height: 100%;
   position: absolute;
   transform-style: preserve-3d;
-  transition: transform 1s;
+  transition: transform .5s;
   backface-visibility: hidden !important;
 
   :global(ul li:first-child) {

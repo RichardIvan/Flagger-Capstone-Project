@@ -26,7 +26,8 @@ import {
   MENU_ROUTE,
   RESULTS_ROUTE,
   SHOW_EXIT_GAME_PROMPT,
-  RESUME_GAME
+  RESUME_GAME,
+  REPLAY_GAME
 } from '../../actions/constants'
 
 export const initialState = Map({
@@ -89,6 +90,7 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
     case ANIMATE_COIN:
       return state.mergeIn(['coin'], action.payload.values)
     case START_GAME:
+    case REPLAY_GAME:
       const resetPlayers = state.get('scores').map(player => 0)
       let resetState = initialState.set('scores', resetPlayers)
                                     .set('gameStatus', 'playing')

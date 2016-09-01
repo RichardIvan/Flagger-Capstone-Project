@@ -85,7 +85,7 @@ export function* startNewGame(): any {
     yield put(showGameInfo(coundownDigits[i]))
     yield call(delay, 500)
     yield put(hideGameInfo())
-    yield call(delay, 500)
+    yield call(delay, 250)
   }
   yield put(newRound())
 }
@@ -117,11 +117,12 @@ export function* delaydedHidingInfo(): any {
 }
 
 export function* playAnimation(): any {
+  const level = yield select(getCurrentLevel)
+
   yield put(overlayCoin())
   yield put(disableControls())
   yield call(delay, 1000)
 
-  const level = yield select(getCurrentLevel)
   const animationSequence = generateAnimationSequence(level)
   yield put(saveAnimationSequence(animationSequence))
 
@@ -152,6 +153,11 @@ export function* runResumeGame(): any {
 
 export function* playNewRound(): any {
   const level = yield select(getCurrentLevel)
+
+  yield put(hideGameInfo())
+  yield put(showGameInfo(`LVL ${level}`))
+  yield call(delay, 2000)
+  yield put(hideGameInfo())
 
   yield call(playAnimation)
   yield put(randomizeControls(yield select(getCurrentCoinState)))
@@ -189,8 +195,9 @@ export function* playNewRound(): any {
 
   //bug here, it is trying to add a string to the results
   yield put(saveRoundResult(points))
-  yield call(delay, 2000)
+  yield call(delay, 500)
   yield put(hideGameInfo())
+  yield call(delay, 1000)
 
   if (level > 1 && points === 0) {
     yield put(changeRoute(RESULTS_ROUTE))
