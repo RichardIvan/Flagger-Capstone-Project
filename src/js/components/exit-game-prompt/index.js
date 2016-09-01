@@ -7,7 +7,7 @@ import styles from './styles.sass'
 
 const exitGamePromptComponent = {
   view(vnode: Object) {
-    return m(`#exit-prompt.${styles.container}`, [
+    return m(`#exit-prompt.${styles.container}`, vnode.attrs.exitPromptAttrs, [
       m('h2', 'Exit Game?'),
       m('.buttons', [
         m('button', vnode.attrs.yesButtonAttrs, 'Yup'),

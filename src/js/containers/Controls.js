@@ -11,6 +11,10 @@ import {
 } from '../selectors/controls'
 
 import {
+  isExitPromptVisible
+} from '../selectors/overlay'
+
+import {
   submitGuess
 } from '../actions/controls'
 
@@ -30,7 +34,8 @@ const controlsContainer = {
             if (code === 13 || code === 32) {
               vnode.attrs.dispatch(submitGuess(buttonTransformStyleValues))
             }
-          }
+          },
+          tabIndex: isExitPromptVisible(vnode.attrs.state) ? -1 : 0
         },
         m(coinComponent, {
           ...vnode.attrs,

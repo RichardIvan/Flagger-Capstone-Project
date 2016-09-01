@@ -11,7 +11,10 @@ import exitIcon from '../../images/close-icon.png'
 
 import {
   isSettingsComponentOpen,
-  getPlayersScores
+  getPlayersScores,
+  isNavigationComponentOpen as isNavOpen,
+  isGameInProgress,
+  isExitPromptVisible
 } from '../selectors'
 
 import {
@@ -20,16 +23,11 @@ import {
   showExitGamePrompt
 } from '../actions'
 
-import {
-  isNavigationComponentOpen as isNavOpen
-} from '../selectors/navigation'
-
-import {
-  isGameInProgress,
-} from '../selectors/game'
-
 // TODO add attributes
 // TODO add click handler for buttons
+export function isToolbarButtonFocusable(state) {
+  return isNavOpen(state) || isExitPromptVisible(state)
+}
 
 const toolbarContainer = {
   view(vnode: Object) {
@@ -40,7 +38,7 @@ const toolbarContainer = {
       },
       navigationButtonAttrs: {
         onclick: () => vnode.attrs.dispatch(isGameInProgress(vnode.attrs.state) ? showExitGamePrompt() : openNavigation()),
-        tabIndex: isNavOpen(vnode.attrs.state) ? -1 : 0
+        tabIndex: isToolbarButtonFocusable(vnode.attrs.state) ? -1 : 0
       },
       settingsIconAttrs: {
         src: settingsIcon,
@@ -49,7 +47,7 @@ const toolbarContainer = {
         onclick: () => {
           vnode.attrs.dispatch(toggleSettingsOpenState(!isSettingsComponentOpen(vnode.attrs.state)))
         },
-        tabIndex: isNavOpen(vnode.attrs.state) ? -1 : 0
+        tabIndex: isToolbarButtonFocusable(vnode.attrs.state) ? -1 : 0
       },
       scores: isGameInProgress(vnode.attrs.state) ? m('ul.scores', [
         getPlayersScores(vnode.attrs.state).map((score, index) => m('li', `P${index + 1} - ${score}pt`))
