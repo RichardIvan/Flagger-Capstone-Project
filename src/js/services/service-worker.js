@@ -5,9 +5,9 @@
 
 console.log('hey from service worker')
 
-// self.addEventListener('install', (event) => {
-//   console.log('something happened')
-// })
+self.addEventListener('install', (event) => {
+  console.log('something happened')
+})
 
 // import _ from 'lodash'
 // // import now from 'performance-now'
@@ -19,47 +19,47 @@ console.log('hey from service worker')
 const staticCacheName = 'guess-what-v1'
 // // const CacheControl = new CC(staticCacheName)
 //
-// self.addEventListener('install', (event) => {
-//
-//   // console.log(event)
-//   // console.log(self)
-//
-//   event.waitUntil(
-//     caches.open(staticCacheName).then((cache) => {
-//       return cache.addAll([
-//         '/',
-//         '/index.html',
-//         '/css/main.css',
-//         '/js/index.js'
-//         // '/?/',
-//         // '/?/index.html',
-//         // '/?/css/main.css',
-//         // '/?/js/index.js',
-//         // '/stations/'
-//       ])
-//       .then(() => {
-//         self.skipWaiting()
-//       })
-//     })
-//   )
-// })
-    //   .then((a) => {
-    //     // console.log(window)
-    //     const endpoints = ['data/', 'routes/']
-    //
-    //     const promises = _.map(endpoints, (endpoint) => {
-    //       const url = `${event.currentTarget.registration.scope}${endpoint}`
-    //
-    //       return fetch(url).then((response) => {
-    //         const dataRequest = new Request(endpoint)
-    //
-    //         return cache.put(dataRequest, response)
-    //       })
-    //     })
-    //
-    //     return Promise.all(promises)
-    //
-    //   }).catch((e) => console.log(e))
+self.addEventListener('install', (event) => {
+
+  // console.log(event)
+  // console.log(self)
+
+  event.waitUntil(
+    caches.open(staticCacheName).then((cache) => {
+      return cache.addAll([
+        '/',
+        '/index.html',
+        '/css/main.css',
+        '/js/index.js'
+        // '/?/',
+        // '/?/index.html',
+        // '/?/css/main.css',
+        // '/?/js/index.js',
+        // '/stations/'
+      ])
+      .then(() => {
+        self.skipWaiting()
+      })
+    })
+  )
+})
+      // .then((a) => {
+      //   // console.log(window)
+      //   const endpoints = ['data/', 'routes/']
+      //
+      //   const promises = _.map(endpoints, (endpoint) => {
+      //     const url = `${event.currentTarget.registration.scope}${endpoint}`
+      //
+      //     return fetch(url).then((response) => {
+      //       const dataRequest = new Request(endpoint)
+      //
+      //       return cache.put(dataRequest, response)
+      //     })
+      //   })
+      //
+      //   return Promise.all(promises)
+      //
+      // }).catch((e) => console.log(e))
     // })
 
 
@@ -94,7 +94,7 @@ const staticCacheName = 'guess-what-v1'
 //
 self.addEventListener('fetch', (event) => {
 
-  // console.log(event)
+  console.log('fetchiiiin')
   //
   // const url = event.request.url
   // const dataFromURL = parseURL(url)

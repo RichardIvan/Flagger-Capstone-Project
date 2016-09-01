@@ -72,6 +72,10 @@ module.exports = {
       loader: ExtractTextPlugin.extract({fallbackLoader: 'style-loader', loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap!postcss-loader!sass' }),
       include: path.join(__dirname, './')
     },
+    {
+      test: /manifest.json$/,
+      loader: 'file-loader?name=manifest.json!web-app-manifest-loader'
+    },
     // {
     //   test: /\.scss$/,
     //   loader: ExtractTextPlugin.extract('style-loader', `css-loader?modules

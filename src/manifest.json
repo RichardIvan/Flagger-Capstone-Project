@@ -1,0 +1,19 @@
+{
+  "short_name": "Guess What?",
+  "name": "Guess What Memory Game",
+  "icons": [
+    {
+      "src": "./images/thumb-front.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "./images/thumb-front.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html#!/menu",
+  "display": "standalone",
+  "orientation": "portrait"
+}

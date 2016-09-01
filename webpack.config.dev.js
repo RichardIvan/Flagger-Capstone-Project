@@ -23,7 +23,7 @@ module.exports = {
 
     // s: './src/js/s.js',
     index: './src/js/index.js',
-    // 'service-worker': './src/js/service-worker.js',
+    'service-worker': './src/js/service-worker.js',
     'dev-server': 'webpack-dev-server/client?https://0.0.0.0:443/',
     // 'hot-dev-server': 'webpack/hot/only-dev-server',
   // common: [
@@ -102,6 +102,10 @@ module.exports = {
     //     // &sourceMap!postcss-loader!sass`),
     //   include: path.join(__dirname, 'app'),
     // },
+    {
+      test: /manifest.json$/,
+      loader: 'file-loader?name=manifest.json!web-app-manifest-loader'
+    },
     {
       test: /\.js$/,
       loaders: ['babel-loader'],
