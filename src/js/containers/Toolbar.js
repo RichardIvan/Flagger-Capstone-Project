@@ -34,7 +34,8 @@ const toolbarContainer = {
     return m(toolbarComponent, {
       leftIcon: {
         class: isGameInProgress(vnode.attrs.state) ? 'close-icon' : '',
-        src: isGameInProgress(vnode.attrs.state) ? exitIcon : hamburgerIcon
+        src: isGameInProgress(vnode.attrs.state) ? exitIcon : hamburgerIcon,
+        'aria-label': isGameInProgress(vnode.attrs.state) ? 'exit game' : 'open navigation'
       },
       navigationButtonAttrs: {
         onclick: () => vnode.attrs.dispatch(isGameInProgress(vnode.attrs.state) ? showExitGamePrompt() : openNavigation()),
@@ -42,6 +43,7 @@ const toolbarContainer = {
       },
       settingsIconAttrs: {
         src: settingsIcon,
+        'aria-label': isSettingsComponentOpen(vnode.attrs.state) ? 'close setting' : 'open settings'
       },
       settingsButtonAttrs: {
         onclick: () => {
