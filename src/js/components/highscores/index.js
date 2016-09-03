@@ -10,8 +10,8 @@ const HighscoreComponent = {
     return m('#highscores', vnode.attrs.highscoresAttrs, [
       m('h2', 'Highscores'),
       m(`ul.${styles['highscores-list']}`, vnode.attrs.highscores.map(entry => m('li.row', m(`ul.${styles['single-highscore']}`, [
-        m('li', entry.name),
-        m('li', `${entry.score}pts`)
+        m('li', `${entry.name || '???'}`),
+        m('li', [`${entry.score}`, m('span', 'pts')])
       ]))))
     ])
   }

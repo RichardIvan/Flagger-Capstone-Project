@@ -43,10 +43,11 @@ export function setGameLevel(lvl: number) {
   }
 }
 
-export function saveRoundResult(points: number) {
+export function saveRoundResult(points: number, player: number) {
   return {
     type: SAVE_ROUND_RESULT,
     payload: {
+      player,
       points: points || 0
     }
   }

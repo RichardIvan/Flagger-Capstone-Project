@@ -18,12 +18,13 @@ import sample from 'lodash/sample'
 import cloneDeep from 'lodash/cloneDeep'
 import shuffle from 'lodash/shuffle'
 
-export function submitGuess(index: number) {
+export function submitGuess(index: number, player: number) {
   return {
     type: SUBMIT_GUESS,
     payload: {
       answer: index,
-      end: new Date()
+      end: new Date(),
+      player
     }
   }
 }

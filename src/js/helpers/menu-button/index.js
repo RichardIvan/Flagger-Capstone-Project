@@ -7,8 +7,9 @@ import randomWords from 'random-words'
 import map from 'lodash/map'
 
 import {
-  startGame
-} from '../../actions/game'
+  startGame,
+  changeRoute
+} from '../../actions/'
 
 import buttonComponent from '../../components/menu-button'
 
@@ -21,7 +22,8 @@ import {
   MENU_MULTIPLAYER_ROUTE,
   MULTIPLAYER_HOST_ROUTE,
   MULTIPLAYER_JOIN_ROUTE,
-  PLAYING_SINGLEPLAYER_ROUTE
+  PLAYING_SINGLEPLAYER_ROUTE,
+  PLAYING_MULTIPLAYER_ROUTE
 } from '../../actions/constants'
 
 export function generateShortId() {
@@ -51,15 +53,18 @@ export function mainMenuButtonAttributes(dispatch: Object) {
       buttonText: SINGLE_BUTTON_TEXT,
       buttonAttrs: {
         onclick: () => {
-          m.route.set(PLAYING_SINGLEPLAYER_ROUTE)
-          dispatch(startGame())
+          // m.route.set(PLAYING_SINGLEPLAYER_ROUTE)
+          // dispatch(startGame())
+          dispatch(changeRoute(PLAYING_SINGLEPLAYER_ROUTE))
         }
       }
     },
     {
       buttonText: MULTI_BUTTON_TEXT,
       buttonAttrs: {
-        onclick: () => m.route.set(MENU_MULTIPLAYER_ROUTE)
+        onclick: () => {
+          dispatch(changeRoute(PLAYING_MULTIPLAYER_ROUTE))
+        }
       }
     },
   ]

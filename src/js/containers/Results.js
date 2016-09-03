@@ -24,12 +24,13 @@ const resultsContainer = {
         getPlayersScores(vnode.attrs.state).map((player, index) => {
           return m('li.score-line',
             m('ul.single-user',
-              m('input[maxlength=3]', {
+              m('li', `P${index + 1}`),
+              m('li', m('input[maxlength=3]', {
                 autofocus: index === 0 ? true : false,
-                value: player.name || `P${index + 1}`,
+                value: player.name || '???',
                 onblur: (e) => vnode.attrs.dispatch(setPlayerName(index, e.target.value))
-              }),
-              m('.score', `${player.score} pt`)
+              })),
+              m('li', m('.score', `${player.score} pt`))
             )
           )
         })

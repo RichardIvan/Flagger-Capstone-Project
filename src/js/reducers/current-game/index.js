@@ -30,7 +30,8 @@ import {
   REPLAY_GAME,
   SET_NEW_HIGHSCORE_STATUS,
   START_SINGLE_GAME,
-  START_MULTI_GAME
+  START_MULTI_GAME,
+  SET_PLAYER_NAME
 } from '../../actions/constants'
 
 export const initialState = Map({
@@ -60,10 +61,6 @@ export const initialState = Map({
     Map({
       name: '',
       score: 0
-    }),
-    Map({
-      name: 'RIA',
-      score: 10
     })
   ),
   level: 1,
@@ -79,13 +76,23 @@ export function constructDisplayInfoObject(text: string) {
   })
 }
 
+export function resetState(state: Object) {
+  const resetPlayers = state.get('scores').map(player => player.set('score', 0))
+  let resetState = initialState.set('scores', resetPlayers)
+                                .set('gameStatus', 'playing')
+
+  return resetState
+}
+
 const currentGameReducer = (state: Map<string, any> = initialState, action: Object) => {
   if (!action || !action.type) return state
   switch (action.type) {
-    case SAVE_ROUND_RESULT:
+    case SAVE_ROUND_RESULT: {
+      const pIndex = action.payload.player
       return state.set('gameInfobox', constructDisplayInfoObject(`+ ${action.payload.points}`))
                   .set('level', state.get('level') + 1)
-                  .setIn(['scores', '0', 'score'], state.getIn(['scores', '0', 'score']) + action.payload.points)
+                  .setIn(['scores', pIndex, 'score'], state.getIn(['scores', pIndex, 'score']) + action.payload.points)
+    }
     case SHOW_GAME_INFO:
       return state.set('gameInfobox', constructDisplayInfoObject(action.payload.text))
     case HIDE_GAME_INFO:
@@ -97,32 +104,29 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
     case SET_CONTROLS:
       return state.set('controls', action.payload)
     case START_SINGLE_GAME:
+      let newState = state
       if (state.get('scores').count() > 1) {
-        return state.deleteIn(['scores', 1])
+        newState = state.deleteIn(['scores', 1])
       }
-      break
+      return resetState(newState)
     case START_MULTI_GAME: {
+      let newState = state
       const currentScore = state.get('scores')
       if (currentScore.count() === 1) {
-        return state.set('scores', currentScore.push(Map({
+        newState = state.set('scores', currentScore.push(Map({
           name: '',
           score: 0
         })))
       }
-      break
+      return resetState(newState)
     }
     case SET_GAME_LEVEL:
       return state.set('level', action.payload.level)
     case ANIMATE_COIN:
       return state.mergeIn(['coin'], action.payload.values)
-    case START_SINGLE_GAME:
     case START_GAME:
     case REPLAY_GAME:
-      const resetPlayers = state.get('scores').map(player => player.set('score', 0))
-      let resetState = initialState.set('scores', resetPlayers)
-                                    .set('gameStatus', 'playing')
-
-      return resetState
+      return resetState(state)
     case SAVE_ANIMATION_SEQUENCE:
       return state.set('animationSequence', fromJS(action.payload))
     case CHANGE_ROUTE:
@@ -141,6 +145,16 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
       return state.set('gameStatus', 'playing')
     case SET_NEW_HIGHSCORE_STATUS:
       return state.set('highscore', action.payload.status)
+    case SET_PLAYER_NAME:
+      let newScores = state.get('scores').map((player, index) => {
+        let name = player.get('name')
+        if (index === action.payload.index) {
+          name = action.payload.name
+        }
+        return player.set('name', name)
+      })
+      console.log(newScores.toJS())
+      return state.set('scores', newScores)
     default:
       return state
   }

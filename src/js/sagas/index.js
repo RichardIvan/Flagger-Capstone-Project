@@ -25,10 +25,12 @@ import {
   MENU_ROUTE,
   EXIT_GAME,
   REPLAY_GAME,
-  SAVE_ROUND_RESULT
+  SAVE_ROUND_RESULT,
+  PLAYING_SINGLEPLAYER_ROUTE,
+  PLAYING_MULTIPLAYER_ROUTE,
+  START_SINGLE_GAME,
+  START_MULTI_GAME
 } from '../actions/constants'
-
-
 
 import {
   take,
@@ -120,7 +122,7 @@ export function* cancelCurrentGame(currentGame: Object): any {
 export function* watchGame(): any {
   while(true) {
     try {
-      yield take([START_GAME, REPLAY_GAME])
+      yield take([START_SINGLE_GAME, START_MULTI_GAME ,REPLAY_GAME])
       const runningGame = yield fork(startNewGame)
       yield fork(cancelCurrentGame, runningGame)
     } finally {
@@ -198,11 +200,13 @@ export function* playNewRound(): any {
   yield call(delay, 200)
 
   let points = 0
+  let playerIndex = 0
   if (submissionAction) {
     const { payload } = submissionAction
-    const { answer, end } = payload
+    const { answer, end, player } = payload
 
-    console.log(answer)
+    playerIndex = player
+    // console.log(answer)
 
     const differenceInMs = diffInMs(end, start)
     const differenceInSeconds = diffInSeconds(end, start)
@@ -217,7 +221,7 @@ export function* playNewRound(): any {
   }
 
   // bug here, it is trying to add a string to the results
-  yield put(saveRoundResult(points))
+  yield put(saveRoundResult(points, playerIndex))
   yield call(delay, 500)
   yield put(hideGameInfo())
   yield call(delay, 1000)
@@ -239,7 +243,19 @@ export function* watchNewRound(): any {
 export function* watchRouteChange(): any {
   while(true) {
     const { payload } = yield take([CHANGE_ROUTE, EXIT_GAME, REPLAY_GAME])
+    console.log(payload)
     const { route } = payload
+    console.log(route)
+    switch (route) {
+      case PLAYING_SINGLEPLAYER_ROUTE:
+        yield put({type: START_SINGLE_GAME})
+        break
+      case PLAYING_MULTIPLAYER_ROUTE:
+        yield put({type: START_MULTI_GAME})
+        break
+      default:
+        break
+    }
     m.route.set(route)
   }
 }
@@ -250,14 +266,12 @@ export function* watchActionToSaveScores(): any {
     yield take([REPLAY_GAME, EXIT_GAME])
     let highscores = order(yield select(getHighscores))
     const scores = yield select(getPlayersScores)
-
-    console.log(scores)
     //
     if(!isEmpty(highscores)) {
       scores.forEach(playerInfo => {
         const lowestItem = last(highscores)
-        if (playerInfo.score >= lowestItem.score) {
-          playerInfo.id = lowestItem.id
+        if (playerInfo.name && playerInfo.score && playerInfo.score >= lowestItem.score) {
+          // playerInfo.id = lowestItem.id
           highscores = [playerInfo].concat(takeFrom(highscores, 9))
         }
       })
@@ -267,6 +281,7 @@ export function* watchActionToSaveScores(): any {
       })
     }
     // // yield put(setHighscores(highscores))
+    console.log(order(highscores))
     yield call(saveHighscoresToDexie, order(highscores))
   }
 }
@@ -275,13 +290,13 @@ export function* watchSaveRoundResults(): any {
   while (true) {
     yield take(RESULTS_ROUTE)
     let highscores = order(yield select(getHighscores))
-    console.log(highscores)
+    // console.log(highscores)
     if (!isEmpty(highscores)) {
       let isHighscore
       if (size(highscores) < 10) {
         isHighscore = true
       }
-      highscores = highscores.map(info => info.score)
+      // highscores = highscores.map(info => info.score)
       const scores = yield select(getPlayersScores)
 
       scores.forEach(playerInfo => {

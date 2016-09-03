@@ -4,6 +4,7 @@ import last from 'lodash/last'
 import initial from 'lodash/initial'
 import orderBy from 'lodash/orderBy'
 import take from 'lodash/take'
+import range from 'lodash/range'
 
 import {
   setHighscores
@@ -14,7 +15,7 @@ import {
 } from 'redux-saga/effects'
 
 const db = new Dexie('highscores')
-db.version(1).stores({ users: '++id, name, score'})
+db.version(1).stores({ users: ', name, score'})
 
 export function order(array) {
   return orderBy(array, (item) => {
@@ -39,10 +40,11 @@ export function initializeHighscores(store) {
 }
 
 export function* saveHighscoresToDexie(highscores) {
+  const top10 = take(highscores, 10)
   yield db.transaction('rw', db.users, function* () {
-    db.users.bulkPut(highscores)
+    db.users.bulkPut(top10, range(top10.length))
   })
-  yield put(setHighscores(highscores))
+  yield put(setHighscores(top10))
 }
 
 // export function* saveHighscoresToDexie(highscores) {
