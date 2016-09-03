@@ -5,6 +5,7 @@ import m from 'mithril'
 
 import overlayComponent from '../components/overlay'
 import exitGamePromptContainer from './ExitGamePrompt'
+import highscoreContainer from './Highscores.js'
 
 import {
   isOverlayOpen as isOpen
@@ -31,6 +32,9 @@ const overlayContainer = {
       }
     },[
       m(exitGamePromptContainer, {
+        ...vnode.attrs
+      }),
+      m(highscoreContainer, {
         ...vnode.attrs
       })
     ])

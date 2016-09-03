@@ -9,6 +9,10 @@ import {
   setHighscores
 } from '../actions'
 
+import {
+  put
+} from 'redux-saga/effects'
+
 const db = new Dexie('highscores')
 db.version(1).stores({ users: '++id, name, score'})
 
@@ -34,19 +38,35 @@ export function initializeHighscores(store) {
   })
 }
 
+export function* saveHighscoresToDexie(highscores) {
+  yield db.transaction('rw', db.users, function* () {
+    db.users.bulkPut(highscores)
+  })
+  yield put(setHighscores(highscores))
+}
+
+// export function* saveHighscoresToDexie(highscores) {
+//   db.transaction('rw', db.users, () => {
+//     db.users.bulkPut(highscores)
+//   }).then(_ => {
+//     console.log(highscores)
+//     yield put(setHighscores(highscores))
+//   })
+// }
+
 export function saveNewHighscore(store, scores) {
   getHighscores().then(currentHighscores => {
-    let highscores = take(currentHighscores.slice(), 10)
-    const [ P1, P2 ] = scores
+    let highscores = currentHighscores.slice()
     scores.forEach(userScore => {
-      last(currentHighscores, lowestScore => {
-        if (userScore.score > lowestScore.score || highscores.length < 10) {
+      last(highscores, lowestScore => {
+        if (userScore.score >= lowestScore.score || highscores.length < 10) {
           userScore.id = lowestScore.id
-          db.transaction('w', db.users, () => {
-            db.put(userScore)
+          db.transaction('rw', db.users, () => {
+            db.users.put(userScore)
           })
           highscores = [userScore].concat(initial(highscores))
           highscores = order(highscores)
+          dispatch(setHighscores(highscores))
         }
       })
     })

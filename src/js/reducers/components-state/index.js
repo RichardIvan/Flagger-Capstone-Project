@@ -8,13 +8,15 @@ import navigationState from './navigation-component'
 import overlayState from './overlay-component'
 import coinState from './coin-component'
 import controlsState from './controls-component'
+import highscoresState from './highscores-component'
 
 const componentsState = combineReducers({
   settingsState,
   navigationState,
   overlayState,
   coinState,
-  controlsState
+  controlsState,
+  highscoresState
 })
 
 export default componentsState

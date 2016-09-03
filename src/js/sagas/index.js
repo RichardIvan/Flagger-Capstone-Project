@@ -5,6 +5,9 @@ import m from 'mithril'
 
 import last from 'lodash/last'
 import isEmpty from 'lodash/isEmpty'
+import size from 'lodash/size'
+import isEqual from 'lodash/isEqual'
+import takeFrom from 'lodash/take'
 
 import {
   START_GAME,
@@ -25,7 +28,7 @@ import {
   SAVE_ROUND_RESULT
 } from '../actions/constants'
 
-import isEqual from 'lodash/isEqual'
+
 
 import {
   take,
@@ -49,7 +52,8 @@ import {
 } from '../actions/game/game-infobox'
 
 import {
-  setNewHighscore
+  setNewHighscore,
+  setHighscores
 } from '../actions'
 
 import {
@@ -87,7 +91,8 @@ import {
 } from '../helpers/game'
 
 import {
-  order
+  order,
+  saveHighscoresToDexie
 } from '../services/dexie'
 
 import diffInMs from 'date-fns/difference_in_milliseconds'
@@ -173,13 +178,13 @@ export function* playNewRound(): any {
   yield put(showGameInfo(`LVL ${level}`))
   yield call(delay, 2000)
   yield put(hideGameInfo())
-
+  //
   yield call(playAnimation)
-  yield put(randomizeControls(yield select(getCurrentCoinState)))
-  // disable controls before this point
+
+  const currentCoinState = yield select(getCurrentCoinState)
+  yield put(randomizeControls(currentCoinState))
   yield put(showGameInfo('GO!'))
   yield put(enableControls())
-  // yield call(delay, 500)
   yield fork(delaydedHidingInfo)
 
   let start = new Date()
@@ -211,7 +216,7 @@ export function* playNewRound(): any {
     }
   }
 
-  //bug here, it is trying to add a string to the results
+  // bug here, it is trying to add a string to the results
   yield put(saveRoundResult(points))
   yield call(delay, 500)
   yield put(hideGameInfo())
@@ -239,18 +244,50 @@ export function* watchRouteChange(): any {
   }
 }
 
+export function* watchActionToSaveScores(): any {
+  while(true) {
+    // yield take(EXIT_GAME)
+    yield take([REPLAY_GAME, EXIT_GAME])
+    let highscores = order(yield select(getHighscores))
+    const scores = yield select(getPlayersScores)
+
+    console.log(scores)
+    //
+    if(!isEmpty(highscores)) {
+      scores.forEach(playerInfo => {
+        const lowestItem = last(highscores)
+        if (playerInfo.score >= lowestItem.score) {
+          playerInfo.id = lowestItem.id
+          highscores = [playerInfo].concat(takeFrom(highscores, 9))
+        }
+      })
+    } else {
+      scores.forEach(playerInfo => {
+        highscores = scores
+      })
+    }
+    // // yield put(setHighscores(highscores))
+    yield call(saveHighscoresToDexie, order(highscores))
+  }
+}
+
 export function* watchSaveRoundResults(): any {
   while (true) {
-    yield take(SAVE_ROUND_RESULT)
+    yield take(RESULTS_ROUTE)
     let highscores = order(yield select(getHighscores))
     console.log(highscores)
     if (!isEmpty(highscores)) {
+      let isHighscore
+      if (size(highscores) < 10) {
+        isHighscore = true
+      }
       highscores = highscores.map(info => info.score)
       const scores = yield select(getPlayersScores)
-      let isHighscore
+
       scores.forEach(playerInfo => {
-        if (playerInfo[1] >= last(highscores).score) {
+        if (playerInfo.score >= last(highscores).score) {
           isHighscore = true
+          // highscores = [playerInfo].concat(take(highscores, 9))
         }
       })
       if(isHighscore) {
@@ -267,6 +304,7 @@ export function* rootSaga(): Generator<any, void, void> {
     fork(watchGame),
     fork(watchNewRound),
     fork(watchRouteChange),
-    fork(watchSaveRoundResults)
+    fork(watchSaveRoundResults),
+    fork(watchActionToSaveScores)
   ]
 }
