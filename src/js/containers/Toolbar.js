@@ -3,6 +3,8 @@
 
 import m from 'mithril'
 
+import map from 'lodash/map'
+
 import toolbarComponent from '../components/toolbar'
 
 import hamburgerIcon from '../../images/hamburger-icon.png'
@@ -52,7 +54,9 @@ const toolbarContainer = {
         tabIndex: isToolbarButtonFocusable(vnode.attrs.state) ? -1 : 0
       },
       scores: isGameInProgress(vnode.attrs.state) ? m('ul.scores', [
-        getPlayersScores(vnode.attrs.state).map((score, index) => m('li', `P${index + 1} - ${score}pt`))
+        map(getPlayersScores(vnode.attrs.state), (player, index) => {
+          return m('li', `P${index + 1} - ${player.score}pt`)
+        })
       ]) : null
     })
   }

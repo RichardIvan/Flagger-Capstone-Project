@@ -4,8 +4,14 @@ import m from 'mithril'
 import { configureStore } from '../store'
 import { startResponsiveStateService } from '../services/mobile-state'
 
-import { attachStoreToComponent } from '../helpers/application'
-import { setupKeyBoardControls } from '../services/keyboard-controls'
+import {
+  attachStoreToComponent,
+
+} from '../helpers/application'
+import {
+  setupKeyBoardControls,
+  initializeHighscores
+} from '../services'
 
 // import 'normalize-css'
 import '../../css/global-styles.scss'
@@ -27,6 +33,7 @@ const store = configureStore()
  */
 startResponsiveStateService()
 setupKeyBoardControls(store)
+initializeHighscores(store)
 
 export function mountRoot (el, attrs) {
   const mount = (Component) => m.mount(el, Component, { ...attrs })

@@ -24,7 +24,9 @@ import {
   resumeGame,
   cancelGame,
   replayGame,
-  exitGame
+  exitGame,
+  setHighscores,
+  setPlayerName
 } from '../../../../src/js/actions'
 
 import {
@@ -163,5 +165,57 @@ describe('#exitGame() action creator', () => {
   })
   it('should should have correct route parameter', () => {
     expect(exitGame().payload.route).toBe(MENU_ROUTE)
+  })
+})
+
+describe('#setHighscores()', () => {
+  let highscores
+  beforeEach(function () {
+    highscores = [
+      {
+        id: 1,
+        name: 'RIA',
+        score: 1024
+      },
+      {
+        id: 2,
+        name: 'MIA',
+        score: 512
+      }
+    ]
+  })
+  it('should be FSA compliant', () => {
+    expect(isFSA(setHighscores(highscores))).toBe(true)
+  })
+  it('should have correct action type', () => {
+    expect(setHighscores(highscores).type).toBe('INITIAL_HIGHSCORES_LOAD')
+  })
+  it('should have a highscores entry in payload with correct values', () => {
+    expect(setHighscores(highscores).payload).toExist()
+    expect(setHighscores(highscores).payload.highscores).toEqual(highscores)
+  })
+})
+
+describe('#setPlayerName()', () => {
+  let names
+  beforeEach(function () {
+    names = ['RIA', 'MIA']
+  })
+  it('should be FSA compliant', () => {
+    names.map((name, index) => {
+      expect(isFSA(setPlayerName(index, name))).toBe(true)
+    })
+  })
+  it('should have correct action type', () => {
+    names.map((name, index) => {
+      expect(setPlayerName(index, name).type).toBe('SET_PLAYER_NAME')
+    })
+  })
+  it('should have corrct payload', () => {
+    names.map((name, index) => {
+      expect(setPlayerName(index, name).payload.index).toBeA('number')
+      expect(setPlayerName(index, name).payload.name).toBeA('string')
+      expect(setPlayerName(index, name).payload.name.length).toBe(3)
+    })
   })
 })

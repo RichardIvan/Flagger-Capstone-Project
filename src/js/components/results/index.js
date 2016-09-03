@@ -10,8 +10,10 @@ const resultsComponent = {
     return m(`#results.${styles['results-container']}`, [
       m(`.${styles.info}`, [
         m('h3', 'Total'),
-        m('h2', `${vnode.attrs.totalPoints}pt`),
+        vnode.attrs.scores
       ]),
+      m('#newHighscore', vnode.attrs.newHighscore),
+      // m('#enter-player-names', vnode.attrs.playerNames),
       m(`.${styles.actions}`, [
         vnode.attrs.replayButton,
         vnode.attrs.exitButton

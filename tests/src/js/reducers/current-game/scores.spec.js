@@ -60,7 +60,15 @@ describe('Scores Reducer', () => {
   describe('#SAVE_ROUND_RESULT action type', () => {
     it('should add correct number of poitns to player 1', () => {
       const state = Map({
-        scores: List.of(0, 10),
+        scores: List.of(Map({
+            name: 'ASDF',
+            score: 0
+          }),
+          Map({
+            name: 'ASDF',
+            score: 10
+          })
+        ),
         gameInfobox: Map({
           visible: false,
           text: ''
@@ -73,7 +81,7 @@ describe('Scores Reducer', () => {
           points: 30
         }
       }
-      expect(reducer(state, action).getIn(['scores', '0'])).toBe(30)
+      expect(reducer(state, action).getIn(['scores', '0', 'score'])).toBe(30)
     })
   })
 })

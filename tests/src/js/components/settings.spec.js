@@ -91,7 +91,7 @@ describe('Settings Component', () => {
     })
 
     it('should have be labed by "Sounds Label"', () => {
-      expect(out.has('input[aria-labelledby=sounds-label]')).toBe(true)
+      expect(out.has('.image_wrapper[aria-label]')).toBe(true)
     })
 
     it('should have checked attribute', () => {

@@ -107,16 +107,25 @@ describe('Toolbar Selectors', () => {
     beforeEach(function () {
       state = {
         currentGame: Map({
-          scores: List.of(0, 1000)
+          scores: List.of(
+            Map({
+              name: 'RIA',
+              score: 2
+            }),
+            Map({
+              name: 'MIA',
+              score: 3
+            })
+          )
         })
       }
     })
-    it('should return a List', () => {
+    it('should return an Array', () => {
       expect(getPlayersScores(state)).toBeA(Array)
     })
     it('should return correct scores', () => {
-      expect(getPlayersScores(state)[0]).toBe(0)
-      expect(getPlayersScores(state)[1]).toBe(1000)
+      expect(getPlayersScores(state)[0].score).toBe(2)
+      expect(getPlayersScores(state)[1].score).toBe(3)
     })
   })
 })

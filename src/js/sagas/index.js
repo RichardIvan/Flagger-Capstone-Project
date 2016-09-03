@@ -3,6 +3,9 @@
 
 import m from 'mithril'
 
+import last from 'lodash/last'
+import isEmpty from 'lodash/isEmpty'
+
 import {
   START_GAME,
   OPEN_NAVIGATION,
@@ -18,7 +21,8 @@ import {
   CANCEL_GAME,
   MENU_ROUTE,
   EXIT_GAME,
-  REPLAY_GAME
+  REPLAY_GAME,
+  SAVE_ROUND_RESULT
 } from '../actions/constants'
 
 import isEqual from 'lodash/isEqual'
@@ -45,6 +49,10 @@ import {
 } from '../actions/game/game-infobox'
 
 import {
+  setNewHighscore
+} from '../actions'
+
+import {
   animateCoin,
   overlayCoin,
   removeCoinOverlay
@@ -69,12 +77,18 @@ import {
 import {
   getCurrentLevel,
   getCurrentCoinState,
-  getSelectedCoinState
+  getSelectedCoinState,
+  getHighscores,
+  getPlayersScores
 } from '../selectors'
 
 import {
   generateAnimationSequence
 } from '../helpers/game'
+
+import {
+  order
+} from '../services/dexie'
 
 import diffInMs from 'date-fns/difference_in_milliseconds'
 import diffInSeconds from 'date-fns/difference_in_seconds'
@@ -225,10 +239,34 @@ export function* watchRouteChange(): any {
   }
 }
 
+export function* watchSaveRoundResults(): any {
+  while (true) {
+    yield take(SAVE_ROUND_RESULT)
+    let highscores = order(yield select(getHighscores))
+    console.log(highscores)
+    if (!isEmpty(highscores)) {
+      highscores = highscores.map(info => info.score)
+      const scores = yield select(getPlayersScores)
+      let isHighscore
+      scores.forEach(playerInfo => {
+        if (playerInfo[1] >= last(highscores).score) {
+          isHighscore = true
+        }
+      })
+      if(isHighscore) {
+        yield put(setNewHighscore(true))
+      }
+    } else {
+      yield put(setNewHighscore(true))
+    }
+  }
+}
+
 export function* rootSaga(): Generator<any, void, void> {
   yield [
     fork(watchGame),
     fork(watchNewRound),
-    fork(watchRouteChange)
+    fork(watchRouteChange),
+    fork(watchSaveRoundResults)
   ]
 }

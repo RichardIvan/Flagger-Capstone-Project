@@ -49,7 +49,16 @@ describe('Current Game Reducer', () => {
         visible: false,
         text: ''
       }),
-      scores: List.of(0, 1),
+      scores: List.of(
+        Map({
+          name: 'ASDF',
+          score: 0
+        }),
+        Map({
+          name: 'ASDF',
+          score: 1
+        })
+      ),
       level: 22,
       animationSequence: List.of()
     })
@@ -64,7 +73,7 @@ describe('Current Game Reducer', () => {
     })
     it('should reset current playsers scores to 0', () => {
       const players = newState.get('scores')
-      players.map(score => expect(score).toBe(0))
+      players.map(player => expect(player.get('score')).toBe(0))
     })
     it('should reset the level back to 1', () => {
       expect(newState.get('level')).toBe(1)

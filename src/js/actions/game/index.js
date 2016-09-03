@@ -15,7 +15,10 @@ import {
   REPLAY_GAME,
   EXIT_GAME,
   PLAYING_SINGLEPLAYER_ROUTE,
-  MENU_ROUTE
+  MENU_ROUTE,
+  INITIAL_HIGHSCORES_LOAD,
+  SET_PLAYER_NAME,
+  SET_NEW_HIGHSCORE_STATUS
 } from '../constants'
 
 export function startGame() {
@@ -97,6 +100,34 @@ export function exitGame() {
     type: EXIT_GAME,
     payload: {
       route: MENU_ROUTE
+    }
+  }
+}
+
+export function setHighscores(dexieHighscoresEntries: Array<Object>) {
+  return {
+    type: INITIAL_HIGHSCORES_LOAD,
+    payload: {
+      highscores: dexieHighscoresEntries
+    }
+  }
+}
+
+export function setPlayerName(index: number, name: string) {
+  return {
+    type: SET_PLAYER_NAME,
+    payload: {
+      index,
+      name
+    }
+  }
+}
+
+export function setNewHighscore(status: boolean) {
+  return {
+    type: SET_NEW_HIGHSCORE_STATUS,
+    payload: {
+      status
     }
   }
 }

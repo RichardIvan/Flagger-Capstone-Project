@@ -48,3 +48,8 @@ export const CANCEL_GAME: string = 'CANCEL_GAME'
 
 export const REPLAY_GAME: string = 'REPLAY_GAME'
 export const EXIT_GAME: string = 'EXIT_GAME'
+
+export const INITIAL_HIGHSCORES_LOAD: string = 'INITIAL_HIGHSCORES_LOAD'
+export const SET_PLAYER_NAME: string = 'SET_PLAYER_NAME'
+
+export const SET_NEW_HIGHSCORE_STATUS: string = 'SET_NEW_HIGHSCORE_STATUS'

@@ -4,15 +4,10 @@
 import { Map } from 'immutable'
 
 import {
-  OPEN_NAVIGATION,
-  CLOSE_NAVIGATION,
-  SIGN_IN,
-  SIGN_OUT,
-  SHOW_ACHIEVEMNTS,
-  SHOW_HIGHSCORES,
   OVERLAY_COIN,
   REMOVE_COIN_OVERLAY,
-  RESUME_GAME
+  RESUME_GAME,
+  START_GAME
 } from '../../actions/constants'
 
 export const initialState = new Map({
@@ -26,6 +21,7 @@ const coinState = (state: Map<string, bool> = initialState, action: Object) => {
       return state.set('overlayVisible', true)
     case RESUME_GAME:
     case REMOVE_COIN_OVERLAY:
+    case START_GAME:
       return state.set('overlayVisible', false)
     default:
       return state

@@ -29,6 +29,7 @@ const settingsContainer = {
       checkboxAttrs: {
         checked: isSoundOn(vnode.attrs.state)
       },
+      soundsLabel: `Sounds Settings Checkbox, ${isSoundOn(vnode.attrs.state) ? 'checked' : 'unchecked'}`,
       checkmarkAttrs: {
         onclick: () => vnode.attrs.dispatch(toggleSounds(isSoundOn(vnode.attrs.state))),
         onkeyup: (e) => {

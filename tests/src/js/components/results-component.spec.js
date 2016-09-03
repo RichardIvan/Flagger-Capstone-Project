@@ -39,9 +39,6 @@ describe('Results Component', () => {
   it('should contain "Total"', () => {
     expect(out.contains('Total')).toBe(true)
   })
-  it('should contain h2', () => {
-    expect(out.has('h2')).toBe(true)
-  })
   it('should contain 2 buttons', () => {
     expect(out.should.have.at.least.bind(null, 2, 'button')).toNotThrow()
   })

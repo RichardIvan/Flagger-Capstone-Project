@@ -20,3 +20,7 @@ export function isGameInProgress(state: Object) {
 export function getPlayersScores(state: Object) {
   return state.currentGame.get('scores').toJS()
 }
+
+export function isNewHighScore(state: Object) {
+  return state.currentGame.get('highscore')
+}

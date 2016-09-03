@@ -27,7 +27,8 @@ import {
   RESULTS_ROUTE,
   SHOW_EXIT_GAME_PROMPT,
   RESUME_GAME,
-  REPLAY_GAME
+  REPLAY_GAME,
+  SET_NEW_HIGHSCORE_STATUS
 } from '../../actions/constants'
 
 export const initialState = Map({
@@ -53,10 +54,20 @@ export const initialState = Map({
     visible: false,
     text: ''
   }),
-  scores: List.of(0),
+  scores: List.of(
+    Map({
+      name: '',
+      score: 0
+    }),
+    Map({
+      name: 'RIA',
+      score: 10
+    })
+  ),
   level: 1,
   animationSequence: List.of(),
-  gameStatus: 'ended'
+  gameStatus: 'ended',
+  highscore: false
 })
 
 export function constructDisplayInfoObject(text: string) {
@@ -72,7 +83,7 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
     case SAVE_ROUND_RESULT:
       return state.set('gameInfobox', constructDisplayInfoObject(`+ ${action.payload.points}`))
                   .set('level', state.get('level') + 1)
-                  .setIn(['scores', '0'], state.getIn(['scores', '0']) + action.payload.points)
+                  .setIn(['scores', '0', 'score'], state.getIn(['scores', '0', 'score']) + action.payload.points)
     case SHOW_GAME_INFO:
       return state.set('gameInfobox', constructDisplayInfoObject(action.payload.text))
     case HIDE_GAME_INFO:
@@ -91,7 +102,7 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
       return state.mergeIn(['coin'], action.payload.values)
     case START_GAME:
     case REPLAY_GAME:
-      const resetPlayers = state.get('scores').map(player => 0)
+      const resetPlayers = state.get('scores').map(player => player.set('score', 0))
       let resetState = initialState.set('scores', resetPlayers)
                                     .set('gameStatus', 'playing')
 
@@ -112,6 +123,8 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
       return state.set('gameStatus', 'paused')
     case RESUME_GAME:
       return state.set('gameStatus', 'playing')
+    case SET_NEW_HIGHSCORE_STATUS:
+      return state.set('highscore', action.payload.status)
     default:
       return state
   }

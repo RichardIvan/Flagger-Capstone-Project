@@ -6,6 +6,10 @@ import expect, { spyOn } from 'expect'
 
 import mq from 'mithril-query'
 
+import {
+  Map
+} from 'immutable'
+
 import exitGamePromptContainer from '../../../../src/js/containers/ExitGamePrompt'
 import exitGamePromptComponent from '../../../../src/js/components/exit-game-prompt'
 
@@ -48,8 +52,10 @@ describe('Exit Game Prompt Component', () => {
         yesSpy = spyOn(fn, 'dispatch')
         naySpy = spyOn(fn, 'dispatch')
         out = mq(exitGamePromptContainer, {
-          store: {
-            'abs': 'efg'
+          state: {
+            currentGame: Map({
+              gameStatus: 'playing'
+            })
           },
           dispatch: fn.dispatch
         })

@@ -71,6 +71,9 @@ describe('Toolbar Component', () => {
           componentsState: {
             navigationState: Map({
               open: true
+            }),
+            settingsState: Map({
+              open: true
             })
           },
           currentGame: Map({
@@ -103,6 +106,9 @@ describe('Toolbar Component', () => {
           componentsState: {
             navigationState: Map({
               open: false
+            }),
+            settingsState: Map({
+              open: true
             })
           },
           currentGame: Map({
