@@ -17,7 +17,7 @@ import {
 
 import HighscoreComponent from '../../../../src/js/components/highscores'
 
-describe.only('Highscore Component', () => {
+describe('Highscore Component', () => {
   let out
   let state
 

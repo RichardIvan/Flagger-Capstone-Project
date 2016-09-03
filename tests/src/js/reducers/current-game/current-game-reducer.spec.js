@@ -20,6 +20,11 @@ import {
   List
 } from 'immutable'
 
+import {
+  START_SINGLE_GAME,
+  START_MULTI_GAME
+} from '../../../../../src/js/actions/constants'
+
 describe('Current Game Reducer', () => {
   let state
   let action
@@ -114,6 +119,24 @@ describe('Current Game Reducer', () => {
     })
     it('should #SAVE_ANIMATION_SEQUENCE should create List of the same lenght', () => {
       expect(reducer(initialState, action).get('animationSequence').count()).toBe(level)
+    })
+  })
+  describe.only('#START_SINGLE_GAME', () => {
+    it('should remove second player if there is one', () => {
+      const action = {
+        type: START_SINGLE_GAME
+      }
+      expect(state.get('scores').count()).toBe(2)
+      expect(reducer(state, action).get('scores').count()).toBe(1)
+    })
+  })
+  describe.only('#START_MULTI_GAME', () => {
+    it('should add second player if there is only one', () => {
+      const action = {
+        type: START_MULTI_GAME
+      }
+      expect(state.get('scores').count()).toBe(2)
+      expect(reducer(state.deleteIn(['scores', 1]), action).get('scores').count()).toBe(2)
     })
   })
 })

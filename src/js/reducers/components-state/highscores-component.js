@@ -5,7 +5,7 @@ import { Map } from 'immutable'
 
 import {
   SHOW_HIGHSCORES,
-  CLOSE_OVERLAY
+  CLOSE_NAVIGATION
 } from '../../actions/constants'
 
 export const initialState = new Map({
@@ -17,7 +17,7 @@ const highscoresState = (state: Map<string, bool> = initialState, action: Object
   switch (action.type) {
     case SHOW_HIGHSCORES:
       return state.set('visible', true)
-    case CLOSE_OVERLAY:
+    case CLOSE_NAVIGATION:
       return state.set('visible', false)
     default:
       return state

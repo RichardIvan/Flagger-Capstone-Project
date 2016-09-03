@@ -53,3 +53,6 @@ export const INITIAL_HIGHSCORES_LOAD: string = 'INITIAL_HIGHSCORES_LOAD'
 export const SET_PLAYER_NAME: string = 'SET_PLAYER_NAME'
 
 export const SET_NEW_HIGHSCORE_STATUS: string = 'SET_NEW_HIGHSCORE_STATUS'
+
+export const START_SINGLE_GAME: string = 'START_SINGLE_GAME'
+export const START_MULTI_GAME: string = 'START_MULTI_GAME'

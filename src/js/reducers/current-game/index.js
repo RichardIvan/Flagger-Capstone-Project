@@ -28,7 +28,9 @@ import {
   SHOW_EXIT_GAME_PROMPT,
   RESUME_GAME,
   REPLAY_GAME,
-  SET_NEW_HIGHSCORE_STATUS
+  SET_NEW_HIGHSCORE_STATUS,
+  START_SINGLE_GAME,
+  START_MULTI_GAME
 } from '../../actions/constants'
 
 export const initialState = Map({
@@ -94,12 +96,26 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
       return state.setIn(['coin', 'rotateY'], state.getIn(['coin', 'rotateY']) + 180)
     case SET_CONTROLS:
       return state.set('controls', action.payload)
-    case NEW_SINGLE_PLAYER_GAME:
-      return state.setIn(['scores', 'players', action.payload.player_id], 0)
+    case START_SINGLE_GAME:
+      if (state.get('scores').count() > 1) {
+        return state.deleteIn(['scores', 1])
+      }
+      break
+    case START_MULTI_GAME: {
+      const currentScore = state.get('scores')
+      if (currentScore.count() === 1) {
+        return state.set('scores', currentScore.push(Map({
+          name: '',
+          score: 0
+        })))
+      }
+      break
+    }
     case SET_GAME_LEVEL:
       return state.set('level', action.payload.level)
     case ANIMATE_COIN:
       return state.mergeIn(['coin'], action.payload.values)
+    case START_SINGLE_GAME:
     case START_GAME:
     case REPLAY_GAME:
       const resetPlayers = state.get('scores').map(player => player.set('score', 0))
@@ -128,6 +144,7 @@ const currentGameReducer = (state: Map<string, any> = initialState, action: Obje
     default:
       return state
   }
+  return state
 }
 
 export default currentGameReducer
