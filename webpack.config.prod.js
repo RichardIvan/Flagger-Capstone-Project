@@ -68,7 +68,11 @@ module.exports = {
       //   include: path.join(__dirname, 'app'),
       // },
       test: /\.(css|scss|sass)$/,
-      loader: ExtractTextPlugin.extract({fallbackLoader: 'style-loader', loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!resolve-url!sass?sourceMap' }),
+      loader: ExtractTextPlugin.extract(
+        {
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap!postcss-loader!resolve-url!sass?sourceMap'
+      }),
       include: path.join(__dirname, './')
     },
     {
