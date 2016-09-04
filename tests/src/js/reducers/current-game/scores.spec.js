@@ -17,7 +17,7 @@ import {
 
 import reducer, { initialState } from '../../../../../src/js/reducers/current-game'
 
-describe('Scores Reducer', () => {
+describe.only('Scores Reducer', () => {
   it('should have initial state with at least one player in the List', () => {
     it('should have initial state with at least one player in the list', () => {
       expect(reducer().getIn(['scores', 'players']).count()).toBe(1)
@@ -78,6 +78,7 @@ describe('Scores Reducer', () => {
       const action = {
         type: SAVE_ROUND_RESULT,
         payload: {
+          player: 0,
           points: 30
         }
       }

@@ -85,12 +85,14 @@ describe('saveRoundResult action creator', () => {
     expect(saveRoundResult()).toEqual({
       type: 'SAVE_ROUND_RESULT',
       payload: {
+        player: 0,
         points: 0
       }
     })
-    expect(saveRoundResult(10)).toEqual({
+    expect(saveRoundResult(10, 0)).toEqual({
       type: 'SAVE_ROUND_RESULT',
       payload: {
+        player: 0,
         points: 10
       }
     })

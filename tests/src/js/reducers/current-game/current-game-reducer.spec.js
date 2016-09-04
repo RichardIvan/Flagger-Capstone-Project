@@ -121,7 +121,7 @@ describe('Current Game Reducer', () => {
       expect(reducer(initialState, action).get('animationSequence').count()).toBe(level)
     })
   })
-  describe.only('#START_SINGLE_GAME', () => {
+  describe('#START_SINGLE_GAME', () => {
     it('should remove second player if there is one', () => {
       const action = {
         type: START_SINGLE_GAME
@@ -130,7 +130,7 @@ describe('Current Game Reducer', () => {
       expect(reducer(state, action).get('scores').count()).toBe(1)
     })
   })
-  describe.only('#START_MULTI_GAME', () => {
+  describe('#START_MULTI_GAME', () => {
     it('should add second player if there is only one', () => {
       const action = {
         type: START_MULTI_GAME

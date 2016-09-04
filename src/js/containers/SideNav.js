@@ -73,16 +73,6 @@ const sidenavContainer = {
         },
         tabIndex: vnode.state.tabIndex
       },
-      achievementsAttrs: {
-        onclick: () => vnode.attrs.dispatch(showAchievements()),
-        onkeyup: (e) => {
-          const code = e.keyCode
-          if (code === 13 || code === 32) {
-            vnode.attrs.dispatch(showAchievements())
-          }
-        },
-        tabIndex: vnode.state.tabIndex
-      },
       highscoresAttrs: {
         onclick: () => vnode.attrs.dispatch(showHighscores()),
         onkeyup: (e) => {

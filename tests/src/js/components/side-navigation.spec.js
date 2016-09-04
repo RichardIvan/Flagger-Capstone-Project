@@ -73,18 +73,14 @@ describe('Side Component', () => {
       expect(out.has('ul')).toBe(true)
     })
 
-    it('should should have 4 li', () => {
-      expect(out.should.have.at.least.bind(null, 4, 'li')).toNotThrow()
+    it('should should have 3 li', () => {
+      expect(out.should.have.at.least.bind(null, 3, 'li')).toNotThrow()
     })
   })
 
   describe('Contents', () => {
     it('has Title', () => {
       expect(out.contains('Guess What?')).toBe(true)
-    })
-
-    it('should have achievements', () => {
-      expect(out.contains('Achievements')).toBe(true)
     })
 
     it('should contain Highscores', () => {
@@ -130,23 +126,6 @@ describe('Side Component', () => {
       expect(spy.calls.length).toBe(1)
     })
 
-    it('Actievements should have click handler', () => {
-      let headingEventHandler = {
-        onclick: () => {}
-      }
-
-      const spy = spyOn(headingEventHandler, 'onclick')
-
-      out = mq(navbarComponent, {
-        achievementsAttrs: {
-          onclick: headingEventHandler['onclick']
-        },
-      })
-
-      out.click('li:nth-child(2)')
-      expect(spy.calls.length).toBe(1)
-    })
-
     it('Highscores should have click handler', () => {
       let headingEventHandler = {
         onclick: () => {}
@@ -160,7 +139,7 @@ describe('Side Component', () => {
         },
       })
 
-      out.click('li:nth-child(3)')
+      out.click('li:nth-child(2)', {})
       expect(spy.calls.length).toBe(1)
     })
 
@@ -177,7 +156,7 @@ describe('Side Component', () => {
         }
       })
 
-      out.click('li:nth-child(4)')
+      out.click('li:nth-child(3)')
       expect(spy.calls.length).toBe(1)
     })
   })
@@ -208,9 +187,6 @@ describe('Side Component', () => {
           headingAttrs: {
             tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
           },
-          achievementsAttrs: {
-            tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
-          },
           highscoresAttrs: {
             tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
           },
@@ -220,11 +196,10 @@ describe('Side Component', () => {
         })
       })
 
-      it('all 4 items in nav-bar should have tabindex 0', () => {
+      it('all 3 items in nav-bar should have tabindex 0', () => {
         expect(out.find('ul > li:first-child')[0].attrs.tabindex).toBe(0)
         expect(out.find('ul > li:nth-child(2)')[0].attrs.tabindex).toBe(0)
         expect(out.find('ul > li:nth-child(3)')[0].attrs.tabindex).toBe(0)
-        expect(out.find('ul > li:nth-child(4)')[0].attrs.tabindex).toBe(0)
       })
     })
 
@@ -251,9 +226,6 @@ describe('Side Component', () => {
           headingAttrs: {
             tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
           },
-          achievementsAttrs: {
-            tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
-          },
           highscoresAttrs: {
             tabindex: isNavbarOpen(vnode.attrs.store.getState()) ? 0 : -1
           },
@@ -263,11 +235,10 @@ describe('Side Component', () => {
         })
       })
 
-      it('all 4 items in nav-bar should have tabindex -1', () => {
+      it('all 3 items in nav-bar should have tabindex -1', () => {
         expect(out.find('ul > li:first-child')[0].attrs.tabindex).toBe(-1)
         expect(out.find('ul > li:nth-child(2)')[0].attrs.tabindex).toBe(-1)
         expect(out.find('ul > li:nth-child(3)')[0].attrs.tabindex).toBe(-1)
-        expect(out.find('ul > li:nth-child(4)')[0].attrs.tabindex).toBe(-1)
       })
     })
   })

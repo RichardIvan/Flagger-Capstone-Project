@@ -28,7 +28,12 @@ describe('Menu Component', () => {
             rotateY: 0,
             rotateZ: 0
           })
-        })
+        }),
+        componentsState: {
+          applicationState: Map({
+            isMobile: false
+          })
+        }
       },
       componentAttrs: {
         onclick() {
@@ -39,17 +44,56 @@ describe('Menu Component', () => {
   })
     // should state signle and multi
   describe('Buttons', () => {
-    it('should be 2 buttons', () => {
-      expect(output.should.have.at.least.bind(null, 2, 'button')).toNotThrow()
+    describe('Desktop State', () => {
+      it('should be 2 buttons', () => {
+        expect(output.should.have.at.least.bind(null, 2, 'button')).toNotThrow()
+      })
+
+      it('should display a button with the single text on it', () => {
+        expect(output.contains('Single')).toBe(true)
+      })
+
+      it('should display a button with the multi text on it', () => {
+        expect(output.contains('Multi')).toBe(true)
+      })
     })
 
-    it('should display a button with the single text on it', () => {
-      expect(output.contains('Single')).toBe(true)
+    describe('Mobile State', () => {
+      beforeEach(function () {
+        output = mq(menuComponent, {
+          state: {
+            currentGame: Map({
+              coin: Map({
+                rotateY: 0,
+                rotateZ: 0
+              })
+            }),
+            componentsState: {
+              applicationState: Map({
+                isMobile: true
+              })
+            }
+          },
+          componentAttrs: {
+            onclick() {
+              flag = true
+            }
+          }
+        })
+      })
+      it('should be 2 buttons', () => {
+        expect(output.should.have.at.least.bind(null, 1, 'button')).toNotThrow()
+      })
+
+      it('should display a button with the single text on it', () => {
+        expect(output.contains.bind(null, 'Single')).toNotThrow()
+      })
+
+      it('should display a button with the multi text on it', () => {
+        expect(output.contains.bind(null, 'Multi')).toThrow()
+      })
     })
 
-    it('should display a button with the multi text on it', () => {
-      expect(output.contains('Multi')).toBe(true)
-    })
 
   })
 
