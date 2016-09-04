@@ -2,7 +2,7 @@
 'use strict'
 
 import m from 'mithril'
-import randomWords from 'random-words'
+// import randomWords from 'random-words'
 
 import map from 'lodash/map'
 import take from 'lodash/take'
@@ -31,9 +31,9 @@ import {
   PLAYING_MULTIPLAYER_ROUTE
 } from '../../actions/constants'
 
-export function generateShortId() {
-  return randomWords({ exactly: 3, join: '-' })
-}
+// export function generateShortId() {
+//   return randomWords({ exactly: 3, join: '-' })
+// }
 
 export function menuButtonsByRoute(state: Object, dispatch: Object, route: string) {
   return take(map(getAttribuesForMenuButtonsByRoute(dispatch, route), (buttonComponentAttributes: Object) => {

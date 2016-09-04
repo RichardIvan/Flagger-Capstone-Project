@@ -33,18 +33,21 @@ import {
 
 const toolbarContainer = {
   view(vnode: Object) {
+    const gameInProgress = isGameInProgress(vnode.attrs.state)
     return m(toolbarComponent, {
       leftIcon: {
-        class: isGameInProgress(vnode.attrs.state) ? 'close-icon' : '',
-        src: isGameInProgress(vnode.attrs.state) ? exitIcon : hamburgerIcon,
-        'aria-label': isGameInProgress(vnode.attrs.state) ? 'exit game' : 'open navigation'
+        class: gameInProgress ? 'close-icon' : '',
+        src: gameInProgress ? exitIcon : hamburgerIcon,
+        alt: `${gameInProgress ? 'Closing' : 'Menu'} Icon`,
+        'aria-label': gameInProgress ? 'exit game' : 'open navigation'
       },
       navigationButtonAttrs: {
-        onclick: () => vnode.attrs.dispatch(isGameInProgress(vnode.attrs.state) ? showExitGamePrompt() : openNavigation()),
+        onclick: () => vnode.attrs.dispatch(gameInProgress ? showExitGamePrompt() : openNavigation()),
         tabIndex: isToolbarButtonFocusable(vnode.attrs.state) ? -1 : 0
       },
       settingsIconAttrs: {
         src: settingsIcon,
+        alt: 'Settings Icon',
         'aria-label': isSettingsComponentOpen(vnode.attrs.state) ? 'close setting' : 'open settings'
       },
       settingsButtonAttrs: {
@@ -53,7 +56,7 @@ const toolbarContainer = {
         },
         tabIndex: isToolbarButtonFocusable(vnode.attrs.state) ? -1 : 0
       },
-      scores: isGameInProgress(vnode.attrs.state) ? m('ul.scores', [
+      scores: gameInProgress ? m('ul.scores', [
         map(getPlayersScores(vnode.attrs.state), (player, index) => {
           return m('li', `P${index + 1} - ${player.score}pt`)
         })
