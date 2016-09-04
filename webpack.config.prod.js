@@ -116,7 +116,8 @@ module.exports = {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: 'file',
       query: {
-        name: '[name].[ext]'
+        name: '[path][name].[ext]',
+        context: './src'
       }
     }],
     postcss () {
