@@ -14,6 +14,7 @@ import {
 } from '../services'
 
 // import 'normalize-css'
+import '../../fonts/PressStart2P-Regular.ttf'
 import '../../css/global-styles.scss'
 import '../../css/initial-load-styles.scss'
 
