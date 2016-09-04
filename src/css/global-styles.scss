@@ -1,5 +1,10 @@
 /* @import "~normalize.css"; */
 
+@font-face {
+    font-family: 'pixel';
+    src: url('../fonts/PressStart2P-Regular.ttf');
+}
+
 * {
   font-family: 'PressStart2P-Regular' !important;
   box-sizing: border-box;

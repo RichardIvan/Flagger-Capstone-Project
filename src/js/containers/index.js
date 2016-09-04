@@ -16,7 +16,6 @@ import {
 // import 'normalize-css'
 import '../../css/global-styles.scss'
 import '../../css/initial-load-styles.scss'
-import '../../fonts/PressStart2P-Regular.ttf'
 
 import Root from './Root'
 
