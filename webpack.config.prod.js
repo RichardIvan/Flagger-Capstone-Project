@@ -106,7 +106,7 @@ module.exports = {
       include: path.join(__dirname, './')
     },
     {
-      test: /\.(png|jpg)$/,
+      test: /\.(png|jpg|ttf)$/,
       loader: 'url-loader',
       query: {
         limit: 8192
@@ -114,7 +114,7 @@ module.exports = {
     },
     {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
-      loader: 'url-loader',
+      loader: 'file-loader',
       query: {
         name: '[path][name].[ext]',
         context: './src'
