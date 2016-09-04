@@ -74,7 +74,8 @@ module.exports = {
       loader: ExtractTextPlugin.extract(
         {
           fallbackLoader: 'style-loader',
-          loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap!postcss-loader!resolve-url!sass?sourceMap'
+          loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap!postcss-loader!resolve-url!sass?sourceMap',
+          publicPath: '../'
       }),
       include: path.join(__dirname, './')
     },
@@ -123,7 +124,7 @@ module.exports = {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: 'file-loader',
       query: {
-        name: 'css/[path][name].[ext]',
+        name: '[path][name].[ext]',
         context: './src'
       }
     }],
