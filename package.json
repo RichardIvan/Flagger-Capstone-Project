@@ -9,12 +9,9 @@
     "local-test:watch": "npm run local-test -- --watch",
     "cover": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- --require ./tests/setup --recursive ./tests",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "build": "webpack --config webpack.config.prod.js",
-    "dev": "webpack-dev-server --inline --hot --config webpack.config.dev.js",
     "lint": "eslint src",
     "start": "node ./server.js -p 1337",
     "server": "http-server ./dist",
-    "db": "json-server ./server/db.json --static ./dist/build --port 8080 -w -S ./ --routes ./server/src/routes.json",
     "analyzer": "node_modules/.bin/webpack --json --config webpack.config.prod.js | cat > analyze.json",
     "analyze": "node_modules/.bin/webpack --config webpack.config.prod.js"
   },
