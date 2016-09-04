@@ -55,7 +55,7 @@ module.exports = {
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer'
     }),
-    new ExtractTextPlugin({ filename: './css/main.css', allChunks: true }),
+    new ExtractTextPlugin({ filename: './css/main.css', allChunks: true, context: './src' }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
