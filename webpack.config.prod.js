@@ -120,9 +120,9 @@ module.exports = {
         context: './src'
       }
     }],
-    postcss () {
-      return [precss, autoprefixer]
-    }
+    // postcss () {
+    //   return [precss, autoprefixer]
+    // }
   },
   // stats: {
   //     colors: true,
