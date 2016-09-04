@@ -50,13 +50,13 @@ gulp.task('webpack', [], () =>
 gulp.src(path.ALL)
   // creates a source map which would be very helpful for debugging
   // by maintaining the actual source code structure
-  .pipe(sourcemaps.init())
+  // .pipe(sourcemaps.init())
   // blend in the webpack config into the source files
-  .pipe(stream(webpackConfig))
+  .pipe(stream(webpackConfig, webpack))
   // minifies the code for better compression
   // .pipe(ignore.exclude([ "**/*.map" ]))
   // .pipe(uglify())
-  .pipe(sourcemaps.write())
+  // .pipe(sourcemaps.write())
   .pipe(gulp.dest(path.DEST_BUILD))
 )
 
@@ -138,7 +138,7 @@ gulp.task('docs', function () {
 })
 
 gulp.task('build', () => {
-  runSequence(['clean', 'test', 'jscpd', 'docs'], 'webpack')
+  runSequence(['clean', 'test', 'jscpd'], 'webpack')
 })
 
 gulp.task('socket', () => gulp.src('', { read: false })

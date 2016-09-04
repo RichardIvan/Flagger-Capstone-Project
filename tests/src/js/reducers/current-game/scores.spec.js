@@ -17,7 +17,7 @@ import {
 
 import reducer, { initialState } from '../../../../../src/js/reducers/current-game'
 
-describe.only('Scores Reducer', () => {
+describe('Scores Reducer', () => {
   it('should have initial state with at least one player in the List', () => {
     it('should have initial state with at least one player in the list', () => {
       expect(reducer().getIn(['scores', 'players']).count()).toBe(1)

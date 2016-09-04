@@ -16,7 +16,8 @@ self.addEventListener('install', (event) => {
         '/index.html',
         '/css/main.css',
         '/js/index.js',
-        '/manifest.json'
+        '/manifest.json',
+        '/fonts/PressStart2P-Regular.ttf'
       ])
     })
   )

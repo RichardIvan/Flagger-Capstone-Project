@@ -3,8 +3,8 @@
 const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 
 const precss = require('precss')
 const autoprefixer = require('autoprefixer')
@@ -24,7 +24,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.json'],
-    modulesDirectories: [
+    descriptionFiles: ["package.json"],
+    modules: [
+      path.resolve('./'),
       './node_modules'
     ]
   },
@@ -38,7 +40,6 @@ module.exports = {
     //     warnings: false
     //   }
     // }),
-    // new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
        warnings: false
@@ -56,9 +57,7 @@ module.exports = {
     }),
     new ExtractTextPlugin({ filename: './css/main.css', allChunks: true }),
     new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new Visualizer({filename: '../stats/stats.html'})
   ],
@@ -107,10 +106,17 @@ module.exports = {
       include: path.join(__dirname, './')
     },
     {
-      test: /\.(png|jpg|ttf)$/,
+      test: /\.(png|jpg)$/,
       loader: 'url-loader',
       query: {
         limit: 8192
+      }
+    },
+    {
+      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      loader: 'file',
+      query: {
+        name: './fonts/[name].[ext]'
       }
     }],
     postcss () {
