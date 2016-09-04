@@ -31,7 +31,7 @@ const store = configureStore()
  * startResponsiveStateService starts a onwindow resize listener that is setting
  * the current responsive state of the application. Options are mobile/desktop
  */
-startResponsiveStateService()
+startResponsiveStateService(store)
 setupKeyBoardControls(store)
 initializeHighscores(store)
 

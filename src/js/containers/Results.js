@@ -28,7 +28,7 @@ const resultsContainer = {
               m('li', m('input[maxlength=3]', {
                 autofocus: index === 0 ? true : false,
                 value: player.name || '???',
-                onblur: (e) => vnode.attrs.dispatch(setPlayerName(index, e.target.value))
+                onblur: (e) => vnode.attrs.dispatch(setPlayerName(index, e.target.value || '???'))
               })),
               m('li', m('.score', `${player.score} pt`))
             )

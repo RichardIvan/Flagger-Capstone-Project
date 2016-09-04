@@ -5,6 +5,11 @@ import m from 'mithril'
 import randomWords from 'random-words'
 
 import map from 'lodash/map'
+import take from 'lodash/take'
+
+import {
+  isMobile
+} from '../../selectors/mobile-state'
 
 import {
   startGame,
@@ -30,10 +35,10 @@ export function generateShortId() {
   return randomWords({ exactly: 3, join: '-' })
 }
 
-export function menuButtonsByRoute(dispatch, route: string) {
-  return map(getAttribuesForMenuButtonsByRoute(dispatch, route), (buttonComponentAttributes: Object) => {
+export function menuButtonsByRoute(state: Object, dispatch: Object, route: string) {
+  return take(map(getAttribuesForMenuButtonsByRoute(dispatch, route), (buttonComponentAttributes: Object) => {
     return m(buttonComponent, buttonComponentAttributes)
-  })
+  }), isMobile(state) ? 1 : 2 )
 }
 
 export function getAttribuesForMenuButtonsByRoute(dispatch: Object, route: string) {
@@ -47,7 +52,7 @@ export function getAttribuesForMenuButtonsByRoute(dispatch: Object, route: strin
   }
 }
 
-export function mainMenuButtonAttributes(dispatch: Object) {
+export function mainMenuButtonAttributes(dispatch: any) {
   return [
     {
       buttonText: SINGLE_BUTTON_TEXT,

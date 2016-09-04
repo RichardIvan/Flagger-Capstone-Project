@@ -17,7 +17,7 @@ const MenuComponent = {
       m(coinContainer, { ...vnode.attrs }),
       m('.buttons', [
         // TODO get buttons by route/menustate
-        menuButtonsByRoute(vnode.attrs.dispatch, m.route.get())
+        menuButtonsByRoute(vnode.attrs.state, vnode.attrs.dispatch, m.route.get())
       ])
     ])
   }

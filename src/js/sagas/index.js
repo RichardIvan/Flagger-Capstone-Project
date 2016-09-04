@@ -226,8 +226,19 @@ export function* playNewRound(): any {
   yield put(hideGameInfo())
   yield call(delay, 1000)
 
-  if (level > 1 && points === 0) {
+
+  const scores = yield select(getPlayersScores)
+  const isMultiplayerGame = scores.length > 1
+  if (!isMultiplayerGame && level > 1 && !points) {
     yield put(changeRoute(RESULTS_ROUTE))
+  } else if (isMultiplayerGame && !points) {
+    const [ P1, P2 ] = scores
+    const difference = Math.abs(P1.score - P2.score)
+    if(difference > 90 || level > 10) {
+      yield put(changeRoute(RESULTS_ROUTE))
+    } else {
+      yield put(newRound())
+    }
   } else {
     yield put(newRound())
   }
