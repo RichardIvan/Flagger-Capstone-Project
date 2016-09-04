@@ -114,15 +114,15 @@ module.exports = {
     },
     {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
-      loader: 'file',
+      loader: 'url-loader',
       query: {
         name: '[path][name].[ext]',
         context: './src'
       }
     }],
-    // postcss () {
-    //   return [precss, autoprefixer]
-    // }
+    postcss () {
+      return [precss, autoprefixer]
+    }
   },
   // stats: {
   //     colors: true,
