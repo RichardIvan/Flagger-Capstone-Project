@@ -26,6 +26,7 @@ const resultsContainer = {
             m('ul.single-user',
               m('li', `P${index + 1}`),
               m('li', m('input[maxlength=3]', {
+                'aria-label': 'Player Name',
                 autofocus: index === 0 ? true : false,
                 value: player.name || '???',
                 onblur: (e) => vnode.attrs.dispatch(setPlayerName(index, e.target.value || '???'))

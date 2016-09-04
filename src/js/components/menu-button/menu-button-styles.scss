@@ -1,6 +1,6 @@
 :global(.button-holder) {
   font-size: 20px;
-  color: #D8D8D8;
+  color: #ffffff;
   padding: 0px;
   background: #31546d;
   border: solid #31546d 1px;
@@ -8,10 +8,15 @@
 
 :global(.inner-button) {
   z-index: 1;
+  background: #aa1303;
 
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+:global(.button-edge) {
+  background: #aa1303;
 }
 
 .leftImageEdge, .rightImageEdge {

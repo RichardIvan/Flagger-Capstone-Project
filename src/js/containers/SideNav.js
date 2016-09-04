@@ -48,6 +48,7 @@ const sidenavContainer = {
     return m(sidenavComponent, {
       sidenavAttrs: {
         class: isNavbarOpen(vnode.state.appState) ? 'open' : '',
+        'aria-hidden': isNavbarOpen(vnode.state.appState) ? 'false' : 'true',
         onupdate: function() {
           const isOpen = isNavbarOpen(vnode.state.appState)
           if (isOpen && !this.focused) {

@@ -29,7 +29,8 @@ import {
   PLAYING_SINGLEPLAYER_ROUTE,
   PLAYING_MULTIPLAYER_ROUTE,
   START_SINGLE_GAME,
-  START_MULTI_GAME
+  START_MULTI_GAME,
+  SET_PLAYER_NAME
 } from '../actions/constants'
 
 import {
@@ -254,9 +255,7 @@ export function* watchNewRound(): any {
 export function* watchRouteChange(): any {
   while(true) {
     const { payload } = yield take([CHANGE_ROUTE, EXIT_GAME, REPLAY_GAME])
-    console.log(payload)
     const { route } = payload
-    console.log(route)
     switch (route) {
       case PLAYING_SINGLEPLAYER_ROUTE:
         yield put({type: START_SINGLE_GAME})
@@ -274,7 +273,7 @@ export function* watchRouteChange(): any {
 export function* watchActionToSaveScores(): any {
   while(true) {
     // yield take(EXIT_GAME)
-    yield take([REPLAY_GAME, EXIT_GAME])
+    yield take([SET_PLAYER_NAME])
     let highscores = order(yield select(getHighscores))
     const scores = yield select(getPlayersScores)
     //

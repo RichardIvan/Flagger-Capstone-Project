@@ -25,7 +25,7 @@ const settingsComponent = {
               id: 'sounds-label'
             }, 'Sounds'),
             m('.checkbox_wrapper', [
-              m('input#checkbox[type=checkbox][tabindex=-1]', vnode.attrs.checkboxAttrs),
+              m('input#checkbox[type=checkbox][tabindex=-1][aria-label="sound-checkbox"][aria-hidden="true"]', vnode.attrs.checkboxAttrs),
               m(`.image_wrapper[tabindex=0][aria-label=${vnode.attrs.soundsLabel}]`, vnode.attrs.checkmarkAttrs, m(`img[src=${checkmark}][alt='Checkmark Image']`))
             ])
           ]))

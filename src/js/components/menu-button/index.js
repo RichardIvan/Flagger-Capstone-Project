@@ -12,7 +12,8 @@ const menuButtonComponent = {
   view(vnode: Object) {
     return m('button.button-holder', vnode.attrs.buttonAttrs ,[
       m('.button-edge', m(`img.${styles.leftImageEdge}`, {
-        src: leftButtonEdgeImage
+        src: leftButtonEdgeImage,
+        alt: 'Left Button Edge'
       })),
       m('.inner-button', {
         style: {
@@ -21,7 +22,8 @@ const menuButtonComponent = {
         }
       }, vnode.attrs.buttonText),
       m('.button-edge', m(`img.${styles.rightImageEdge}`, {
-        src: rightButtonEdgeImage
+        src: rightButtonEdgeImage,
+        alt: 'Right Button Edge'
       }))
     ])
   }

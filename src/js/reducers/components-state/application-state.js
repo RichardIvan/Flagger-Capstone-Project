@@ -14,7 +14,6 @@ export const initialState = Map({
 })
 
 const reducer = (state: Map<string, boolean> = initialState, action: Object) => {
-  console.log(JSON.stringify(action))
   if (!action || !action.type) return state
   switch (action.type) {
     case MOBILE_STATE_CHANGE:
