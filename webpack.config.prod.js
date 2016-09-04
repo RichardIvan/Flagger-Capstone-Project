@@ -123,7 +123,7 @@ module.exports = {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: 'file-loader',
       query: {
-        name: '[path][name].[ext]',
+        name: 'css/[path][name].[ext]',
         context: './src'
       }
     }],
