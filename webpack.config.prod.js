@@ -61,6 +61,9 @@ module.exports = {
     }),
     new Visualizer({filename: '../stats/stats.html'})
   ],
+  resolveUrlLoader: {
+    sourceMap: true
+  },
   module: {
     loaders: [{
       //   test: /\.css$/,
