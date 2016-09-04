@@ -25,7 +25,7 @@ const resultsContainer = {
           return m('li.score-line',
             m('ul.single-user',
               m('li', `P${index + 1}`),
-              m('li', m('input[maxlength=3]', {
+              m('li', m('input[maxlength=3][pattern="[a-zA-Z0-9-]+"]', {
                 'aria-label': 'Player Name',
                 autofocus: index === 0 ? true : false,
                 value: player.name || '???',
