@@ -291,7 +291,6 @@ export function* watchActionToSaveScores(): any {
       })
     }
     // // yield put(setHighscores(highscores))
-    console.log(order(highscores))
     yield call(saveHighscoresToDexie, order(highscores))
   }
 }
