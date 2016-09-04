@@ -8,14 +8,25 @@
   flex-direction: column;
   align-items: center;
 
-  :global(.heading), :global(.controls) {
+  :global(.heading) {
     flex: 2;
   }
 
   :global(.controls) {
+    flex: 4;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
+    :global(h2) {
+      display: flex;
+      justify-content: center;
+      padding: 20px
+    }
+  }
+
+  :global(.settings-options) {
+    margin-top: 20px
   }
 
   :global(.heading) {
@@ -30,9 +41,16 @@
     font-size: 25px;
   }
 
+  :global(.oauthButton) {
+    display: flex;
+    justify-content: center;
+  }
+
   :global(ul) {
     list-style: none;
     padding: 0;
+    display: flex;
+    min-width: 240px;
   }
 
   :global(li) {

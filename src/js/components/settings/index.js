@@ -5,7 +5,6 @@ import m from 'mithril'
 
 import buttonComponent from '../menu-button'
 
-
 import checkmark from '../../../images/checkmark.png'
 
 // TODO extract data to settingsComponent
@@ -16,6 +15,10 @@ const settingsComponent = {
     return m('#settings', vnode.attrs.settingsComponentAttrs, [
       m('.heading', m('h2', 'Settings')),
       m('.controls', [
+        m('.controls-info', [
+          m('h2', 'Controls'),
+          vnode.attrs.playerControlsInfo
+        ]),
         m('.settings-options', [
           m('ul', m('li', [
             m('label', {
