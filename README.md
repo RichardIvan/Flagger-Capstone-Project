@@ -35,14 +35,16 @@ The code as in previous projects is again focused on modularity, and overall cod
 * [Flowtype](https://flowtype.org/) Typechecking
 
 
-## Installation
+## Prerequisites
 
 Get started by installing npm; please follow this tutorial -> [http://blog.npmjs.org/post/85484771375/how-to-install-npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm)
 
-* ```npm i```
-
 
 ## Running
+
+* Clone the project ```git clone https://github.com/RichardIvan/Flagger-Capstone-Project.git```
+
+* Install dependencies ```npm i```
 
 * Run ```npm run server``` to serve production code or..
 
