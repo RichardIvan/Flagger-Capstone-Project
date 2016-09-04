@@ -116,7 +116,7 @@ module.exports = {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: 'file',
       query: {
-        name: './css/fonts/[name].[ext]'
+        name: './fonts/[name].[ext]'
       }
     }],
     postcss () {
