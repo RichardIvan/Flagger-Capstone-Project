@@ -21,6 +21,7 @@ const stream = require('webpack-stream')
 
 const webpackConfig = require('./webpack.config.prod.js')
 const webpackDevConfig = require('./webpack.config.dev.js')
+const webpackLocalDevConfig = require('./webpack.config.localdev.js')
 
 const path = {
   HTML: 'src/index.html',
@@ -153,5 +154,45 @@ gulp.task('start', () => {
   runSequence(['socket'])
 })
 
+gulp.task('local-dev', () => {
+  new WebpackDevServer(webpack(webpackLocalDevConfig), {
+    publicPath: '/',
+    // publicPath: `/ + ${webpackDevConfig.output.publicPath}`,
+    // inline: true,
+    // https: true,
+    // hot: true,
+    inline: true,
+    cache: true,
+    watch: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: true
+    },
+    host: 'localhost',
+    // port: 8080,
+    stats: {
+      colors: true,
+      hash: false,
+      version: false,
+      timings: true,
+      assets: false,
+      chunks: false,
+      modules: false,
+      reasons: false,
+      children: false,
+      source: false,
+      errors: false,
+      errorDetails: false,
+      warnings: false,
+      publicPath: false
+    }
+  }).listen(8080, 'localhost', (err) => {
+    if (err) throw new gutil.PluginError('webpack-dev-server', err)
+    gutil.log('[webpack-dev-server]', 'http://localhost:8080/webpack-dev-server/index.html')
+  })
+})
+
+gulp.task('server', () => gulp.src('', { read: false })
+  .pipe(shell(['npm run server'])))
 // gulp.task('default', ['socket', 'webpack-dev-server'])
 gulp.task('default', ['webpack-dev-server'])

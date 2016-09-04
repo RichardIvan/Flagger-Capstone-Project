@@ -14,7 +14,7 @@ const sagaMiddleware = createSagaMiddleware()
 const middleware = [
   sagaMiddleware,
   thunkMiddleware,
-  createLogger(),
+  // createLogger(),
   // mithrilMiddleware
 ]
 

@@ -10,7 +10,6 @@ self.addEventListener('install', (event) => {
 
   event.waitUntil(
     caches.open(staticCacheName).then((cache) => {
-      console.log(cache)
       return cache.addAll([
         '/',
         '/index.html',
