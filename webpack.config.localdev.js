@@ -8,6 +8,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const precss = require('precss')
 const autoprefixer = require('autoprefixer')
+
+var Dashboard = require('webpack-dashboard');
+var DashboardPlugin = require('webpack-dashboard/plugin');
+var dashboard = new Dashboard();
+
 // var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 // var proxyMiddleware = require('http-proxy-middleware')
 
@@ -81,6 +86,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     }),
+    new DashboardPlugin(dashboard.setData)
   ],
   module: {
     loaders: [{

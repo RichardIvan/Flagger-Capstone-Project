@@ -164,6 +164,8 @@ gulp.task('local-dev', () => {
     inline: true,
     cache: true,
     watch: true,
+    quiet: true,
+    historyApiFallback: true,
     watchOptions: {
       aggregateTimeout: 300,
       poll: true
