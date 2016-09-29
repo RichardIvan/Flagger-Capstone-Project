@@ -51,7 +51,7 @@
     "dexie": "^1.4.1",
     "env-test": "^1.0.0",
     "eslint": "^3.3.0",
-    "eslint-config-standard": "^6.0.0",
+    "eslint-config-standard": "^6.2.0",
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-extra-rules": "^0.6.1",
     "eslint-plugin-import": "^1.13.0",
