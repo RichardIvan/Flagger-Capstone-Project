@@ -93,7 +93,7 @@
     "precss": "^1.4.0",
     "promise-polyfill": "6.0.1",
     "redux": "^3.5.2",
-    "redux-logger": "^2.6.1",
+    "redux-logger": "^2.7.0",
     "redux-saga": "^0.11.0",
     "redux-thunk": "^2.1.0",
     "resolve-url-loader": "^1.6.0",
