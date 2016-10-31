@@ -74,7 +74,7 @@
     "gulp-spawn-mocha": "^3.0.0",
     "gulp-watch": "^4.3.8",
     "hashwords": "^0.2.1",
-    "html-webpack-plugin": "^2.19.0",
+    "html-webpack-plugin": "^2.24.1",
     "ignore-styles": "^4.0.0",
     "immutable": "^3.8.1",
     "is_js": "^0.8.0",
