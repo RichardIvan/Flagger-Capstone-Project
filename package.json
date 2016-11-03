@@ -86,7 +86,7 @@
     "mocha": "^3.0.0",
     "mocha-clean": "^1.0.0",
     "node-fetch": "^1.5.3",
-    "node-sass": "^3.8.0",
+    "node-sass": "^3.11.1",
     "normalize.css": "^4.1.1",
     "postcss-cssnext": "^2.6.0",
     "postcss-loader": "^0.10.0",
