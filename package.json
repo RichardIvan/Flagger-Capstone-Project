@@ -88,7 +88,7 @@
     "node-fetch": "^1.5.3",
     "node-sass": "^3.8.0",
     "normalize.css": "^4.1.1",
-    "postcss-cssnext": "^2.6.0",
+    "postcss-cssnext": "^2.9.0",
     "postcss-loader": "^0.10.0",
     "precss": "^1.4.0",
     "promise-polyfill": "6.0.1",
