@@ -68,7 +68,7 @@
     "gulp-clean": "^0.3.2",
     "gulp-documentation": "^2.2.0",
     "gulp-jscpd": "0.0.7",
-    "gulp-notify": "^2.2.0",
+    "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-shell": "^0.5.2",
     "gulp-spawn-mocha": "^3.0.0",
