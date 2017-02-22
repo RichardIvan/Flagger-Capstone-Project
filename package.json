@@ -70,7 +70,7 @@
     "gulp-jscpd": "0.0.7",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.1.0",
-    "gulp-shell": "^0.5.2",
+    "gulp-shell": "^0.6.0",
     "gulp-spawn-mocha": "^3.0.0",
     "gulp-watch": "^4.3.8",
     "hashwords": "^0.2.1",
