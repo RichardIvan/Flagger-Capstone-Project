@@ -109,7 +109,7 @@
     "webpack-dashboard": "^0.1.8",
     "webpack-dev-server": "^v2.1.0-beta.0",
     "webpack-stream": "^3.2.0",
-    "webpack-visualizer-plugin": "^0.1.5"
+    "webpack-visualizer-plugin": "^0.1.11"
   },
   "dependencies": {
     "babel-runtime": "^6.11.6"
