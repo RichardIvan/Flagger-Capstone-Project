@@ -71,7 +71,7 @@
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.1.0",
     "gulp-shell": "^0.5.2",
-    "gulp-spawn-mocha": "^3.0.0",
+    "gulp-spawn-mocha": "^3.2.0",
     "gulp-watch": "^4.3.8",
     "hashwords": "^0.2.1",
     "html-webpack-plugin": "^2.19.0",
