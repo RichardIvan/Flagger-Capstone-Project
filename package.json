@@ -107,7 +107,7 @@
     "web-app-manifest-loader": "github:RichardIvan/web-app-manifest-loader.git#patch-1",
     "webpack": "^v2.1.0-beta.21",
     "webpack-dashboard": "^0.1.8",
-    "webpack-dev-server": "^v2.1.0-beta.0",
+    "webpack-dev-server": "^2.4.4",
     "webpack-stream": "^3.2.0",
     "webpack-visualizer-plugin": "^0.1.5"
   },
